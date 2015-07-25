@@ -23,7 +23,7 @@ namespace CodeFirstConfig
             if (HttpContext.Current == null || HttpContext.Current.ApplicationInstance == null) return null;
             Type type = HttpContext.Current.ApplicationInstance.GetType();
             while (type != null && type.Namespace == "ASP") { type = type.BaseType; }
-            return type == null ? null : type.Assembly;
+            return type?.Assembly;
         }
 
         public static Assembly GetAssembly()
@@ -39,7 +39,7 @@ namespace CodeFirstConfig
             return System.IO.Path.GetDirectoryName(path);
         }
 
-        public static Assembly Assembly { get { return _assembly; } }
+        public static Assembly Assembly => _assembly;
 
         static AppAssembly()
         {

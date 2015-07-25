@@ -106,7 +106,8 @@ namespace CodeFirstConfig
             if (attr != null && attr.ExecuteBeforeSet)
             {
                 if (Configurator.OnBeforeSet == null)
-                    throw new ArgumentException(string.Format("Before set config action on key '{0}' could not be executed because it is not configured in GlobalConfigManager!", key));
+                    throw new ArgumentException(
+                        $"Before set config action on key '{key}' could not be executed because it is not configured in GlobalConfigManager!");
                 var args = new ConfigBeforeSetEventArgs(_namespace, name, key, value);
                 Configurator.OnBeforeSet(args);
                 return args;
@@ -119,7 +120,8 @@ namespace CodeFirstConfig
             if (attr != null && attr.ExecuteAfterSet)
             {
                 if (Configurator.OnAfterSet == null)
-                    throw new ArgumentException(string.Format("After set config action on key '{0}' could not be executed because it is not configured in GlobalConfigManager!", key));                   
+                    throw new ArgumentException(
+                        $"After set config action on key '{key}' could not be executed because it is not configured in GlobalConfigManager!");                   
                 Configurator.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));    
             }       
         }
@@ -193,8 +195,7 @@ namespace CodeFirstConfig
             if (requireds.Count != _requireds.Count)
             {
                 throw new ConfigurationErrorsException(
-                    string.Format("Config exception! Some of required config elements in namespace {0} are required and not found in any configuration! List of required elements: {1}",
-                        _namespace, string.Join(",", _requireds.Except(requireds))));
+                    $"Config exception! Some of required config elements in namespace {_namespace} are required and not found in any configuration! List of required elements: {string.Join(",", _requireds.Except(requireds))}");
             }
             return model;
         }

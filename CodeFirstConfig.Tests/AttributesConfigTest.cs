@@ -12,7 +12,7 @@ namespace CodeFirstConfig.Tests
         public class TestClass
         {
             //will NOT be written to config file!
-            public static TestClass Config { get { return ConfigManager<TestClass>.Config; } }
+            public static TestClass Config => ConfigManager<TestClass>.Config;
 
             public string Value1 = "MyValueFromCode1";
             public string Value2 = "MyValueFromCode2";

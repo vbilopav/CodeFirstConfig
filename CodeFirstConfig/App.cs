@@ -12,10 +12,10 @@ namespace CodeFirstConfig
     public sealed class App
     {
         private string _id;
-        public static App Config { get { return AppConfigManager.Config; } }
-        public static string InstanceHash { get; private set; }
+        public static App Config => AppConfigManager.Config;
+        public static string InstanceHash { get; }
 
-        public bool IsWebApp { get; private set; }
+        public bool IsWebApp { get; }
         public bool IsDebugConfiguration { get; private set; }
         public bool Debugging { get; private set; }
         public bool Testing { get; private set; }
@@ -29,7 +29,7 @@ namespace CodeFirstConfig
         public string Id
         {
             get { return _id; }
-            set { _id = value; this.InstanceId = string.Concat(_id, InstanceHash).ToLower(); }
+            set { _id = value; InstanceId = string.Concat(_id, InstanceHash).ToLower(); }
         }
 
         [ConfigComment("Unique instance id. If not set ApplicationId with unique hash.")]

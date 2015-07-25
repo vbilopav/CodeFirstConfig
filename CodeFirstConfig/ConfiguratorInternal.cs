@@ -53,7 +53,7 @@ namespace CodeFirstConfig
             var m =
                 t.GetMethod("Reconfigure", BindingFlags.Public | BindingFlags.Static) ??
                 t.GetMethod("Reconfigure", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-            return m == null ? null : m.Invoke(null, null);
+            return m?.Invoke(null, null);
         }
 
         private static void CheckIsConfigured()

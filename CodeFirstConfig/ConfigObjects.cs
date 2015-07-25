@@ -66,11 +66,9 @@ namespace CodeFirstConfig
                 writer.WriteComment("readonly");
             }
             var ca = field.GetCustomAttribute<ConfigCommentAttribute>();
-            if (ca != null && !string.IsNullOrEmpty(ca.Comment))
-            {
-                writer.WriteRaw("\t");
-                writer.WriteComment(ca.Comment);
-            }
+            if (string.IsNullOrEmpty(ca?.Comment)) return;
+            writer.WriteRaw("\t");
+            writer.WriteComment(ca.Comment);
         }
         
         private static void WriteJsonToTextWriter(TextWriter textWriter, bool skipComment = false)
@@ -137,12 +135,13 @@ namespace CodeFirstConfig
                     writer.Write("\" />");
                 }                
             }
-            if (field is PropertyInfo && (field as PropertyInfo).GetSetMethod() == null)
+            var info = field as PropertyInfo;
+            if (info != null && info.GetSetMethod() == null)
             {
                 writer.Write("\t<!--readonly-->");
             }
             var ca = field.GetCustomAttribute<ConfigCommentAttribute>();
-            if (ca != null && !string.IsNullOrEmpty(ca.Comment))
+            if (!string.IsNullOrEmpty(ca?.Comment))
             {
                 writer.Write(string.Concat("\t<!--", ca.Comment, "-->"));
             }
@@ -167,7 +166,7 @@ namespace CodeFirstConfig
                         if (prevKey != null)
                             writer.WriteLine();
                         var attr = kvp.Value.GetType().GetCustomAttribute<ConfigCommentAttribute>();
-                        if (attr != null && !string.IsNullOrEmpty(attr.Comment))                            
+                        if (!string.IsNullOrEmpty(attr?.Comment))                            
                             writer.WriteLine(string.Concat("\t<!--", attr.Comment, "-->"));
                     }                        
                     
@@ -198,9 +197,7 @@ namespace CodeFirstConfig
             lock (_current) 
             {
                 object config;
-                if (_current.TryGetValue(key, out config))
-                    return config;
-                return null;
+                return _current.TryGetValue(key, out config) ? config : null;
             }
         }
 
@@ -216,11 +213,9 @@ namespace CodeFirstConfig
             if (format == ConfigFormat.AppConfig)
                 WriteAppConfigToTextWriter(writer, skipComment);
 
-            if (exceptions != null && exceptions.Any())
-            {
-                writer.Write("\n\n");
-                writer.Write(new AggregateException(exceptions.ToArray()).ToString());
-            }                
+            if (exceptions == null || !exceptions.Any()) return;
+            writer.Write("\n\n");
+            writer.Write(new AggregateException(exceptions.ToArray()).ToString());
         }
 
         internal static void ToWriter(TextWriter writer, List<Exception> exceptions = null)

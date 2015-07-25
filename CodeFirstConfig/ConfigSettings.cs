@@ -9,7 +9,7 @@ namespace CodeFirstConfig
     [ConfigComment("Config settings")]
     public sealed class ConfigSettings
     {
-        public static ConfigSettings Config { get { return ConfigSettingsManager.Config; } }
+        public static ConfigSettings Config => ConfigSettingsManager.Config;
         public bool SaveConfigFile { get; set; }
         public string SaveConfigFileName { get; set; }
         public bool EnableFileWatcher { get; set; }

@@ -15,7 +15,7 @@ namespace CodeFirstConfig
         public static Action<ConfigBeforeSetEventArgs> OnBeforeSet { get { return BeforeSetEvent; } set { lock (ConfigLock) { BeforeSetEvent = value; } } }
 
         public static AggregateException Exception { get { lock (ConfigLock) return new AggregateException(_exceptions.ToArray()); } }
-        public static IDictionary<string, object> Current { get { return ConfigObjects.Current; } }
+        public static IDictionary<string, object> Current => ConfigObjects.Current;
 
         public static void SetConfigTypesFunc(Func<IEnumerable<Type>> func)
         {
