@@ -59,13 +59,13 @@ namespace CodeFirstConfig
         private static void CheckIsConfigured()
         {
             if (_configured)
-                throw new ApplicationException("Configure method should be called only once per AppDomain!");
+                throw new CodeFirstConfigException("Configure method should be called only once per AppDomain!");
         }
 
         private static void CheckIsNotConfigured()
         {
             if (!_configured)
-                throw new ApplicationException("Configure must be called before any Reconfigure calls!");
+                throw new CodeFirstConfigException("Configure must be called before any Reconfigure calls!");
         }
 
         private static IDictionary<string, object> ConfigureInternal(Action<Type> action,

@@ -11,9 +11,9 @@ namespace CodeFirstConfig
 {
     public abstract class DbConfigOptions
     {
-        private static bool? _createResult = null;
+        private static bool? _createResult;
 
-        protected Func<DbConnection> CreateConnectionFunc = null;        
+        protected Func<DbConnection> CreateConnectionFunc;        
         protected virtual DbConfigSettings Settings { get; set; }
         protected virtual CommandType CommandType { get; set; }
 
@@ -164,7 +164,7 @@ namespace CodeFirstConfig
 
         protected DbConfigOptions(Func<DbConnection> createConnection)
         {
-            CommandType = System.Data.CommandType.Text;
+            CommandType = CommandType.Text;
             CreateConnectionFunc = createConnection;
             Settings = new DbConfigSettings();            
             if (ConfigValues.DatabaseOptions != null)

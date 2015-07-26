@@ -22,7 +22,7 @@ namespace CodeFirstConfig
       
         public LimitedConcurrencyLevelTaskScheduler(int maxDegreeOfParallelism)
         {
-            if (maxDegreeOfParallelism < 1) throw new ArgumentOutOfRangeException("maxDegreeOfParallelism");
+            if (maxDegreeOfParallelism < 1) throw new ArgumentOutOfRangeException(nameof(maxDegreeOfParallelism));
             _maxDegreeOfParallelism = maxDegreeOfParallelism;
         }
 
@@ -81,8 +81,8 @@ namespace CodeFirstConfig
             lock (_tasks) return _tasks.Remove(task);
         }
        
-        public sealed override int MaximumConcurrencyLevel { get { return _maxDegreeOfParallelism; } }
-        
+        public sealed override int MaximumConcurrencyLevel => _maxDegreeOfParallelism;
+
         protected sealed override IEnumerable<Task> GetScheduledTasks()
         {
             bool lockTaken = false;

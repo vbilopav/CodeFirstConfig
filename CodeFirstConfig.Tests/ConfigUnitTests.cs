@@ -12,57 +12,7 @@ namespace Infrastructure.Tests
 
        
 
-        /*
-        public class TestAttributesConfig
-        {
-            [ConfigSettings(ExecuteAfterSet = true)]
-            public string StringValue = "StringValueFromCode"; //StringValueFromConfig
-
-            [ConfigSettings(ExecuteAfterSet = true, Required = true)]
-            public string StringRequiredValueConfig = "StringRequiredValueFromCode"; //StringRequiredValueFromConfig
-        }
-
-        public class TestAttributesConfigManager : ConfigManager<TestAttributesConfig> { }
-        */
-
-        //[TestMethod]
-        //public void TestMethod6()
-        //{
-        //    string v = "";
-        //    Configurator.OnAfterSet = args =>
-        //    {
-        //        Log.Info("Key '{0}' with name '{1}' is set to '{2}' in namespace '{3}'", new[] { args.Key, args.Name, args.Value, args.Namespace });
-        //        v = args.Value.ToString();
-        //    };
-
-        //    var config = TestAttributesConfigManager.Config; //init
-        //    Assert.AreEqual("StringRequiredValueFromConfig", config.StringRequiredValueConfig);
-        //}
-
-        /*
-        public class TestAttributesConfig_a
-        {
-            [ConfigSettings(ExecuteBeforeSet = true)]
-            public string StringValue = "StringValueFromCode"; //StringValueFromConfig
-
-            [ConfigSettings(ExecuteBeforeSet = true, Required = true)]
-            public string StringRequiredValueConfig = "StringRequiredValueFromCode"; //StringRequiredValueFromConfig
-        }
-
-        public class TestAttributesConfigManager_a : ConfigManager<TestAttributesConfig_a> { }
-
-
-        [TestMethod]
-        public void TestMethod6_a()
-        {           
-            Configurator.OnBeforeSet = args =>
-            {
-                if (string.Equals(args.Value, "StringValueFromConfig")) 
-                    args.Cancel = true;
-            };
-
-            var config = TestAttributesConfigManager_a.Config; //init
-            Assert.AreEqual("StringRequiredValueFromConfig", config.StringRequiredValueConfig);
+    reEqual("StringRequiredValueFromConfig", config.StringRequiredValueConfig);
         }
         
 

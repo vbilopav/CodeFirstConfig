@@ -53,8 +53,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConfigUnitTests.cs" />
-    <Compile Include="CompositConfigTest.cs" />
     <Compile Include="AttributesConfigTest.cs" />
+    <Compile Include="CompositConfigTest.cs" />
     <Compile Include="InheritConfigTest.cs" />
     <Compile Include="PocoConfigTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,15 +66,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="TestMethod1.config" />
-    <None Include="TestMethod2.config" />
-    <None Include="TestMethod3.config" />
-    <None Include="TestMethod4.config" />
-    <None Include="TestMethod5.config" />
-    <None Include="TestMethod6.config" />
-    <None Include="TestMethod7.config" />
-    <None Include="TestMethod9.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using CodeFirstConfig;
 using Newtonsoft.Json;
 
 namespace CodeFirstConfig
@@ -101,29 +100,26 @@ namespace CodeFirstConfig
         }
 
 
-        private ConfigBeforeSetEventArgs ExecuteOnBeforeSetAction(MemberInfo member, ConfigSettingsAttribute attr, string name, string key, object value)
+        private ConfigBeforeSetEventArgs ExecuteOnBeforeSetAction(ConfigSettingsAttribute attr, string name, string key, object value)
         {
-            if (attr != null && attr.ExecuteBeforeSet)
-            {
-                if (Configurator.OnBeforeSet == null)
-                    throw new ArgumentException(
-                        $"Before set config action on key '{key}' could not be executed because it is not configured in GlobalConfigManager!");
-                var args = new ConfigBeforeSetEventArgs(_namespace, name, key, value);
-                Configurator.OnBeforeSet(args);
-                return args;
-            }
-            return new ConfigBeforeSetEventArgs();
+            if (attr == null || !attr.ExecuteBeforeSet) return null;
+            if (Configurator.OnBeforeSet == null)
+                throw new CodeFirstConfigException(
+                    $"Before set config action on key '{key}' could not be executed because it is not configured in global config manager -> Configurator.OnBeforeSet",
+                    new ConfigItem(_namespace, name, key, value));
+            var args = new ConfigBeforeSetEventArgs(_namespace, name, key, value);
+            Configurator.OnBeforeSet(args);
+            return args;
         }
 
-        private void ExecuteOnAfterSetAction(MemberInfo member, ConfigSettingsAttribute attr, string name, string key, object value)
-        {                           
-            if (attr != null && attr.ExecuteAfterSet)
-            {
-                if (Configurator.OnAfterSet == null)
-                    throw new ArgumentException(
-                        $"After set config action on key '{key}' could not be executed because it is not configured in GlobalConfigManager!");                   
-                Configurator.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));    
-            }       
+        private void ExecuteOnAfterSetAction(ConfigSettingsAttribute attr, string name, string key, object value)
+        {
+            if (attr == null || !attr.ExecuteAfterSet) return;
+            if (Configurator.OnAfterSet == null)
+                throw new CodeFirstConfigException(
+                    $"After set config action on key '{key}' could not be executed because it is not configured in global config manager -> Configurator.OnAfterSet",
+                    new ConfigItem(_namespace, name, key, value));                   
+            Configurator.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));
         }
         
         private void SetValueToModel(string name, string key, object value, ref TModel model)
@@ -135,20 +131,20 @@ namespace CodeFirstConfig
             {
                 attr = prop.GetCustomAttribute<ConfigSettingsAttribute>();
                 value = ParseModelValue(prop.PropertyType, value);
-                args = ExecuteOnBeforeSetAction(prop, attr, name, key, value);
-                if (args.Cancel) return;
+                args = ExecuteOnBeforeSetAction(attr, name, key, value);
+                if (args != null && args.Cancel) return;
                 prop.SetValue(model, value);
-                ExecuteOnAfterSetAction(prop, attr, name, key, value);                             
+                ExecuteOnAfterSetAction(attr, name, key, value);                             
                 return;
             }
             FieldInfo field;                       
             if (!_fields.TryGetValue(name, out field)) return;
             attr = field.GetCustomAttribute<ConfigSettingsAttribute>();            
             value = ParseModelValue(field.FieldType, value);
-            args = ExecuteOnBeforeSetAction(field, attr, name, key, value);                
-            if (args.Cancel) return;
+            args = ExecuteOnBeforeSetAction(attr, name, key, value);                
+            if (args != null && args.Cancel) return;
             field.SetValue(model, value);
-            ExecuteOnAfterSetAction(field, attr, name, key, value);   
+            ExecuteOnAfterSetAction(attr, name, key, value);   
         }
 
         private TModel Build(TModel model)
@@ -194,8 +190,9 @@ namespace CodeFirstConfig
             }
             if (requireds.Count != _requireds.Count)
             {
-                throw new ConfigurationErrorsException(
-                    $"Config exception! Some of required config elements in namespace {_namespace} are required and not found in any configuration! List of required elements: {string.Join(",", _requireds.Except(requireds))}");
+                throw new CodeFirstConfigException(
+                    $"Config exception! Some of required config elements in namespace {_namespace} are required and not found in any configuration! List of required elements: {string.Join(",", _requireds.Except(requireds))}",
+                    new ConfigItem(@namespace: _namespace, name: null, key: null, value: null));
             }
             return model;
         }
@@ -227,23 +224,23 @@ namespace CodeFirstConfig
             _ns = _namespace.Split(new[]{'.'}, StringSplitOptions.RemoveEmptyEntries);
             _props = type
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty)
-                .Where(ø => ø.CanWrite)
-                .Where(ø => ø.GetSetMethod(true).IsPublic)
-                .ToDictionary(ø => ø.Name, ø => ø);
+                .Where(p => p.CanWrite)
+                .Where(p => p.GetSetMethod(true).IsPublic)
+                .ToDictionary(p => p.Name, p => p);
             _fields = type
                 .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetField)
-                .Where(ø => ø.IsPublic)
-                .ToDictionary(ø => ø.Name, ø => ø);
+                .Where(f => f.IsPublic)
+                .ToDictionary(f => f.Name, ø => ø);
             _requireds = new HashSet<string>(
                _props
-                   .Where(ø => ø.Value.IsDefined(typeof(ConfigSettingsAttribute), false))
-                   .Where(ø => ø.Value.GetCustomAttribute<ConfigSettingsAttribute>().Required)
-                   .Select(ø => ø.Key)
+                   .Where(f => f.Value.IsDefined(typeof(ConfigSettingsAttribute), false))
+                   .Where(f => f.Value.GetCustomAttribute<ConfigSettingsAttribute>().Required)
+                   .Select(f => f.Key)
                    .Concat(
                        _fields
-                           .Where(ø => ø.Value.IsDefined(typeof(ConfigSettingsAttribute), false))
-                           .Where(ø => ø.Value.GetCustomAttribute<ConfigSettingsAttribute>().Required)
-                           .Select(ø => ø.Key)
+                           .Where(f => f.Value.IsDefined(typeof(ConfigSettingsAttribute), false))
+                           .Where(f => f.Value.GetCustomAttribute<ConfigSettingsAttribute>().Required)
+                           .Select(f => f.Key)
                    )
                    .ToList());
         }       

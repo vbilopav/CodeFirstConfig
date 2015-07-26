@@ -2,7 +2,7 @@ using System;
 
 namespace CodeFirstConfig
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class ConfigSettingsAttribute : Attribute
     {
         public bool Required { get; set; }
@@ -10,7 +10,7 @@ namespace CodeFirstConfig
         public bool ExecuteBeforeSet { get; set; }
     }
 
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Class)]
     public class ConfigCommentAttribute : Attribute
     {
         public string Comment { get; private set; }

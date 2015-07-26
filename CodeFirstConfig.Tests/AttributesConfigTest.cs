@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CodeFirstConfig.Tests
@@ -6,54 +7,130 @@ namespace CodeFirstConfig.Tests
     [TestClass]
     public class AttributesConfigTest
     {
-        public class TestComplexClass { public string Field1 = "Field1"; public string Field2 = "Field2"; }        
-        public enum TestEnum { Enum1, Enum2, Enum3 }
-
-        public class TestClass
+        public class TestAfterSetClass : ConfigManager<TestAfterSetClass>
         {
-            //will NOT be written to config file!
-            public static TestClass Config => ConfigManager<TestClass>.Config;
+            [ConfigSettings(ExecuteAfterSet = true)] public string Value1 = "MyValueFromCode1";
+            [ConfigSettings(ExecuteAfterSet = true)] public string Value2 = "MyValueFromCode2";
+        }
 
-            public string Value1 = "MyValueFromCode1";
-            public string Value2 = "MyValueFromCode2";
-            public string Value3 = "MyValueFromCode3";
-            public string Value4 = "MyValueFromCode4";
-            public string Value5 = "MyValueFromCode5";
-            public string Value6 = "MyValueFromCode6";
-            public string Value7 = "MyValueFromCode7";
-            public TestEnum EnumValue = TestEnum.Enum1;
-            public TestEnum EnumConfig = TestEnum.Enum2; //Enum3
-            public DateTime DateTimeValue = new DateTime(2015, 1, 1);
-            public DateTime DateTimeValueConfig = new DateTime(2015, 1, 1); //20.7.2015
-            public bool BoolValue = true;
-            public bool BoolValueConfig = true; //false           
-            public TestComplexClass ComplexClassConfig; //Field1 = "Field1CONFIG", Field2 = "Field2CONFIG" 
-            public string[] StringArray { get; set; } //config1, config2        
+        [TestMethod]
+        public void TestAfterSet()
+        {
+            var i = 0;
+            string key = "", ns = "";
+
+            Configurator.OnAfterSet = args =>
+            {
+                Debug.WriteLine(
+                    $"Key '{args.Key}' with name '{args.Name}' is set to '{args.Value}' in namespace '{args.Namespace}'");
+                i++;
+                key = args.Key;
+                ns = args.Namespace;
+            };
+            Assert.AreEqual("MyValueFromCode1", TestAfterSetClass.Config.Value1);
+            Assert.AreEqual(1, i);
+            Assert.AreEqual("Value2", key);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestAfterSetClass", ns);
+        }
+
+        public class TestBeforeSetClass : ConfigManager<TestBeforeSetClass>
+        {
+            [ConfigSettings(ExecuteBeforeSet = true)] public string Value1 = "MyValueFromCode1";
+            [ConfigSettings(ExecuteBeforeSet = true)] public string Value2 = "MyValueFromCode2";
+        }
+
+        [TestMethod]
+        public void TestBeforeSet()
+        {
+            var i = 0;
+            string key = "", ns = "";
+            Configurator.OnBeforeSet = args =>
+            {
+                Debug.WriteLine(
+                    $"Key '{args.Key}' with name '{args.Name}' is set to '{args.Value}' in namespace '{args.Namespace}'");
+                i++;
+                key = args.Key;
+                ns = args.Namespace;
+            };
+            Assert.AreEqual("MyValueFromCode1", TestBeforeSetClass.Config.Value1);
+            Assert.AreEqual(1, i);
+            Assert.AreEqual("Value2", key);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeSetClass", ns);
         }
 
 
-        [TestMethod]
-        public void TestMethod1()
+        public class TestBeforeAndAfterSetClass : ConfigManager<TestBeforeAndAfterSetClass>
         {
-            Assert.AreEqual("MyValueFromCode1", TestClass.Config.Value1);
-            Assert.AreEqual("MyValueFromConfig2", TestClass.Config.Value2);
-            Assert.AreEqual("MyValueFromConfig3", TestClass.Config.Value3);
-            Assert.AreEqual("MyValueFromCode4", TestClass.Config.Value4); // different class name
-            Assert.AreEqual("MyValueFromCode5", TestClass.Config.Value5); // different class name
-            Assert.AreEqual("MyValueFromCode6", TestClass.Config.Value6); // different class name
-            Assert.AreEqual("MyValueFromConfig7_2", TestClass.Config.Value7); // different class name
+            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)] public string Value1 = "MyValueFromCode1";
+            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)] public string Value2 = "MyValueFromCode2";
+        }
 
-            Assert.AreEqual(TestEnum.Enum1, TestClass.Config.EnumValue);
-            Assert.AreEqual(TestEnum.Enum3, TestClass.Config.EnumConfig);
-            Assert.AreEqual(new DateTime(2015, 1, 1), TestClass.Config.DateTimeValue);
-            Assert.AreEqual(new DateTime(2015, 7, 20), TestClass.Config.DateTimeValueConfig);
-            Assert.AreEqual(true, TestClass.Config.BoolValue);
-            Assert.AreEqual(false, TestClass.Config.BoolValueConfig);
-            Assert.AreEqual("Field1CONFIG", TestClass.Config.ComplexClassConfig.Field1);
-            Assert.AreEqual("Field2CONFIG", TestClass.Config.ComplexClassConfig.Field2);
-            Assert.AreEqual(2, TestClass.Config.StringArray.Length);
-            Assert.AreEqual("value1", TestClass.Config.StringArray[0]);
-            Assert.AreEqual("value2", TestClass.Config.StringArray[1]);    
+        [TestMethod]
+        public void TestBeforeAndAfterSet()
+        {
+            int i1 = 0, i2 = 0;
+            string key1 = "", key2 = "", ns1 = "", ns2 = "";
+
+            Configurator.OnBeforeSet = args =>
+            {
+                Debug.WriteLine(
+                    $"Key '{args.Key}' with name '{args.Name}' is set to '{args.Value}' in namespace '{args.Namespace}'");
+                i1++;
+                key1 = args.Key;
+                ns1 = args.Namespace;
+            };
+            Configurator.OnAfterSet = args =>
+            {
+                Debug.WriteLine(
+                    $"Key '{args.Key}' with name '{args.Name}' is set to '{args.Value}' in namespace '{args.Namespace}'");
+                i2++;
+                key2 = args.Key;
+                ns2 = args.Namespace;
+            };
+            Assert.AreEqual("MyValueFromCode1", TestBeforeAndAfterSetClass.Config.Value1);
+            Assert.AreEqual(1, i1);
+            Assert.AreEqual("Value2", key1);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeAndAfterSetClass", ns1);
+            Assert.AreEqual(1, i2);
+            Assert.AreEqual("Value2", key2);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeAndAfterSetClass", ns2);
+        }
+
+
+        public class TestCancelClass : ConfigManager<TestCancelClass>
+        {
+            [ConfigSettings(ExecuteBeforeSet = true)] public string Value1 = "MyValueFromCode1";
+            [ConfigSettings(ExecuteBeforeSet = true)] public string Value2 = "MyValueFromCode2";
+        }
+
+        [TestMethod]
+        public void TestCancel()
+        {
+            Configurator.OnBeforeSet = args =>
+            {
+                if (args.Key == "Value2")
+                    args.Cancel = true;
+            };
+            Assert.AreEqual("MyValueFromCode2", TestCancelClass.Config.Value2);
+        }
+
+        public class TestRequiredClass : ConfigManager<TestRequiredClass>
+        {
+            [ConfigSettings(Required = true)] public string Value1 = "MyValueFromCode1";
+        }
+
+        [TestMethod]
+        public void TestRequired()
+        {
+            try
+            {
+                Assert.AreEqual("MyValueFromCode1", TestRequiredClass.Config.Value1);
+            }
+            catch (Exception exception)
+            {                
+                Assert.IsInstanceOfType(exception, typeof(CodeFirstConfigException));    
+                Debug.WriteLine(exception.Message);            
+            }            
         }
     }
 }

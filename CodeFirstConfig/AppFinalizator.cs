@@ -5,7 +5,7 @@ namespace CodeFirstConfig
 {
     public static class AppFinalizator
     {
-        public static ConcurrentQueue<IDisposable> CleanupQueue { get; private set; }
+        public static ConcurrentQueue<IDisposable> CleanupQueue { get; }
 
         static AppFinalizator()
         {

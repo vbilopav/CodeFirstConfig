@@ -54,6 +54,8 @@
     <Compile Include="AppFinalizator.cs" />
     <Compile Include="ConfigAttributes.cs" />
     <Compile Include="ConfigEventArgs.cs" />
+    <Compile Include="CodeFirstConfigException.cs" />
+    <Compile Include="ConfigItem.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="ConfigObjects.cs" />
     <Compile Include="ConfigSettings.cs" />

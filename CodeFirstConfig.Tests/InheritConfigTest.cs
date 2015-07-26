@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CodeFirstConfig.Tests
 {
@@ -15,7 +14,7 @@ namespace CodeFirstConfig.Tests
         public class TestClass2 : TestClass
         {
             private abstract class TestInheritConfig2Manager : ConfigManager<TestClass2> { }
-            public static new TestClass2 Config { get { return TestInheritConfig2Manager.Config; } }
+            public static new TestClass2 Config => TestInheritConfig2Manager.Config;
 
             public string Value3 = "MyValueFromCode3";
             public string Value4 = "MyValueFromCode4";
