@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace CodeFirstConfig
 {
-    public class ModelConfigurator<TModel> where TModel : class, new()
+    internal class ModelConfigurator<TModel> where TModel : class, new()
     {
         private readonly IDictionary<string, PropertyInfo> _props;
         private readonly IDictionary<string, FieldInfo> _fields;

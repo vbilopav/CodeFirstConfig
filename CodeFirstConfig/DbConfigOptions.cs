@@ -168,7 +168,7 @@ namespace CodeFirstConfig
             CreateConnectionFunc = createConnection;
             Settings = new DbConfigSettings();            
             if (ConfigValues.DatabaseOptions != null)
-                throw new ArgumentException("Only one instance of DbConfigOptions is permited!");
+                throw new CodeFirstConfigException("Only one instance of DbConfigOptions is permited!");
             //ConfigValues.DatabaseOptions = this;
         }
     }

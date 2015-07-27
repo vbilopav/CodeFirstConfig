@@ -4,31 +4,41 @@ namespace CodeFirstConfig
 {
     public enum ConfigFormat { Json, AppConfig }
 
-    public class ConfigSettingsManager : ConfigManager<ConfigSettings> { }
-
-    [ConfigComment("Config settings")]
     public sealed class ConfigSettings
     {
-        public static ConfigSettings Config => ConfigSettingsManager.Config;
-        public bool SaveConfigFile { get; set; }
-        public string SaveConfigFileName { get; set; }
-        public bool EnableFileWatcher { get; set; }
-        public ConfigFormat ConfigFormat { get; set; }
-        public bool EnableTimer { get; set; }
-        public int? TimerMinutes { get; set; }
-        public int MaxFileWriteRetry { get; set; }
-        public bool ThrowOnConfigureException { get; set; }
+        private const string DefaultConfigName = ".\\CodeFirstAppSettings.config";
+        private ConfigFormat _format = ConfigFormat.AppConfig;
 
-        public ConfigSettings()
+        // protected by ConfigLock
+        public static ConfigSettings Instance { get; internal set; }
+
+        public bool SaveConfigFile { get; set; } = true;
+        public string SaveConfigFileName { get; set; } = DefaultConfigName;
+        public bool EnableFileWatcher { get; set; } = true;
+
+        public ConfigFormat Format
         {
-            SaveConfigFile = true;
-            SaveConfigFileName = Path.Combine(App.Config.DataFolder, "AppSettings.config");
-            ConfigFormat = ConfigFormat.AppConfig;
-            EnableFileWatcher = true;
-            EnableTimer = false;
-            TimerMinutes = 5;
-            MaxFileWriteRetry = 3;
-            ThrowOnConfigureException = true;
+            get { return _format; }
+            set
+            {
+                _format = value;
+                if (!Equals(SaveConfigFileName, DefaultConfigName)) return;
+                switch (_format)
+                {
+                    case ConfigFormat.AppConfig:
+                        SaveConfigFileName = Path.ChangeExtension(SaveConfigFileName, ".config");
+                        break;
+
+                    case ConfigFormat.Json:
+                        SaveConfigFileName = Path.ChangeExtension(SaveConfigFileName, ".json");
+                        break;
+                }
+            }
         }
+
+        public bool EnableTimer { get; set; } = false;
+        public int? TimerMinutes { get; set; } = 5;
+        public int MaxFileWriteRetry { get; set; } = 3;
+        public bool ThrowOnConfigureException { get; set; } = true;
     }
 }

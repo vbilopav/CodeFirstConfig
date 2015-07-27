@@ -13,7 +13,14 @@ namespace CodeFirstConfig
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Class)]
     public class ConfigCommentAttribute : Attribute
     {
-        public string Comment { get; private set; }
+        public string Comment { get; }
         public ConfigCommentAttribute(string comment) { Comment = comment; }
     }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class ConfigKeySerializeLevelAttribute : Attribute
+    {
+        public ushort Level { get; }              
+        public ConfigKeySerializeLevelAttribute(ushort level) { Level = level; }
+    }    
 }

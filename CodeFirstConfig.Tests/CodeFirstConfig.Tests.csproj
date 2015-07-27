@@ -52,7 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ConfigUnitTests.cs" />
+    <Compile Include="ConfiguratorTests.cs" />
     <Compile Include="AttributesConfigTest.cs" />
     <Compile Include="CompositConfigTest.cs" />
     <Compile Include="InheritConfigTest.cs" />
@@ -60,6 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeFirstConfig.SqlServerCe\CodeFirstConfig.SqlServerCe.csproj">
+      <Project>{3f32e62a-6029-4abd-8ff3-ef647da376ac}</Project>
+      <Name>CodeFirstConfig.SqlServerCe</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeFirstConfig\CodeFirstConfig.csproj">
       <Project>{cfd96ca9-369d-481a-a97c-b343d1fb1d8b}</Project>
       <Name>CodeFirstConfig</Name>
@@ -90,6 +94,10 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

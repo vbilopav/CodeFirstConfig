@@ -31,9 +31,10 @@ namespace CodeFirstConfig
             writer.WriteLine("\tKeys:               {0}", string.Join(", ", _current.Keys));
             if (writer is StreamWriter)
             {
-                writer.WriteLine("\tFile:               {0}", ConfigSettings.Config.SaveConfigFileName);                
+                writer.WriteLine("\tFile:               {0}", ConfigSettings.Instance.SaveConfigFileName);                
             }
-            writer.WriteLine(format == ConfigFormat.AppConfig ? "-->\n" : "*/\n");
+            writer.WriteLine(format == ConfigFormat.AppConfig ? "-->" : "*/");
+            writer.WriteLine();
         }
 
         
@@ -83,9 +84,25 @@ namespace CodeFirstConfig
                 {
                     foreach (var kvp in _current)
                     {
-                        writer.WritePropertyName(kvp.Key, false);
-                        writer.WriteStartObject();
                         var objType = kvp.Value.GetType();
+
+                        var levelAttr = objType.GetCustomAttribute<ConfigKeySerializeLevelAttribute>();
+                        string key;
+                        if (levelAttr != null)
+                        {
+                            var keys = kvp.Key.Split('.');
+                            key = string.Join(".", keys.Skip(keys.Length - levelAttr.Level));
+                            if (string.IsNullOrEmpty(key) || levelAttr.Level == 0) continue;
+                        }
+                        else
+                        {
+                            key = kvp.Key;
+                        }
+                        var configAttr = objType.GetCustomAttribute<ConfigCommentAttribute>();
+                        if (!string.IsNullOrEmpty(configAttr?.Comment))
+                            writer.WriteComment(configAttr.Comment);                       
+                        writer.WritePropertyName(key, false);
+                        writer.WriteStartObject();                        
                         foreach (var prop in objType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
                         {
                             WriteJsonValue(writer, prop, prop.GetValue(kvp.Value, null), prop.PropertyType);
@@ -160,24 +177,34 @@ namespace CodeFirstConfig
                 foreach (var kvp in _current)
                 {
                     var objType = kvp.Value.GetType();
-                    
-                    if (!string.Equals(kvp.Key, prevKey))
+                    var levelAttr = objType.GetCustomAttribute<ConfigKeySerializeLevelAttribute>();
+                    string key;
+                    if (levelAttr != null)
                     {
-                        if (prevKey != null)
-                            writer.WriteLine();
-                        var attr = kvp.Value.GetType().GetCustomAttribute<ConfigCommentAttribute>();
-                        if (!string.IsNullOrEmpty(attr?.Comment))                            
-                            writer.WriteLine(string.Concat("\t<!--", attr.Comment, "-->"));
+                        var keys = kvp.Key.Split('.');
+                        key = string.Join(".", keys.Skip(keys.Length - levelAttr.Level));
+                        if (string.IsNullOrEmpty(key) || levelAttr.Level == 0) continue;
+                    }
+                    else
+                    {
+                        key = kvp.Key;
+                    }
+                    if (!string.Equals(key, prevKey))
+                    {
+                        if (prevKey != null) writer.WriteLine();     
+                        var configAttr = objType.GetCustomAttribute<ConfigCommentAttribute>();
+                        if (!string.IsNullOrEmpty(configAttr?.Comment))                            
+                            writer.WriteLine(string.Concat("\t<!--", configAttr.Comment, "-->"));
                     }                        
                     
-                    prevKey = kvp.Key;
+                    prevKey = key;
                     foreach (var prop in objType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
                     {
-                        WriteAppConfigValue(writer, prop, prop.GetValue(kvp.Value, null), prop.PropertyType, kvp.Key);
+                        WriteAppConfigValue(writer, prop, prop.GetValue(kvp.Value, null), prop.PropertyType, key);
                     }
                     foreach (var field in objType.GetFields(BindingFlags.Instance | BindingFlags.Public))
                     {
-                        WriteAppConfigValue(writer, field, field.GetValue(kvp.Value), field.FieldType, kvp.Key);
+                        WriteAppConfigValue(writer, field, field.GetValue(kvp.Value), field.FieldType, key);
                     }
                 }
             }
@@ -214,13 +241,14 @@ namespace CodeFirstConfig
                 WriteAppConfigToTextWriter(writer, skipComment);
 
             if (exceptions == null || !exceptions.Any()) return;
-            writer.Write("\n\n");
+            writer.WriteLine();
+            writer.WriteLine();
             writer.Write(new AggregateException(exceptions.ToArray()).ToString());
         }
 
         internal static void ToWriter(TextWriter writer, List<Exception> exceptions = null)
         {
-            ToWriter(writer, ConfigSettings.Config.ConfigFormat, exceptions: exceptions);
+            ToWriter(writer, ConfigSettings.Instance.Format, exceptions: exceptions);
         }
 
         internal static void ToFile(string fileName, List<Exception> exceptions = null)

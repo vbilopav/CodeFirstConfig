@@ -33,7 +33,7 @@ namespace CodeFirstConfig.Tests
 
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestCompositConfigTe()
         {
             Assert.AreEqual("MyValueFromCode1", TestClass.Config.Value1);
             Assert.AreEqual("MyValueFromConfig2", TestClass.Config.Value2);

@@ -5,7 +5,7 @@ namespace CodeFirstConfig
     public abstract class ConfigManager<TModel> where TModel : class, new()
     {
         protected static volatile TModel Model;
-        protected static ModelConfigurator<TModel> ModelConfigurator { get; set; }
+        internal static ModelConfigurator<TModel> ModelConfigurator { get; set; }
                 
         public static TModel Config 
         { 

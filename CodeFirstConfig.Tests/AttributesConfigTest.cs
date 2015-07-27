@@ -114,8 +114,8 @@ namespace CodeFirstConfig.Tests
             Assert.AreEqual("MyValueFromCode2", TestCancelClass.Config.Value2);
         }
 
-        public class TestRequiredClass : ConfigManager<TestRequiredClass>
-        {
+        public class TestRequiredClass
+        {           
             [ConfigSettings(Required = true)] public string Value1 = "MyValueFromCode1";
         }
 
@@ -124,7 +124,7 @@ namespace CodeFirstConfig.Tests
         {
             try
             {
-                Assert.AreEqual("MyValueFromCode1", TestRequiredClass.Config.Value1);
+                Assert.AreEqual("MyValueFromCode1", ConfigManager<TestRequiredClass>.Config.Value1);
             }
             catch (Exception exception)
             {                

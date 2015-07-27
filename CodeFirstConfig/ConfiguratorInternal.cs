@@ -30,10 +30,10 @@ namespace CodeFirstConfig
         private static TimedConsumer _consumer;
         private static IEnumerable<Type> _types;
         private static Func<IEnumerable<Type>> _getConfigTypesFunc = () => AppDomain.CurrentDomain.GetAssemblies()
-            .Where(ø => !ø.GlobalAssemblyCache && !ø.CodeBase.Contains("Temporary") && ø.GetName().GetPublicKeyToken().Length == 0)
-            .SelectMany(ø => ø.GetTypes())
-            .Where(ø => ø != typeof(ConfigManager<>))
-            .Where(ø => ø.IsSubclassOfRawGeneric(typeof(ConfigManager<>)));
+            .Where(c => !c.GlobalAssemblyCache && !c.CodeBase.Contains("Temporary") && c.GetName().GetPublicKeyToken().Length == 0)
+            .SelectMany(c => c.GetTypes())
+            .Where(c => c != typeof(ConfigManager<>))
+            .Where(c => c.IsSubclassOfRawGeneric(typeof(ConfigManager<>)));
 
         private static List<Exception> _exceptions;
 
@@ -77,17 +77,13 @@ namespace CodeFirstConfig
             lock (ConfigLock)
             {
                 _exceptions = new List<Exception>();
-                Type appType = typeof(AppConfigManager);
-                Type settingsType = typeof(ConfigSettingsManager);
+                Type appType = typeof(AppConfigManager);                
                 if (_types == null) _types = _getConfigTypesFunc();
 
                 try
                 {
                     action(appType);
-                    if (settings != null)
-                        ConfigSettingsManager.Config = settings;
-                    else
-                        action(settingsType);
+                    ConfigSettings.Instance = settings ?? new ConfigSettings();                  
                 }
                 catch (Exception e)
                 {
@@ -108,7 +104,7 @@ namespace CodeFirstConfig
                 {
                     try
                     {
-                        if (t == appType || t == settingsType) continue;
+                        if (t == appType) continue;
                         action(t);
                     }
                     catch (Exception e)
@@ -131,23 +127,23 @@ namespace CodeFirstConfig
                 }
                 try
                 {
-                    if (ConfigSettings.Config.SaveConfigFile)
+                    if (ConfigSettings.Instance.SaveConfigFile)
                     {
                         bool watching = Watcher.EnableRaisingEvents;
                         if (watching) Watcher.EnableRaisingEvents = false;
 
                         const int delay = 250;
                         if (waitBeforeFirstWrite) Task.Delay(delay).Wait();
-                        for (int retry = 0; retry < ConfigSettings.Config.MaxFileWriteRetry; retry++)
+                        for (int retry = 0; retry < ConfigSettings.Instance.MaxFileWriteRetry; retry++)
                         {
                             try
                             {
-                                ConfigObjects.ToFile(ConfigSettings.Config.SaveConfigFileName, _exceptions);
+                                ConfigObjects.ToFile(ConfigSettings.Instance.SaveConfigFileName, _exceptions);
                                 break;
                             }
                             catch (IOException)
                             {
-                                if (retry < ConfigSettings.Config.MaxFileWriteRetry - 1)
+                                if (retry < ConfigSettings.Instance.MaxFileWriteRetry - 1)
                                 {
                                     Task.Delay(delay).Wait();
                                 }
@@ -158,10 +154,10 @@ namespace CodeFirstConfig
                             }
                         }
 
-                        if (string.IsNullOrEmpty(Watcher.Path) && ConfigSettings.Config.EnableFileWatcher)
+                        if (string.IsNullOrEmpty(Watcher.Path) && ConfigSettings.Instance.EnableFileWatcher)
                         {
-                            Watcher.Path = Path.GetDirectoryName(ConfigSettings.Config.SaveConfigFileName);
-                            Watcher.Filter = Path.GetFileName(ConfigSettings.Config.SaveConfigFileName);
+                            Watcher.Path = Path.GetDirectoryName(ConfigSettings.Instance.SaveConfigFileName);
+                            Watcher.Filter = Path.GetFileName(ConfigSettings.Instance.SaveConfigFileName);
                             Watcher.EnableRaisingEvents = true;
                         }
 
@@ -174,9 +170,9 @@ namespace CodeFirstConfig
                 }
                 try
                 {
-                    if (ConfigSettings.Config.EnableTimer && _consumer == null)
+                    if (ConfigSettings.Instance.EnableTimer && _consumer == null)
                     {
-                        _consumer = new TimedConsumer(1, (int)ConfigSettings.Config.TimerMinutes * 1000 * 60);
+                        _consumer = new TimedConsumer(1, (int)ConfigSettings.Instance.TimerMinutes * 1000 * 60);
                         AppFinalizator.CleanupQueue.Enqueue(_consumer);
                         _consumer.Start(() => Reconfigure());
                     }
@@ -187,7 +183,7 @@ namespace CodeFirstConfig
                 }
 
                 if (!_configured) _configured = true;
-                if (ConfigSettings.Config.ThrowOnConfigureException && _exceptions.Any())
+                if (ConfigSettings.Instance.ThrowOnConfigureException && _exceptions.Any())
                     throw new AggregateException(new AggregateException(_exceptions.ToArray()));
                 return ConfigObjects.Current;
             }

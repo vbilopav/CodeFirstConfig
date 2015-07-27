@@ -4,7 +4,7 @@ namespace CodeFirstConfig
 {
     internal static class TypeExtensions
     {
-        public static bool IsSubclassOfRawGeneric(this Type type, Type generic)
+        internal static bool IsSubclassOfRawGeneric(this Type type, Type generic)
         {
             while (type != null && type != typeof(object))
             {

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CodeFirstConfig
 {
-    public static class AppAssembly
+    internal static class AppAssembly
     {
         private static Assembly _assembly;
 

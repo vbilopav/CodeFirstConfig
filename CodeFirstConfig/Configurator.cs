@@ -28,8 +28,7 @@ namespace CodeFirstConfig
 
         public static string SerializeCurrent()
         {
-            lock (ConfigLock)
-            using (var sw = new StringWriter())
+            lock (ConfigLock) using (var sw = new StringWriter())
             {
                 ConfigObjects.ToWriter(sw, exceptions: _exceptions);
                 return sw.ToString();
@@ -43,8 +42,7 @@ namespace CodeFirstConfig
 
         public static string SerializeCurrent(ConfigFormat format)
         {
-            lock (ConfigLock)
-            using (var sw = new StringWriter())
+            lock (ConfigLock) using (var sw = new StringWriter())
             {
                 ConfigObjects.ToWriter(sw, format, exceptions: _exceptions);
                 return sw.ToString();

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CodeFirstConfig
 {
-    public class TimedConsumer : IDisposable
+    internal class TimedConsumer : IDisposable
     {
         protected Action ConsumerAction;
         protected Timer Timer;
@@ -50,7 +50,7 @@ namespace CodeFirstConfig
         }
     }
 
-    public class TimedConsumer<TModel> : TimedConsumer
+    internal class TimedConsumer<TModel> : TimedConsumer
     {                       
         public ConcurrentQueue<TModel> Queue { get; private set; }
 

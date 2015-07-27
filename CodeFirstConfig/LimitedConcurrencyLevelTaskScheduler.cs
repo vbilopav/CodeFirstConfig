@@ -11,7 +11,7 @@ namespace CodeFirstConfig
     // ref:    http://msdn.microsoft.com/en-us/library/ee789351%28v=vs.110%29.aspx
     //
 
-    public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
+    internal class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
     {
         [ThreadStatic]
         private static bool _currentThreadIsProcessingItems;
