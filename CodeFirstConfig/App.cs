@@ -15,41 +15,41 @@ namespace CodeFirstConfig
         public static App Config => AppConfigManager.Config;
         public static string InstanceHash { get; }
 
-        [ConfigComment("Web context enabled?")]
+        //[ConfigComment("Web context enabled?")]
         public bool IsWebApp { get; }
 
-        [ConfigComment("Debug configuration build?")]
+        //[ConfigComment("Debug configuration build?")]
         public bool IsDebugConfiguration { get; }
 
-        [ConfigComment("Debugging session instance?")]
+        //[ConfigComment("Debugging session instance?")]
         public bool Debugging { get; }
 
-        [ConfigComment("Test session instance?")]
+        //[ConfigComment("Test session instance?")]
         public bool Testing { get; }
 
-        [ConfigComment("Test session instance?")]
+        //[ConfigComment("Test session instance?")]
         public string BinFolder { get; }
 
-        [ConfigComment("Application version. Default is entry assembly version.")]
+        //[ConfigComment("Application version. Default is entry assembly version.")]
         public string Version { get; }
 
-        [ConfigComment("Application name. Default is entry assembly name or project folder name.")]
+        //[ConfigComment("Application name. Default is entry assembly name or project folder name.")]
         public string Name { get; set; }
 
-        [ConfigComment("Application id. Default is application name.")]
+        //[ConfigComment("Application id. Default is application name.")]
         public string Id
         {
             get { return _id; }
             set { _id = value; InstanceId = string.Concat(_id, InstanceHash).ToLower(); }
         }
 
-        [ConfigComment("Application running instance id. Default is application id with unique hash.")]
+        //[ConfigComment("Application running instance id. Default is application id with unique hash.")]
         public string InstanceId { get; set; }
 
-        [ConfigComment("Application folder. Default is AppDomain base directory.")]
+        //[ConfigComment("Application folder. Default is AppDomain base directory.")]
         public string Folder { get; set; }
 
-        [ConfigComment("Applicatio data folder. Default is application folder Data or App_Data in web context.")]
+        //[ConfigComment("Applicatio data folder. Default is application folder Data or App_Data in web context.")]
         public string DataFolder { get; set; }
 
         static App()

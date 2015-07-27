@@ -21,17 +21,25 @@ namespace CodeFirstConfig
         private static void WriteComment(TextWriter writer, ConfigFormat format)
         {
             writer.WriteLine(format == ConfigFormat.AppConfig ? "<!--" : "/*");
-            writer.WriteLine("\tApplication:        {0}", App.Config.Name);
-            writer.WriteLine("\tTimestamp:          {0:O}", _timeStamp);
-            writer.WriteLine("\tThread:             [{0}:{1}:{2}]",                 
+            writer.WriteLine("Application: {0}", App.Config.Name);
+            writer.WriteLine("Timestamp: {0:O}", _timeStamp);
+            writer.WriteLine("Thread: [{0}:{1}:{2}]",                 
                 Thread.CurrentThread.ManagedThreadId,
                 Thread.CurrentThread.CurrentCulture,
                 Thread.CurrentThread.CurrentUICulture
-                );
-            writer.WriteLine("\tKeys:               {0}", string.Join(", ", _current.Keys));
+                );            
             if (writer is StreamWriter)
-            {
-                writer.WriteLine("\tFile:               {0}", ConfigSettings.Instance.SaveConfigFileName);                
+            {                   
+                writer.Write("ConfigSettings:  ");
+                using (var sw = new StringWriter())
+                {
+                    var old = _serializer.Formatting;
+                    _serializer.Formatting = Formatting.Indented;
+                    _serializer.Serialize(sw, ConfigSettings.Instance);
+                    _serializer.Formatting = old;
+                    writer.Write(sw.ToString().Replace('\"', '\''));
+                }
+                writer.WriteLine();
             }
             writer.WriteLine(format == ConfigFormat.AppConfig ? "-->" : "*/");
             writer.WriteLine();
@@ -61,7 +69,8 @@ namespace CodeFirstConfig
                 else
                     _serializer.Serialize(writer, value);
             }
-            if (field is PropertyInfo && (field as PropertyInfo).GetSetMethod() == null)
+            var info = field as PropertyInfo;
+            if (info != null && info.GetSetMethod() == null)
             {
                 writer.WriteRaw("\t");
                 writer.WriteComment("readonly");
