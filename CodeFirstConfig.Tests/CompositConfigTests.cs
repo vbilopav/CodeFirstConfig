@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodeFirstConfig.Tests
 {
     [TestClass]
-    public class CompositConfigTest
+    public class CompositConfigTests
     {
         public class TestComplexClass { public string Field1 = "Field1"; public string Field2 = "Field2"; }        
         public enum TestEnum { Enum1, Enum2, Enum3 }
@@ -33,7 +33,7 @@ namespace CodeFirstConfig.Tests
 
 
         [TestMethod]
-        public void TestCompositConfigTe()
+        public void TestCompositConfig()
         {
             Assert.AreEqual("MyValueFromCode1", TestClass.Config.Value1);
             Assert.AreEqual("MyValueFromConfig2", TestClass.Config.Value2);

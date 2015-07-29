@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodeFirstConfig.Tests
 {
     [TestClass]
-    public class PocoConfigTest
+    public class PocoConfigTests
     {
         public class TestComplexClass { public string Field1 = "Field1"; public string Field2 = "Field2"; }        
         public enum TestEnum { Enum1, Enum2, Enum3 }

@@ -59,7 +59,7 @@ namespace CodeFirstConfig
             return list.ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
-        protected virtual bool CreateConfiguration(DbConnection connection)
+        public virtual bool CreateConfiguration(DbConnection connection)
         {                                
             using (var command = CreateCreateCommand(connection))
             {
@@ -71,8 +71,8 @@ namespace CodeFirstConfig
                 return result.ToString() == "1";
             }
         }
-        
-        protected virtual DbConnection CreateConnection()            
+
+        public virtual DbConnection CreateConnection()            
         {
             DbConnection connection = CreateConnectionFunc();                      
             connection.ConnectionString =

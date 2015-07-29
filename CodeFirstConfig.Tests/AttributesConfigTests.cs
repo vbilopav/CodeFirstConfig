@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodeFirstConfig.Tests
 {
     [TestClass]
-    public class AttributesConfigTest
+    public class AttributesConfigTests
     {
         public class TestAfterSetClass : ConfigManager<TestAfterSetClass>
         {

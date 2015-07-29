@@ -26,7 +26,7 @@ namespace CodeFirstConfig.SqlServerCe
             throw new ArgumentException();
         }
 
-        protected override bool CreateConfiguration(DbConnection connection)
+        public override bool CreateConfiguration(DbConnection connection)
         {
             using (var command = connection.CreateCommand())
             {

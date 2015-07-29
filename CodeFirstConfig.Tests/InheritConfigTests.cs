@@ -3,7 +3,7 @@
 namespace CodeFirstConfig.Tests
 {
     [TestClass]
-    public class InheritConfigTest
+    public class InheritConfigTests
     {
         public class TestClass : ConfigManager<TestClass>
         {
