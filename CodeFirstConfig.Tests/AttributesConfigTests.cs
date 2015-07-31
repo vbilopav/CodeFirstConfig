@@ -9,8 +9,11 @@ namespace CodeFirstConfig.Tests
     {
         public class TestAfterSetClass : ConfigManager<TestAfterSetClass>
         {
-            [ConfigSettings(ExecuteAfterSet = true)] public string Value1 = "MyValueFromCode1";
-            [ConfigSettings(ExecuteAfterSet = true)] public string Value2 = "MyValueFromCode2";
+            [ConfigSettings(ExecuteAfterSet = true)]
+            public string Value1 { get; set; } = "MyValueFromCode1";
+
+            [ConfigSettings(ExecuteAfterSet = true)]
+            public string Value2 { get; set; } = "MyValueFromCode2";
         }
 
         [TestMethod]
@@ -35,8 +38,11 @@ namespace CodeFirstConfig.Tests
 
         public class TestBeforeSetClass : ConfigManager<TestBeforeSetClass>
         {
-            [ConfigSettings(ExecuteBeforeSet = true)] public string Value1 = "MyValueFromCode1";
-            [ConfigSettings(ExecuteBeforeSet = true)] public string Value2 = "MyValueFromCode2";
+            [ConfigSettings(ExecuteBeforeSet = true)]
+            public string Value1 { get; set; } = "MyValueFromCode1";
+
+            [ConfigSettings(ExecuteBeforeSet = true)]
+            public string Value2 { get; set; } = "MyValueFromCode2";
         }
 
         [TestMethod]
@@ -61,8 +67,11 @@ namespace CodeFirstConfig.Tests
 
         public class TestBeforeAndAfterSetClass : ConfigManager<TestBeforeAndAfterSetClass>
         {
-            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)] public string Value1 = "MyValueFromCode1";
-            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)] public string Value2 = "MyValueFromCode2";
+            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)]
+            public string Value1 { get; set; } = "MyValueFromCode1";
+
+            [ConfigSettings(ExecuteBeforeSet = true, ExecuteAfterSet = true)]
+            public string Value2 { get; set; } = "MyValueFromCode2";
         }
 
         [TestMethod]
@@ -99,8 +108,11 @@ namespace CodeFirstConfig.Tests
 
         public class TestCancelClass : ConfigManager<TestCancelClass>
         {
-            [ConfigSettings(ExecuteBeforeSet = true)] public string Value1 = "MyValueFromCode1";
-            [ConfigSettings(ExecuteBeforeSet = true)] public string Value2 = "MyValueFromCode2";
+            [ConfigSettings(ExecuteBeforeSet = true)]
+            public string Value1 { get; set; } = "MyValueFromCode1";
+
+            [ConfigSettings(ExecuteBeforeSet = true)]
+            public string Value2 { get; set; } = "MyValueFromCode2";
         }
 
         [TestMethod]

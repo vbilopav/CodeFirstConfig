@@ -13,10 +13,10 @@ namespace CodeFirstConfig.Tests
         public class TestClass
         {
             public static TestClass Config => ConfigManager<TestClass>.Config;
-            public string Value1 = "MyValueFromCode1";
-            public string Value2 = "MyValueFromCode2";
-            public string Value3 = "MyValueFromCode3";
-            public string Value4 = "MyValueFromCode4";           
+            public string Value1 { get; set; } = "MyValueFromCode1";
+            public string Value2 { get; set; } = "MyValueFromCode2";
+            public string Value3 { get; set; } = "MyValueFromCode3";
+            public string Value4 { get; set; } = "MyValueFromCode4";           
         }
 
 
@@ -103,6 +103,31 @@ namespace CodeFirstConfig.Tests
         [TestMethod]
         public void TestConfigureSqlConfigOptions()
         {
+            /** drop the structure **/
+            using (
+                var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString)
+                )
+            {
+                using (var command = new SqlCommand())
+                {                   
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText =
+                        @"  
+                            if exists(select 1 from sys.schemas where name = 'Config')
+                            begin
+                                drop table Config.[Values];
+                                drop table Config.Instances;
+                                drop proc Config.Values_Select;                  
+                                drop proc Config.Instance_Insert;
+                                drop schema Config
+                            end
+                        ";
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
             Configurator.OnBeforeSet = args => { };
             Configurator.OnAfterSet = args => { };
 

@@ -82,8 +82,8 @@ namespace CodeFirstConfig
 
                 try
                 {
-                    action(appType);
-                    ConfigSettings.Instance = settings ?? new ConfigSettings();                  
+                    ConfigSettings.Instance = settings ?? new ConfigSettings();
+                    action(appType);                                  
                 }
                 catch (Exception e)
                 {

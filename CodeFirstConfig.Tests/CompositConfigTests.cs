@@ -14,20 +14,20 @@ namespace CodeFirstConfig.Tests
             //will NOT be written to config file!
             public static TestClass Config => ConfigManager<TestClass>.Config;
 
-            public string Value1 = "MyValueFromCode1";
-            public string Value2 = "MyValueFromCode2";
-            public string Value3 = "MyValueFromCode3";
-            public string Value4 = "MyValueFromCode4";
-            public string Value5 = "MyValueFromCode5";
-            public string Value6 = "MyValueFromCode6";
-            public string Value7 = "MyValueFromCode7";
-            public TestEnum EnumValue = TestEnum.Enum1;
-            public TestEnum EnumConfig = TestEnum.Enum2; //Enum3
-            public DateTime DateTimeValue = new DateTime(2015, 1, 1);
-            public DateTime DateTimeValueConfig = new DateTime(2015, 1, 1); //20.7.2015
-            public bool BoolValue = true;
-            public bool BoolValueConfig = true; //false           
-            public TestComplexClass ComplexClassConfig; //Field1 = "Field1CONFIG", Field2 = "Field2CONFIG" 
+            public string Value1 { get; set; } = "MyValueFromCode1";
+            public string Value2 { get; set; } = "MyValueFromCode2";
+            public string Value3 { get; set; } = "MyValueFromCode3";
+            public string Value4 { get; set; } = "MyValueFromCode4";
+            public string Value5 { get; set; } = "MyValueFromCode5";
+            public string Value6 { get; set; } = "MyValueFromCode6";
+            public string Value7 { get; set; } = "MyValueFromCode7";
+            public TestEnum EnumValue { get; set; } = TestEnum.Enum1;
+            public TestEnum EnumConfig { get; set; } = TestEnum.Enum2; //Enum3
+            public DateTime DateTimeValue { get; set; } = new DateTime(2015, 1, 1);
+            public DateTime DateTimeValueConfig { get; set; } = new DateTime(2015, 1, 1); //20.7.2015
+            public bool BoolValue { get; set; } = true;
+            public bool BoolValueConfig { get; set; } = true; //false           
+            public TestComplexClass ComplexClassConfig { get; set; } //Field1 = "Field1CONFIG", Field2 = "Field2CONFIG" 
             public string[] StringArray { get; set; } //config1, config2        
         }
 

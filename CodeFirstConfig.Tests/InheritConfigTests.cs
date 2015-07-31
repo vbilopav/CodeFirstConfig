@@ -7,8 +7,8 @@ namespace CodeFirstConfig.Tests
     {
         public class TestClass : ConfigManager<TestClass>
         {
-            public string Value1 = "MyValueFromCode1";
-            public string Value2 = "MyValueFromCode2";
+            public string Value1 { get; set; } = "MyValueFromCode1";
+            public string Value2 { get; set; } = "MyValueFromCode2";
         }
 
         public class TestClass2 : TestClass
@@ -16,8 +16,8 @@ namespace CodeFirstConfig.Tests
             private abstract class TestInheritConfig2Manager : ConfigManager<TestClass2> { }
             public static new TestClass2 Config => TestInheritConfig2Manager.Config;
 
-            public string Value3 = "MyValueFromCode3";
-            public string Value4 = "MyValueFromCode4";
+            public string Value3 { get; set; } = "MyValueFromCode3";
+            public string Value4 { get; set; } = "MyValueFromCode4";
         }
 
         [TestMethod]
