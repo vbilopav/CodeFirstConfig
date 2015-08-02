@@ -33,7 +33,7 @@ namespace CodeFirstConfig.Tests
             Assert.AreEqual("MyValueFromCode1", TestAfterSetClass.Config.Value1);
             Assert.AreEqual(1, i);
             Assert.AreEqual("Value2", key);
-            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestAfterSetClass", ns);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTests.TestAfterSetClass", ns);
         }
 
         public class TestBeforeSetClass : ConfigManager<TestBeforeSetClass>
@@ -61,7 +61,7 @@ namespace CodeFirstConfig.Tests
             Assert.AreEqual("MyValueFromCode1", TestBeforeSetClass.Config.Value1);
             Assert.AreEqual(1, i);
             Assert.AreEqual("Value2", key);
-            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeSetClass", ns);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTests.TestBeforeSetClass", ns);
         }
 
 
@@ -99,10 +99,10 @@ namespace CodeFirstConfig.Tests
             Assert.AreEqual("MyValueFromCode1", TestBeforeAndAfterSetClass.Config.Value1);
             Assert.AreEqual(1, i1);
             Assert.AreEqual("Value2", key1);
-            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeAndAfterSetClass", ns1);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTests.TestBeforeAndAfterSetClass", ns1);
             Assert.AreEqual(1, i2);
             Assert.AreEqual("Value2", key2);
-            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTest.TestBeforeAndAfterSetClass", ns2);
+            Assert.AreEqual("CodeFirstConfig.Tests.AttributesConfigTests.TestBeforeAndAfterSetClass", ns2);
         }
 
 

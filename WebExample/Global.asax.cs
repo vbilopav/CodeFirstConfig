@@ -9,7 +9,11 @@ namespace WebExample
     public class MvcApplication : System.Web.HttpApplication
     {
         static MvcApplication()
-        {
+        {            
+            Configurator.OnModelConfigured = args =>
+            {
+                Log.Info($"Configured {args.Type}");
+            };  
             Configurator.ConfigureAsync();          
         }
 

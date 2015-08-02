@@ -15,16 +15,13 @@ namespace CodeFirstConfig
             return false;
         }
 
-        internal static bool IsSimpleType(this Type type)
-        {
-            return
+        internal static bool IsSimpleType(this Type type) =>
                 type == typeof(string) ||
                 type == typeof(int) ||
                 type == typeof(int?) ||
                 type == typeof(DateTime) ||
                 type == typeof(DateTime?) ||
                 type == typeof(bool) ||
-                type == typeof(bool?);
-        }
+                type == typeof(bool?);        
     }
 }

@@ -12,31 +12,29 @@ namespace CodeFirstConfig
             get 
             {
                 if (Model != null) return Model;
-                lock (Configurator.ConfigLock)
+                lock (ModelConfigurator)
                 {
                     if (Model != null) return Model;
-                    return Model = ModelConfigurator.ConfigureModel();
+                    Model = ModelConfigurator.ConfigureModel();
                 }
-            } 
-            internal set
-            {
-                lock (Configurator.ConfigLock)
-                {
-                    Model = value;
-                    ConfigObjects.Set(ModelConfigurator<TModel>.GetNamespace(typeof(TModel)), Model);
-                }
-            }
+                if (Configurator.OnModelConfigured != null)
+                        Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel)));
+                return Model;               
+            }             
         }
 
         public static TModel Reconfigure()
         {
             lock (Configurator.ConfigLock)
             {
-                return Model = ModelConfigurator.ConfigureModel();
+                Model = ModelConfigurator.ConfigureModel();               
             }
+            if (Configurator.OnModelConfigured != null)
+                Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel)));
+            return Model;
         }
 
-        public static async Task<TModel> ReconfigureAsync() { return await Task.Run(() => Reconfigure()); }
+        public static async Task<TModel> ReconfigureAsync() => await Task.Run(() => Reconfigure()); 
 
         static ConfigManager()
         {

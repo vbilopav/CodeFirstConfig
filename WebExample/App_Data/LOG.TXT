@@ -1,36 +1,36 @@
-0. webexample1b80 INFO  2015-07-31 17:06:30,438 - Application_Start
+0. webexamplefa72 INFO  2015-08-02 15:03:23,149 - Configured CodeFirstConfig.App
 
+1. webexamplefa72 INFO  2015-08-02 15:03:28,285 - Application_Start
 
-1. webexample1b80 INFO  2015-07-31 17:08:21,460 - Application_End
+2. webexamplefa72 INFO  2015-08-02 15:03:28,315 - Configured WebExample.SampleClass
 
+0. webexample9edf INFO  2015-08-02 16:16:37,938 - Application_Start
 
-0. webexample2a30 INFO  2015-07-31 17:09:10,617 - Application_Start
+1. webexample9edf INFO  2015-08-02 16:16:37,963 - Configured CodeFirstConfig.App
 
+2. webexample9edf INFO  2015-08-02 16:16:38,005 - Configured WebExample.SampleClass
 
-1. webexample2a30 INFO  2015-07-31 17:17:23,016 - Application_End
+3. webexample9edf INFO  2015-08-02 16:16:59,801 - Application_End
 
+0. webexample0e61 INFO  2015-08-02 16:23:04,554 - Application_Start
 
-0. webexample9ea5 INFO  2015-07-31 17:35:48,242 - Application_Start
+1. webexample0e61 INFO  2015-08-02 16:23:04,570 - Configured CodeFirstConfig.App
 
+2. webexample0e61 INFO  2015-08-02 16:23:04,611 - Configured WebExample.SampleClass
 
-1. webexample9ea5 INFO  2015-07-31 17:38:46,785 - Application_End
+3. webexample0e61 INFO  2015-08-02 16:23:26,938 - Application_End
 
+0. webexample19ce INFO  2015-08-02 16:23:32,538 - Application_Start
 
-0. webexample0d96 INFO  2015-07-31 17:38:53,484 - Application_Start
+1. webexample19ce INFO  2015-08-02 16:23:32,552 - Configured CodeFirstConfig.App
 
+2. webexample19ce INFO  2015-08-02 16:23:32,555 - Configured WebExample.SampleClass
 
-1. webexample0d96 INFO  2015-07-31 17:39:29,331 - Application_End
+3. webexample19ce INFO  2015-08-02 16:24:33,728 - Application_End
 
+0. webexample1e4c INFO  2015-08-02 16:24:35,854 - Application_Start
 
-0. webexample06fa INFO  2015-07-31 17:39:34,574 - Application_Start
+1. webexample1e4c INFO  2015-08-02 16:24:35,909 - Configured CodeFirstConfig.App
 
-
-1. webexample06fa INFO  2015-07-31 17:54:52,994 - Application_End
-
-
-0. webexampled38e INFO  2015-07-31 17:54:57,629 - Application_Start
-
-
-1. webexampled38e INFO  2015-07-31 17:56:27,535 - Application_End
-
+2. webexample1e4c INFO  2015-08-02 16:24:35,921 - Configured WebExample.SampleClass
 

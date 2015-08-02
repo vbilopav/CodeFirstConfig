@@ -9,9 +9,12 @@ namespace CodeFirstConfig
     {
         private static Action<ConfigAfterSetEventArgs> AfterSetEvent { get; set; }
         private static Action<ConfigBeforeSetEventArgs> BeforeSetEvent { get; set; }
+        private static Action<ModelConfiguredEventArgs> OnModelConfiguredEvent { get; set; }
 
         public static Action<ConfigAfterSetEventArgs> OnAfterSet { get { return AfterSetEvent; } set { lock (ConfigLock) { AfterSetEvent = value; } } }
         public static Action<ConfigBeforeSetEventArgs> OnBeforeSet { get { return BeforeSetEvent; } set { lock (ConfigLock) { BeforeSetEvent = value; } } }
+        public static Action<ModelConfiguredEventArgs> OnModelConfigured { get { return OnModelConfiguredEvent; } set { lock (ConfigLock) { OnModelConfiguredEvent = value; } } }
+
 
         public static AggregateException Exception { get { lock (ConfigLock) return new AggregateException(_exceptions.ToArray()); } }
         public static IDictionary<string, object> Current => ConfigObjects.Current;

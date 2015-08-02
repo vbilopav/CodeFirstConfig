@@ -9,15 +9,13 @@ namespace CodeFirstConfig
     {
         private static IDictionary<string, string> _dictionary;
        
-        internal static IDictionary<string, string> GetConfiguration()
-        {            
-            return ConfigurationManager
+        internal static IDictionary<string, string> GetConfiguration() =>
+            ConfigurationManager
                         .AppSettings
                         .AllKeys                        
-                        .OrderByDescending(ø => ø.Length)
-                        .ToDictionary(ø => ø, ø => ConfigurationManager.AppSettings[ø]); 
-        }
-       
+                        .OrderByDescending(a => a.Length)
+                        .ToDictionary(a => a, a => ConfigurationManager.AppSettings[a]); 
+               
         internal static IEnumerable<KeyValuePair<string, string>> Dictionary
         {
             get 

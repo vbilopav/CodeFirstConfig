@@ -7,7 +7,7 @@ namespace CodeFirstConfig
         public string Key { get; }
         public object Value { get; }
 
-        public ConfigItem(string @namespace, string name, string key, object value)
+        internal ConfigItem(string @namespace, string name, string key, object value)
         {
             Namespace = @namespace;
             Name = name;

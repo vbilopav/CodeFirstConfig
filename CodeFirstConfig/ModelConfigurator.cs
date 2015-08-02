@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace CodeFirstConfig
@@ -14,17 +14,15 @@ namespace CodeFirstConfig
         private readonly HashSet<string> _requireds;
         private readonly string _namespace;
         private readonly string[] _ns;
+        private readonly Type _type;
 
-        private static IEnumerable<KeyValuePair<string, string>> GetKeyValuePairs()
-        {
-            return ConfigValues.Dictionary;
-        }
+        private static IEnumerable<KeyValuePair<string, string>> GetKeyValuePairs() => ConfigValues.Dictionary;
 
         private static object ParseModelValue(Type type, object value)
         {            
             if (type.IsSimpleType())
                 return type == typeof(string) ? (value == null ? null : Convert.ToString(value)) : value;
-            return type.IsEnum ? Enum.Parse(type, value as string) : JsonConvert.DeserializeObject(value as string, type);                             
+            return type.IsEnum ? Enum.Parse(type, (string) value) : JsonConvert.DeserializeObject(value as string, type);                             
         }
 
         private string GetKeyName(string key)
@@ -209,25 +207,20 @@ namespace CodeFirstConfig
             return model;
         }
 
-        public static string GetNamespace(Type type)
-        {
-            return
-                (type.IsGenericType ?
-                type.FullName.Substring(0, type.FullName.IndexOf('`')) :
-                type.FullName).Replace('+', '.');   
-        }
-
+        public static string GetNamespace(Type type) => 
+            (type.IsGenericType ? type.FullName.Substring(0, type.FullName.IndexOf('`')) : type.FullName).Replace('+', '.');   
+        
         public ModelConfigurator()
         {
-            Type type = typeof(TModel);
-            _namespace = GetNamespace(type);
+            _type = typeof(TModel);
+            _namespace = GetNamespace(_type);
             _ns = _namespace.Split(new[]{'.'}, StringSplitOptions.RemoveEmptyEntries);
-            _props = type
+            _props = _type
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty)
                 .Where(p => p.CanWrite)
                 .Where(p => p.GetSetMethod(true).IsPublic)
                 .ToDictionary(p => p.Name, p => p);
-            _fields = type
+            _fields = _type
                 .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetField)
                 .Where(f => f.IsPublic)
                 .ToDictionary(f => f.Name, ø => ø);
