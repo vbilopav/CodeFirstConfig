@@ -5,7 +5,7 @@ namespace CodeFirstConfig
     public abstract class ConfigManager<TModel> where TModel : class, new()
     {
         protected static volatile TModel Model;
-        internal static ModelConfigurator<TModel> ModelConfigurator { get; set; }
+        internal static ModelConfigurator<TModel> ModelConfigurator { get; }
                 
         public static TModel Config 
         { 
@@ -18,7 +18,7 @@ namespace CodeFirstConfig
                     Model = ModelConfigurator.ConfigureModel();
                 }
                 if (Configurator.OnModelConfigured != null)
-                        Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel)));
+                        Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
                 return Model;               
             }             
         }
@@ -30,7 +30,7 @@ namespace CodeFirstConfig
                 Model = ModelConfigurator.ConfigureModel();               
             }
             if (Configurator.OnModelConfigured != null)
-                Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel)));
+                Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
             return Model;
         }
 

@@ -34,3 +34,19 @@
 
 2. webexample1e4c INFO  2015-08-02 16:24:35,921 - Configured WebExample.SampleClass
 
+3. webexample1e4c INFO  2015-08-02 16:27:43,848 - Application_End
+
+0. webexample732d INFO  2015-08-02 16:36:01,772 - Application_Start
+
+1. webexample732d INFO  2015-08-02 16:36:01,786 - Configured CodeFirstConfig.App
+
+2. webexample732d INFO  2015-08-02 16:36:01,812 - Configured WebExample.SampleClass
+
+3. webexample732d INFO  2015-08-02 18:16:15,068 - Application_End
+
+0. webexampled378 INFO  2015-08-02 18:16:19,376 - Application_Start
+
+1. webexampled378 INFO  2015-08-02 18:16:19,393 - Configured CodeFirstConfig.App
+
+2. webexampled378 INFO  2015-08-02 18:16:19,402 - Configured WebExample.SampleClass
+

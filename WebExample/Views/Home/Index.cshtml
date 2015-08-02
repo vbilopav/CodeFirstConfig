@@ -5,48 +5,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeFirstConfig sample</title>
 
-    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
-    <link src="/Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <link src="/Content/site.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link src="/Content/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link src="/Content/site.css" rel="stylesheet"/>
 
 </head>
 <body>
 
 
-    <div class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand">CodeFirstConfig sample</a>
-            </div>
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">CodeFirstConfig sample</a>
         </div>
     </div>
+</div>
 
-    <div class="container body-content">
-    
-        <div class="jumbotron">
-            <p class="lead">SampleClass configuration</p>
-            <pre class="pre-scrollable">
-            </pre>
-            <p>
-                <button class="btn btn-primary btn-sm">Refresh</button>
-            </p>
-        </div>
+<div class="container body-content">
 
-
-
-        <hr/>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="jumbotron" id="sampleClass">
+        <span><code>SampleClass</code><button class="btn btn-primary btn-sm">Refresh</button></span>
+        <pre class="pre-scrollable">
+        </pre>                
     </div>
 
 
-    <script src="/Scripts/jquery-1.9.1.min.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
+
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - CodeFirstConfig</p>
+    </footer>
+</div>
+
+
+<script src="/Scripts/jquery-1.9.1.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
 
 </body>
 </html>
+<style>
+    div.jumbotron > span {            
+        width: 100%;
+        display: inline-block;
+    }
+    div.jumbotron > span > button {
+        float: right;
+        margin-bottom: 5px;
+    }
+</style>
+<script type="text/javascript">
+    (function () {
+
+        var sampleClassDiv = $("div.jumbotron"),
+            sampleClassButton = $("button", sampleClassDiv),
+            sampleClassPre = $("pre", sampleClassDiv).html(""),
+            refreshSampleClass = function () {
+                sampleClassPre.addClass("disabled");
+                sampleClassButton.addClass("disabled");
+                $.ajax({
+                    url: "/api/SampleClass",                   
+                    type: "GET",
+                    complete: function(r) {
+                        sampleClassPre.html("SampleClass.Config = " + r.responseText);
+                    }
+                }).always(function() {
+                    sampleClassPre.removeClass("disabled");
+                    sampleClassButton.removeClass("disabled");
+                });
+            };
+        sampleClassButton.click(refreshSampleClass).click();
+
+
+    })();
+</script>

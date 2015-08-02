@@ -23,10 +23,12 @@ namespace CodeFirstConfig
     public class ModelConfiguredEventArgs
     {
         public Type Type { get; }
+        public object Model { get; }
 
-        internal ModelConfiguredEventArgs(Type type)
+        internal ModelConfiguredEventArgs(Type type, object model)
         {
             Type = type;
+            Model = model;
         }
     }
 
