@@ -28,19 +28,19 @@ namespace CodeFirstConfig
                 Thread.CurrentThread.CurrentCulture,
                 Thread.CurrentThread.CurrentUICulture
                 );            
-            if (writer is StreamWriter)
-            {                   
-                writer.Write("ConfigSettings:  ");
-                using (var sw = new StringWriter())
-                {
-                    var old = _serializer.Formatting;
-                    _serializer.Formatting = Formatting.Indented;
-                    _serializer.Serialize(sw, ConfigSettings.Instance);
-                    _serializer.Formatting = old;
-                    writer.Write(sw.ToString().Replace('\"', '\''));
-                }
-                writer.WriteLine();
+            //if (writer is StreamWriter)
+            //{                   
+            writer.Write("ConfigSettings:  ");
+            using (var sw = new StringWriter())
+            {
+                var old = _serializer.Formatting;
+                _serializer.Formatting = Formatting.Indented;
+                _serializer.Serialize(sw, ConfigSettings.Instance);
+                _serializer.Formatting = old;
+                writer.Write(sw.ToString().Replace('\"', '\''));
             }
+            writer.WriteLine();
+            //}
             writer.WriteLine(format == ConfigFormat.AppConfig ? "-->" : "*/");
             writer.WriteLine();
         }

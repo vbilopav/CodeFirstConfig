@@ -2,7 +2,6 @@
 using System.Web.Routing;
 using System.Web.Http;
 using CodeFirstConfig;
-#pragma warning disable 4014
 
 namespace WebExample
 {
@@ -13,8 +12,12 @@ namespace WebExample
             Configurator.OnModelConfigured = args =>
             {
                 Log.Info($"Configured {args.Type}");
-            };  
-            Configurator.ConfigureAsync();          
+            };
+            Configurator.ConfigureAsync().ContinueWith(result =>
+            {
+                Log.Info("Finished ConfigureAsync");
+                if (result.Exception != null) Log.Error(result.Exception);
+            });
         }
 
         protected void Application_Start()
