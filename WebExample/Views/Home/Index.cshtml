@@ -17,68 +17,144 @@
 <body>
 
 
-<div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand">CodeFirstConfig sample</a>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">CodeFirstConfig sample</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container body-content">
+    <div class="container-fluid">
+        <div class="row">
+            ...
+        </div>
+    </div>
 
-    <div class="jumbotron" id="sampleClass">
-        <span><code>SampleClass</code><button class="btn btn-primary btn-sm">Refresh</button></span>
-        <pre class="pre-scrollable">
-        </pre>                
+    <div class="container body-content">
+        <div class="jumbotron">
+            <button class="btn btn-primary btn-lg">REFRESH ALL</button>
+            <div class="row">
+                <div class="col-md-6" id="sampleClass">
+                    <code>SampleClass</code>
+                    <pre class="pre-scrollable">
+                    </pre>
+                </div>
+                <div class="col-md-6" id="log">
+                    <code>Log</code>
+                    <pre class="pre-scrollable">
+                    </pre>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="config">
+                    <code>Current config</code>
+                    <pre class="pre-scrollable">                   
+                </pre>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - CodeFirstConfig</p>
+        </footer>
     </div>
 
 
-
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - CodeFirstConfig</p>
-    </footer>
-</div>
-
-
-<script src="/Scripts/jquery-1.9.1.min.js"></script>
-<script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
 
 </body>
 </html>
 <style>
-    div.jumbotron > span {            
+    div.jumbotron > div {            
         width: 100%;
         display: inline-block;
     }
-    div.jumbotron > span > button {
-        float: right;
-        margin-bottom: 5px;
+    div.jumbotron > button {
+        top: -30px;
+        position: relative;
     }
+   
 </style>
 <script type="text/javascript">
     (function () {
 
-        var sampleClassDiv = $("div.jumbotron"),
-            sampleClassButton = $("button", sampleClassDiv),
-            sampleClassPre = $("pre", sampleClassDiv).html(""),
+        var jumbo = $("div.jumbotron"),       
+            button =  $("button", jumbo),
+            sampleClassPre = $("#sampleClass pre", jumbo).html(""),
+            logPre = $("#log pre", jumbo).html(""),
+            configPre = $("#config pre", jumbo).html(""),
+            
             refreshSampleClass = function () {
                 sampleClassPre.addClass("disabled");
-                sampleClassButton.addClass("disabled");
                 $.ajax({
                     url: "/api/SampleClass",                   
                     type: "GET",
-                    complete: function(r) {
-                        sampleClassPre.html("SampleClass.Config = " + r.responseText);
+                    complete: function (r) {
+                        if (r.status === 200)
+                            sampleClassPre.html("SampleClass.Config = " + r.responseText);
+                        else {
+                            sampleClassPre.html("Error = " + r.responseText);
+                        }
                     }
                 }).always(function() {
                     sampleClassPre.removeClass("disabled");
-                    sampleClassButton.removeClass("disabled");
+                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
+                        button.removeClass("disabled");
+                    }
+                });
+            },
+
+            refreshlog = function () {
+                logPre.addClass("disabled");               
+                $.ajax({
+                    url: "/api/Log?reverse",
+                    type: "GET",
+                    complete: function (r) {
+                        if (r.status === 200)
+                            logPre.html(r.responseText);
+                        else {
+                            logPre.html("Error = " + r.responseText);
+                        }
+                    }
+                }).always(function () {
+                    logPre.removeClass("disabled");
+                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
+                        button.removeClass("disabled");
+                    }
+                });
+            },
+
+            refreshConfig = function () {
+                configPre.addClass("disabled");
+                $.ajax({
+                    url: "/api/Config",
+                    type: "GET",
+                    complete: function (r) {
+                        if (r.status === 200)
+                            configPre.html(r.responseText);
+                        else {
+                            configPre.html("Error = " + r.responseText);
+                        }
+                    }
+                }).always(function () {
+                    configPre.removeClass("disabled");
+                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
+                        button.removeClass("disabled");
+                    }
                 });
             };
-        sampleClassButton.click(refreshSampleClass).click();
 
+
+        button.click(function () {
+            button.addClass("disabled");
+            refreshSampleClass();
+            refreshlog();
+            refreshConfig();
+        }).click();
 
     })();
 </script>
