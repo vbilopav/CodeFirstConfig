@@ -26,3 +26,5 @@
 
 3. webexample9242 INFO  2015-08-03 19:14:15,871 - Finished ConfigureAsync
 
+4. webexample9242 INFO  2015-08-03 19:18:54,789 - Application_End
+
