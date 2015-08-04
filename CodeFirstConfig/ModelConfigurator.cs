@@ -198,11 +198,13 @@ namespace CodeFirstConfig
         public TModel ConfigureModel()
         {
             TModel model;
+            /*
             var current = ConfigObjects.Get(_namespace);
             if (current == null)
+                */
                 model = new TModel();
-            else
-                model = (TModel)current;            
+            //else
+            //    model = (TModel)current;            
             ConfigObjects.Set(_namespace, Build(model));
             return model;
         }

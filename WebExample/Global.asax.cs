@@ -13,6 +13,9 @@ namespace WebExample
             {
                 Log.Info($"Configured {args.Type}");
             };
+            //Configurator.Configure();
+
+
             Configurator.ConfigureAsync().ContinueWith(result =>
             {
                 Log.Info("Finished ConfigureAsync");
@@ -30,6 +33,7 @@ namespace WebExample
 
         protected void Application_End()
         {
+            AppFinalizator.PerformCleanup();
             Log.Info("Application_End");
         }
 

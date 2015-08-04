@@ -28,13 +28,13 @@ namespace WebExample
         public string Value7 { get; set; } = "MyValueFromCode7";
         public TestEnum EnumValue1 { get; set; } = TestEnum.Enum1;
         public TestEnum EnumValue2 { get; set; } = TestEnum.Enum2;
-        public DateTime DateTimeValue1 { get; set; } = new DateTime(2015, 1, 15);
-        public DateTime DateTimeValue2 { get; set; } = new DateTime(2015, 5, 30);
+        //public DateTime DateTimeValue1 { get; set; } = new DateTime(2015, 1, 15);
+        //public DateTime DateTimeValue2 { get; set; } = new DateTime(2015, 5, 30);
         public bool BoolValue1 { get; set; } = true;
         public bool BoolValue2 { get; set; } = true;
-        public ComplexClass ComplexClass1 { get; set; }
+        //public ComplexClass ComplexClass1 { get; set; }
         public ComplexClass ComplexClass2 { get; set; } = new ComplexClass();
-        public string[] StringArray1 { get; set; }
+        //public string[] StringArray1 { get; set; }
         public string[] StringArray2 { get; set; } = { "value1", "value2" };
     }
 

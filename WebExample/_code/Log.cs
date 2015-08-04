@@ -38,7 +38,7 @@ namespace WebExample
 
         public static string Content() => File.ReadAllText(FileName);
 
-        public static string[] Lines() => File.ReadAllLines(FileName);
+        //public static string[] Lines() => File.ReadAllLines(FileName);
 
         public static void Info(object message)
         {

@@ -109,7 +109,8 @@ namespace CodeFirstConfig
             return ConfigureInternal(t => InvokeReconfigure(t), 
                 waitBeforeFirstWrite: false, 
                 refreshAppSettings: true,
-                settings: null);
+                settings: ConfigSettings.Instance,
+                databaseOptions: ConfigValues.DatabaseOptions);
         }
 
         public static async Task<IDictionary<string, object>> ReconfigureAsync()
@@ -118,7 +119,8 @@ namespace CodeFirstConfig
             return await Task.Run(() => ConfigureInternal(t => InvokeReconfigure(t), 
                 waitBeforeFirstWrite: true, 
                 refreshAppSettings: true,
-                settings: null));
+                settings: ConfigSettings.Instance,
+                databaseOptions: ConfigValues.DatabaseOptions));
         }       
     }
 }

@@ -11,7 +11,6 @@ namespace CodeFirstConfig
     [ConfigKeySerializeLevel(1)]
     public sealed class App
     {
-        private string _id;
         public static App Config => AppConfigManager.Config;
         public static string InstanceHash { get; }
 
@@ -37,11 +36,7 @@ namespace CodeFirstConfig
         public string Name { get; set; }
 
         //[ConfigComment("Application id. Default is application name.")]
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; InstanceId = string.Concat(_id, InstanceHash).ToLower(); }
-        }
+        public string Id { get; set; }
 
         //[ConfigComment("Application running instance id. Default is application id with unique hash.")]
         public string InstanceId { get; set; }
@@ -89,6 +84,7 @@ namespace CodeFirstConfig
                 }
                 else
                     Id = Name;
+                InstanceId = string.Concat(Id, InstanceHash);
             }
             DataFolder = Path.Combine(Folder, IsWebApp ? "App_Data" : "Data");
             //if (!Directory.Exists(DataFolder)) Directory.CreateDirectory(DataFolder);
