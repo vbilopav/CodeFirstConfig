@@ -56,7 +56,7 @@ namespace CodeFirstConfig
         {
             IsWebApp = HttpRuntime.AppDomainId != null;
             Folder = AppDomain.CurrentDomain.BaseDirectory;
-            if (IsWebApp && ConfigSettings.Instance != null && ConfigSettings.Instance.SaveConfigFileName.Contains(".\\"))
+            if (IsWebApp && ConfigSettings.Instance.SaveConfigFileName.Contains(".\\"))
                 ConfigSettings.Instance.SaveConfigFileName = ConfigSettings.Instance.SaveConfigFileName.Replace(".\\", Folder);
             if (AppAssembly.Assembly != null)
             {
@@ -67,7 +67,7 @@ namespace CodeFirstConfig
             else
             {
                 var f = Folder.Split(new[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-                for (int i = f.Length - 1; i >= 0; i--)
+                for (var i = f.Length - 1; i >= 0; i--)
                 {
                     if (string.IsNullOrEmpty(f[i]) || string.Equals(f[i], "bin") || string.Equals(f[i], "Debug") || string.Equals(f[i], "Release"))
                         continue;

@@ -101,23 +101,23 @@ namespace CodeFirstConfig
         private ConfigBeforeSetEventArgs ExecuteOnBeforeSetAction(ConfigSettingsAttribute attr, string name, string key, object value)
         {
             if (attr == null || !attr.ExecuteBeforeSet) return null;
-            if (Configurator.OnBeforeSet == null)
+            if (ConfigSettings.Instance.OnBeforeSet == null)
                 throw new CodeFirstConfigException(
                     $"Before set config action on key '{key}' could not be executed because it is not configured in global config manager -> Configurator.OnBeforeSet",
                     new ConfigItem(_namespace, name, key, value));
             var args = new ConfigBeforeSetEventArgs(_namespace, name, key, value);
-            Configurator.OnBeforeSet(args);
+            ConfigSettings.Instance.OnBeforeSet(args);
             return args;
         }
 
         private void ExecuteOnAfterSetAction(ConfigSettingsAttribute attr, string name, string key, object value)
         {
             if (attr == null || !attr.ExecuteAfterSet) return;
-            if (Configurator.OnAfterSet == null)
+            if (ConfigSettings.Instance.OnAfterSet == null)
                 throw new CodeFirstConfigException(
                     $"After set config action on key '{key}' could not be executed because it is not configured in global config manager -> Configurator.OnAfterSet",
-                    new ConfigItem(_namespace, name, key, value));                   
-            Configurator.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));
+                    new ConfigItem(_namespace, name, key, value));
+            ConfigSettings.Instance.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));
         }
         
         private void SetValueToModel(string name, string key, object value, ref TModel model)

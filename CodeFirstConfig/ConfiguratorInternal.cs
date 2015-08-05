@@ -9,7 +9,7 @@ namespace CodeFirstConfig
 {
     public static partial class Configurator
     {
-        private static FileSystemWatcher Watcher = null;
+        private static FileSystemWatcher _watcher = null;
         private static bool _configured = false;
         private static TimedConsumer _consumer;
         private static IEnumerable<Type> _types;
@@ -25,21 +25,21 @@ namespace CodeFirstConfig
 
         private static void InitializeWatcher()
         {
-            Watcher = new FileSystemWatcher
+            _watcher = new FileSystemWatcher
             {
                 NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
                 IncludeSubdirectories = false
             };
             Func<Task> handler = async () =>
             {
-                Watcher.EnableRaisingEvents = false;
+                _watcher.EnableRaisingEvents = false;
                 await ReconfigureAsync();
-                Watcher.EnableRaisingEvents = true;
+                _watcher.EnableRaisingEvents = true;
             };
-            Watcher.Changed += async (sender, e) => await handler();           
-            Watcher.Renamed += async (sender, e) => await handler();           
-            Watcher.EnableRaisingEvents = false;
-            AppFinalizator.CleanupQueue.Enqueue(Watcher);
+            _watcher.Changed += async (sender, e) => await handler();           
+            _watcher.Renamed += async (sender, e) => await handler();           
+            _watcher.EnableRaisingEvents = false;
+            AppFinalizator.CleanupQueue.Enqueue(_watcher);
         }
 
         private static object GetConfigValue(Type t)
@@ -112,7 +112,9 @@ namespace CodeFirstConfig
                 {
                     if (ConfigValues.DatabaseOptions != null)
                     {
-                        var task = ConfigValues.DatabaseOptions.InsertInstanceAsync(ConfigObjects.Current);
+                        #pragma warning disable 4014
+                        ConfigValues.DatabaseOptions.InsertInstanceAsync(ConfigObjects.Current);
+                        #pragma warning restore 4014
                     }
                 }
                 catch (Exception e)
@@ -123,11 +125,11 @@ namespace CodeFirstConfig
                 {
                     if (ConfigSettings.Instance.SaveConfigFile)
                     {
-                        bool watching = false;
-                        if (Watcher != null)
+                        var watching = false;
+                        if (_watcher != null)
                         {
-                            watching = Watcher.EnableRaisingEvents;
-                            if (watching) Watcher.EnableRaisingEvents = false;
+                            watching = _watcher.EnableRaisingEvents;
+                            if (watching) _watcher.EnableRaisingEvents = false;
                         }
                         
                         const int delay = 250;
@@ -153,15 +155,15 @@ namespace CodeFirstConfig
                         }
                         if (ConfigSettings.Instance.EnableFileWatcher)
                         {
-                            if (Watcher == null) InitializeWatcher();
-                            if (string.IsNullOrEmpty(Watcher.Path))
+                            if (_watcher == null) InitializeWatcher();
+                            if (string.IsNullOrEmpty(_watcher.Path))
                             {
-                                Watcher.Path = Path.GetDirectoryName(ConfigSettings.Instance.SaveConfigFileName);
-                                Watcher.Filter = Path.GetFileName(ConfigSettings.Instance.SaveConfigFileName);
-                                Watcher.EnableRaisingEvents = true;
+                                _watcher.Path = Path.GetDirectoryName(ConfigSettings.Instance.SaveConfigFileName);
+                                _watcher.Filter = Path.GetFileName(ConfigSettings.Instance.SaveConfigFileName);
+                                _watcher.EnableRaisingEvents = true;
                             }
                         }
-                        if (watching && Watcher != null && !Watcher.EnableRaisingEvents) Watcher.EnableRaisingEvents = true;
+                        if (watching && _watcher != null && !_watcher.EnableRaisingEvents) _watcher.EnableRaisingEvents = true;
                     }
                 }
                 catch (Exception e)
@@ -183,8 +185,12 @@ namespace CodeFirstConfig
                 }
 
                 if (!_configured) _configured = true;
-                if (ConfigSettings.Instance.ThrowOnConfigureException && _exceptions.Any())
-                    throw new AggregateException(new AggregateException(_exceptions.ToArray()));
+                if (!_exceptions.Any()) return ConfigObjects.Current;
+                var exception = new AggregateException(_exceptions.ToArray());
+                if (ConfigSettings.Instance.ThrowOnConfigureException)
+                    throw exception;
+                if (ConfigSettings.Instance.OnError != null)
+                    ConfigSettings.Instance.OnError(new ConfigErrorEventArgs(exception));
                 return ConfigObjects.Current;
             }
         }

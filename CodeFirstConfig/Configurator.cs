@@ -7,16 +7,32 @@ namespace CodeFirstConfig
 {
     public static partial class Configurator
     {
-        private static Action<ConfigAfterSetEventArgs> AfterSetEvent { get; set; }
-        private static Action<ConfigBeforeSetEventArgs> BeforeSetEvent { get; set; }
-        private static Action<ModelConfiguredEventArgs> OnModelConfiguredEvent { get; set; }
+        public static Action<ConfigAfterSetEventArgs> OnAfterSet
+        {
+            get { return ConfigSettings.Instance.OnAfterSet; }
+            set { lock (ConfigLock) ConfigSettings.Instance.OnAfterSet = value; }
+        }
 
-        public static Action<ConfigAfterSetEventArgs> OnAfterSet { get { return AfterSetEvent; } set { lock (ConfigLock) { AfterSetEvent = value; } } }
-        public static Action<ConfigBeforeSetEventArgs> OnBeforeSet { get { return BeforeSetEvent; } set { lock (ConfigLock) { BeforeSetEvent = value; } } }
-        public static Action<ModelConfiguredEventArgs> OnModelConfigured { get { return OnModelConfiguredEvent; } set { lock (ConfigLock) { OnModelConfiguredEvent = value; } } }
+        public static Action<ConfigBeforeSetEventArgs> OnBeforeSet
+        {
+            get { return ConfigSettings.Instance.OnBeforeSet; }
+            set { lock (ConfigLock) { ConfigSettings.Instance.OnBeforeSet = value; } }
+        }
 
+        public static Action<ModelConfiguredEventArgs> OnModelConfigured
+        {
+            get { return ConfigSettings.Instance.OnModelConfigured; }
+            set { lock (ConfigLock) ConfigSettings.Instance.OnModelConfigured = value; } 
+        }
 
-        public static AggregateException Exception { get { lock (ConfigLock) return new AggregateException(_exceptions.ToArray()); } }
+        public static Action<ConfigErrorEventArgs> OnError
+        {
+            get { return ConfigSettings.Instance.OnError; }
+            set { lock (ConfigLock) ConfigSettings.Instance.OnError = value; }
+        }
+
+        public static AggregateException Exception => new AggregateException(_exceptions.ToArray());
+
         public static IDictionary<string, object> Current => ConfigObjects.Current;
 
         public static void SetConfigTypesFunc(Func<IEnumerable<Type>> func)

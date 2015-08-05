@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace CodeFirstConfig
 {
@@ -29,6 +30,16 @@ namespace CodeFirstConfig
         {
             Type = type;
             Model = model;
+        }
+    }
+
+    public class ConfigErrorEventArgs
+    {
+        public Exception Exception { get; }
+
+        internal ConfigErrorEventArgs(Exception exception)
+        {
+            Exception = exception;
         }
     }
 

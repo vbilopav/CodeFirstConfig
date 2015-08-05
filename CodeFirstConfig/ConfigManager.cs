@@ -17,8 +17,8 @@ namespace CodeFirstConfig
                     if (Model != null) return Model;
                     Model = ModelConfigurator.ConfigureModel();
                 }
-                if (Configurator.OnModelConfigured != null)
-                        Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
+                if (ConfigSettings.Instance.OnModelConfigured != null)
+                    ConfigSettings.Instance.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
                 return Model;               
             }             
         }
@@ -29,8 +29,8 @@ namespace CodeFirstConfig
             {
                 Model = ModelConfigurator.ConfigureModel();               
             }
-            if (Configurator.OnModelConfigured != null)
-                Configurator.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
+            if (ConfigSettings.Instance.OnModelConfigured != null)
+                ConfigSettings.Instance.OnModelConfigured(new ModelConfiguredEventArgs(typeof(TModel), Model));
             return Model;
         }
 

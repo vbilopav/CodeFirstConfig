@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace CodeFirstConfig
@@ -10,7 +11,11 @@ namespace CodeFirstConfig
         private ConfigFormat _format = ConfigFormat.AppConfig;
 
         // protected by ConfigLock
-        public static ConfigSettings Instance { get; internal set; }
+        private static ConfigSettings _instance;
+        public static ConfigSettings Instance {
+            get { return _instance ?? (_instance = new ConfigSettings()); }
+            internal set { _instance = value; }
+        }
 
         public bool SaveConfigFile { get; set; } = true;
         public string SaveConfigFileName { get; set; } = DefaultConfigName;
@@ -40,5 +45,10 @@ namespace CodeFirstConfig
         public int? TimerMinutes { get; set; } = 5;
         public int MaxFileWriteRetry { get; set; } = 3;
         public bool ThrowOnConfigureException { get; set; } = true;
+
+        public Action<ConfigAfterSetEventArgs> OnAfterSet { get; set; } = null;
+        public Action<ConfigBeforeSetEventArgs> OnBeforeSet { get; set; } = null;
+        public Action<ModelConfiguredEventArgs> OnModelConfigured { get; set; } = null;
+        public Action<ConfigErrorEventArgs> OnError { get; set; } = null;
     }
 }
