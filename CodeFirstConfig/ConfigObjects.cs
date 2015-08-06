@@ -34,7 +34,7 @@ namespace CodeFirstConfig
             using (var sw = new StringWriter())
             {
                 var old = _serializer.Formatting;
-                _serializer.Formatting = Formatting.Indented;
+                _serializer.Formatting = Formatting.None;
                 _serializer.Serialize(sw, ConfigSettings.Instance);
                 _serializer.Formatting = old;
                 writer.Write(sw.ToString().Replace('\"', '\''));

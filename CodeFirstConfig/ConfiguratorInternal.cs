@@ -85,7 +85,9 @@ namespace CodeFirstConfig
 
                 try
                 {
-                    ConfigSettings.Instance = settings ?? new ConfigSettings();
+                    if (settings != null)
+                        ConfigSettings.Instance = settings;
+                    //ConfigSettings.Instance = settings ?? new ConfigSettings();
                     ConfigValues.DatabaseOptions = databaseOptions;
                     ConfigValues.Reconfigure(refreshAppSettings);
                     action(appType);

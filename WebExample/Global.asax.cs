@@ -8,27 +8,22 @@ namespace WebExample
     public class MvcApplication : System.Web.HttpApplication
     {
         static MvcApplication()
-        {            
-            Configurator.OnModelConfigured = args =>
-            {
-                Log.Info($"Configured {args.Type}");
-            };
-            //Configurator.Configure();
-
-
-            Configurator.ConfigureAsync().ContinueWith(result =>
-            {
-                Log.Info("Finished ConfigureAsync");
-                if (result.Exception != null) Log.Error(result.Exception);
-            });
+        {
+            Configurator.Configure(
+                new ConfigSettings
+                {
+                    OnError = args => Log.Error(args.Exception),
+                    OnModelConfigured = args => Log.Info($"Configured {args.Type}")
+                });
+            Log.Info("Finished ConfigureAsync");           
         }
 
         protected void Application_Start()
         {
             Log.Info("Application_Start");
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);           
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
         protected void Application_End()

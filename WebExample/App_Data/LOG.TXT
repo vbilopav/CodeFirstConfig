@@ -1,60 +1,535 @@
-0. WebExampleff77 INFO  2015-08-04 14:23:41,037 - Configured CodeFirstConfig.App
+0. WebExample5612 INFO  2015-08-06 14:41:44,417 - Application_Start
 
-1. WebExampleff77 INFO  2015-08-04 14:23:41,090 - Application_Start
+1. WebExample5612 INFO  2015-08-06 14:41:44,470 - Configured CodeFirstConfig.App
 
-2. WebExampleff77 INFO  2015-08-04 14:23:41,094 - Configured WebExample.SampleClass
+2. WebExample5612 INFO  2015-08-06 14:41:44,479 - Configured WebExample.SampleClass
 
-3. WebExampleff77 INFO  2015-08-04 14:23:41,470 - Finished ConfigureAsync
+3. WebExample5612 INFO  2015-08-06 14:41:44,884 - Finished ConfigureAsync
 
-4. WebExampleff77 INFO  2015-08-04 14:23:54,686 - Application_End
+4. WebExample5612 INFO  2015-08-06 14:42:52,609 - Configured CodeFirstConfig.App
 
-0. WebExample3761 INFO  2015-08-04 14:24:06,910 - Application_Start
+5. WebExample5612 INFO  2015-08-06 14:42:52,613 - Configured WebExample.SampleClass
 
-1. WebExample3761 INFO  2015-08-04 14:24:06,927 - Configured CodeFirstConfig.App
+6. WebExample5612 INFO  2015-08-06 14:43:57,297 - Configured CodeFirstConfig.App
 
-2. WebExample3761 INFO  2015-08-04 14:24:06,936 - Configured WebExample.SampleClass
+7. WebExample5612 INFO  2015-08-06 14:43:57,300 - Configured WebExample.SampleClass
 
-3. WebExample3761 INFO  2015-08-04 14:24:07,384 - Finished ConfigureAsync
+8. WebExample5612 INFO  2015-08-06 14:44:22,290 - Configured CodeFirstConfig.App
 
-4. WebExample3761 INFO  2015-08-04 14:27:50,758 - Application_End
+9. WebExample5612 INFO  2015-08-06 14:44:22,294 - Configured WebExample.SampleClass
 
-0. WebExample3761 INFO  2015-08-04 14:27:53,865 - Application_Start
+10. WebExample5612 INFO  2015-08-06 14:45:38,355 - Application_End
 
-1. WebExample3761 INFO  2015-08-04 14:27:53,881 - Configured CodeFirstConfig.App
+0. WebExample29d9 INFO  2015-08-06 14:45:41,185 - Application_Start
 
-2. WebExample3761 INFO  2015-08-04 14:27:54,036 - Configured WebExample.SampleClass
+1. WebExample29d9 INFO  2015-08-06 14:45:41,201 - Configured CodeFirstConfig.App
 
-3. WebExample3761 INFO  2015-08-04 14:27:54,345 - Finished ConfigureAsync
+2. WebExample29d9 INFO  2015-08-06 14:45:41,208 - Configured WebExample.SampleClass
 
-4. WebExample3761 INFO  2015-08-04 14:28:32,424 - Configured CodeFirstConfig.App
+3. WebExample29d9 INFO  2015-08-06 14:45:41,608 - Finished ConfigureAsync
 
-5. WebExample3761 INFO  2015-08-04 14:28:32,427 - Configured WebExample.SampleClass
+4. WebExample29d9 INFO  2015-08-06 14:47:14,115 - Application_End
 
-6. WebExample3761 INFO  2015-08-04 14:29:16,928 - Configured WebExample.SampleClass
+0. WebExample42e2 INFO  2015-08-06 14:47:17,320 - Application_Start
 
-0. WebExample3761 INFO  2015-08-04 14:31:53,869 - Application_Start
+1. WebExample42e2 INFO  2015-08-06 14:47:17,709 - Finished ConfigureAsync
 
-1. WebExample3761 INFO  2015-08-04 14:31:53,892 - Configured CodeFirstConfig.App
+2. WebExample42e2 INFO  2015-08-06 14:47:51,921 - Application_End
 
-2. WebExample3761 INFO  2015-08-04 14:31:55,584 - Configured WebExample.SampleClass
+0. WebExample42e2 INFO  2015-08-06 14:47:57,108 - Application_Start
 
-3. WebExample3761 INFO  2015-08-04 14:31:59,680 - Finished ConfigureAsync
+1. WebExample42e2 INFO  2015-08-06 14:47:57,584 - Finished ConfigureAsync
 
-4. WebExample3761 INFO  2015-08-04 14:32:30,305 - Configured CodeFirstConfig.App
+0. WebExample42e2 INFO  2015-08-06 14:52:35,966 - Application_Start
 
-5. WebExample3761 INFO  2015-08-04 14:32:32,912 - Configured WebExample.SampleClass
+1. WebExample42e2 INFO  2015-08-06 14:52:35,994 - Configured CodeFirstConfig.App
 
-0. WebExample3761 INFO  2015-08-04 14:35:23,720 - Application_Start
+2. WebExample42e2 INFO  2015-08-06 14:52:36,202 - Configured WebExample.SampleClass
 
-1. WebExample3761 INFO  2015-08-04 14:35:23,747 - Configured CodeFirstConfig.App
+3. WebExample42e2 INFO  2015-08-06 14:52:36,535 - Finished ConfigureAsync
 
-2. WebExample3761 INFO  2015-08-04 14:35:23,946 - Configured WebExample.SampleClass
+4. WebExample42e2 INFO  2015-08-06 14:55:41,503 - Configured CodeFirstConfig.App
 
-3. WebExample3761 INFO  2015-08-04 14:35:24,287 - Finished ConfigureAsync
+5. WebExample42e2 INFO  2015-08-06 14:55:41,508 - Configured WebExample.SampleClass
 
-4. WebExample3761 INFO  2015-08-04 14:35:44,212 - Configured CodeFirstConfig.App
+6. WebExample42e2 INFO  2015-08-06 14:56:01,069 - Configured CodeFirstConfig.App
 
-5. WebExample3761 INFO  2015-08-04 14:35:44,215 - Configured WebExample.SampleClass
+7. WebExample42e2 INFO  2015-08-06 14:56:01,074 - Configured WebExample.SampleClass
 
-6. WebExample3761 INFO  2015-08-04 14:35:59,686 - Configured WebExample.SampleClass
+8. WebExample42e2 INFO  2015-08-06 14:56:32,815 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 14:56:35,833 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 14:56:35,849 - Configured CodeFirstConfig.App
+
+2. WebExample42e2 INFO  2015-08-06 14:56:35,986 - Configured WebExample.SampleClass
+
+3. WebExample42e2 INFO  2015-08-06 14:56:36,305 - Finished ConfigureAsync
+
+4. WebExample42e2 INFO  2015-08-06 15:03:23,132 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 15:03:25,956 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 15:03:25,973 - Configured CodeFirstConfig.App
+
+2. WebExample42e2 INFO  2015-08-06 15:03:26,113 - Configured WebExample.SampleClass
+
+3. WebExample42e2 INFO  2015-08-06 15:03:26,436 - Finished ConfigureAsync
+
+4. WebExample42e2 INFO  2015-08-06 15:04:29,097 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 15:04:32,163 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 15:04:32,179 - Configured CodeFirstConfig.App
+
+2. WebExample42e2 INFO  2015-08-06 15:04:32,329 - Configured WebExample.SampleClass
+
+3. WebExample42e2 INFO  2015-08-06 15:04:32,644 - Finished ConfigureAsync
+
+4. WebExample42e2 INFO  2015-08-06 15:05:15,389 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 15:05:18,781 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 15:05:18,798 - Configured CodeFirstConfig.App
+
+2. WebExample42e2 INFO  2015-08-06 15:05:18,949 - Configured WebExample.SampleClass
+
+3. WebExample42e2 INFO  2015-08-06 15:05:19,266 - Finished ConfigureAsync
+
+4. WebExample42e2 INFO  2015-08-06 15:16:37,244 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 15:16:40,388 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 15:16:40,408 - Configured CodeFirstConfig.App
+
+2. WebExample42e2 INFO  2015-08-06 15:16:40,597 - Configured WebExample.SampleClass
+
+3. WebExample42e2 INFO  2015-08-06 15:16:40,927 - Finished ConfigureAsync
+
+4. WebExample42e2 INFO  2015-08-06 15:17:32,276 - Application_End
+
+0. WebExample42e2 INFO  2015-08-06 15:17:35,173 - Application_Start
+
+1. WebExample42e2 INFO  2015-08-06 15:17:35,586 - Finished ConfigureAsync
+
+0. WebExample9cae INFO  2015-08-06 15:33:39,312 - Application_Start
+
+1. WebExample9cae INFO  2015-08-06 15:33:39,331 - Configured CodeFirstConfig.App
+
+2. WebExample9cae INFO  2015-08-06 15:33:39,478 - Configured WebExample.SampleClass
+
+3. WebExample9cae ERROR 2015-08-06 15:33:39,785 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+4. WebExample9cae INFO  2015-08-06 15:33:39,800 - Finished ConfigureAsync
+
+5. WebExample9cae ERROR 2015-08-06 15:35:24,790 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+6. WebExample9cae ERROR 2015-08-06 15:35:25,505 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+7. WebExample9cae ERROR 2015-08-06 15:35:26,016 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+8. WebExample9cae ERROR 2015-08-06 15:35:26,488 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+9. WebExample9cae ERROR 2015-08-06 15:35:26,945 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+10. WebExample9cae ERROR 2015-08-06 15:35:27,806 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+11. WebExample9cae ERROR 2015-08-06 15:35:28,381 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+12. WebExample9cae ERROR 2015-08-06 15:35:32,551 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+13. WebExample9cae INFO  2015-08-06 15:35:41,060 - Application_End
+
+0. WebExample9cae INFO  2015-08-06 15:37:14,268 - Configured CodeFirstConfig.App
+
+1. WebExample9cae INFO  2015-08-06 15:37:14,287 - Application_Start
+
+2. WebExample9cae INFO  2015-08-06 15:37:14,443 - Configured WebExample.SampleClass
+
+3. WebExample9cae INFO  2015-08-06 15:37:14,823 - Finished ConfigureAsync
+
+0. WebExample9cae INFO  2015-08-06 16:28:29,108 - Configured CodeFirstConfig.App
+
+1. WebExample9cae INFO  2015-08-06 16:28:29,159 - Application_Start
+
+2. WebExample9cae INFO  2015-08-06 16:28:29,391 - Configured WebExample.SampleClass
+
+3. WebExample9cae INFO  2015-08-06 16:28:29,734 - Finished ConfigureAsync
+
+4. WebExample9cae INFO  2015-08-06 16:30:38,092 - Application_End
+
+0. WebExample9cae INFO  2015-08-06 16:30:41,362 - Configured CodeFirstConfig.App
+
+1. WebExample9cae INFO  2015-08-06 16:30:41,497 - Configured WebExample.SampleClass
+
+2. WebExample9cae INFO  2015-08-06 16:30:41,548 - Finished ConfigureAsync
+
+3. WebExample9cae INFO  2015-08-06 16:30:41,555 - Application_Start
+
+4. WebExample9cae INFO  2015-08-06 16:33:31,160 - Application_End
+
+0. WebExample9cae INFO  2015-08-06 16:33:46,001 - Configured CodeFirstConfig.App
+
+1. WebExample9cae INFO  2015-08-06 16:33:46,131 - Configured WebExample.SampleClass
+
+2. WebExample9cae INFO  2015-08-06 16:33:46,182 - Finished ConfigureAsync
+
+3. WebExample9cae INFO  2015-08-06 16:33:46,188 - Application_Start
+
+4. WebExample9cae INFO  2015-08-06 16:34:21,083 - Configured CodeFirstConfig.App
+
+5. WebExample9cae INFO  2015-08-06 16:34:21,091 - Configured WebExample.SampleClass
+
+6. WebExample9cae INFO  2015-08-06 16:34:35,374 - Configured WebExample.SampleClass
+
+7. WebExample9cae ERROR 2015-08-06 16:34:35,687 - System.AggregateException: One or more errors occurred. ---> System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetApplicationSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   at System.Configuration.ConfigurationManager.get_AppSettings()
+   at CodeFirstConfig.ConfigValues.GetConfiguration() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 13
+   at CodeFirstConfig.ConfigValues.Reconfigure(Boolean refreshAppSettings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 45
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 92
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetApplicationSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   at System.Configuration.ConfigurationManager.get_AppSettings()
+   at CodeFirstConfig.ConfigValues.GetConfiguration() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 13
+   at CodeFirstConfig.ConfigValues.Reconfigure(Boolean refreshAppSettings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 45
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 92<---
+
+
+8. WebExample9cae INFO  2015-08-06 16:35:13,528 - Configured CodeFirstConfig.App
+
+9. WebExample9cae INFO  2015-08-06 16:35:13,535 - Configured WebExample.SampleClass
+
+10. WebExample9cae INFO  2015-08-06 16:35:30,902 - Configured WebExample.SampleClass
+
+11. WebExample9cae ERROR 2015-08-06 16:35:31,189 - System.AggregateException: One or more errors occurred. ---> System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetApplicationSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   at System.Configuration.ConfigurationManager.get_AppSettings()
+   at CodeFirstConfig.ConfigValues.GetConfiguration() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 13
+   at CodeFirstConfig.ConfigValues.Reconfigure(Boolean refreshAppSettings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 45
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 92
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetApplicationSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   at System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   at System.Configuration.ConfigurationManager.get_AppSettings()
+   at CodeFirstConfig.ConfigValues.GetConfiguration() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 13
+   at CodeFirstConfig.ConfigValues.Reconfigure(Boolean refreshAppSettings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigValues.cs:line 45
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 92<---
+
 

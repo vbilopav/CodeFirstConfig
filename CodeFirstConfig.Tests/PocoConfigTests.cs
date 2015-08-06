@@ -31,7 +31,7 @@ namespace CodeFirstConfig.Tests
         public class PocoConfigManager : ConfigManager<TestClass> { }
 
         [TestMethod]
-        public void TestMethod1()
+        public void PocoConfig_Test()
         {
             Assert.AreEqual("MyValueFromCode1", PocoConfigManager.Config.Value1);
             Assert.AreEqual("MyValueFromConfig2", PocoConfigManager.Config.Value2);

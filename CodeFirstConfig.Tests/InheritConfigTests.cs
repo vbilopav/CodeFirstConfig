@@ -21,7 +21,7 @@ namespace CodeFirstConfig.Tests
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void InheritConfig_Test()
         {            
             Assert.AreEqual("MyValueFromCode1", TestClass.Config.Value1);
             Assert.AreEqual("MyValueFromConfig2", TestClass.Config.Value2);
