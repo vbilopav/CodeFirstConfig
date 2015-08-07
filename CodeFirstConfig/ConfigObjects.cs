@@ -21,30 +21,37 @@ namespace CodeFirstConfig
         private static void WriteComment(TextWriter writer, ConfigFormat format)
         {
             writer.WriteLine(format == ConfigFormat.AppConfig ? "<!--" : "/*");
-            writer.WriteLine("Application: {0}", App.Config.Name);
             writer.WriteLine("Timestamp: {0:O}", _timeStamp);
-            writer.WriteLine("Thread: [{0}:{1}:{2}]",                 
-                Thread.CurrentThread.ManagedThreadId,
-                Thread.CurrentThread.CurrentCulture,
-                Thread.CurrentThread.CurrentUICulture
-                );            
-            //if (writer is StreamWriter)
-            //{                   
-            writer.Write("ConfigSettings:  ");
+
+            var old = _serializer.Formatting;
+            _serializer.Formatting = Formatting.None;
+            using (var sw = new StringWriter())
+            {                
+                writer.Write("App:  ");
+                _serializer.Serialize(sw, new
+                {
+                    Name = App.Config.Name,
+                    Id = App.Config.Id,
+                    InstanceId = App.Config.InstanceId,
+                    Web = App.IsWebApp,
+                    Debug = App.IsDebugConfiguration,
+                    Debugging = App.Debugging,
+                    Testing = App.Testing
+                });
+                writer.Write(sw.ToString());
+            }
             using (var sw = new StringWriter())
             {
-                var old = _serializer.Formatting;
-                _serializer.Formatting = Formatting.None;
+                writer.WriteLine();
+                writer.Write("Settings:  ");
                 _serializer.Serialize(sw, ConfigSettings.Instance);
-                _serializer.Formatting = old;
-                writer.Write(sw.ToString().Replace('\"', '\''));
+                writer.Write(sw.ToString());                
             }
+            _serializer.Formatting = old;
             writer.WriteLine();
-            //}
             writer.WriteLine(format == ConfigFormat.AppConfig ? "-->" : "*/");
             writer.WriteLine();
         }
-
         
         private static void WriteJsonValue(JsonWriter writer, MemberInfo field, object value, Type type)
         {
@@ -112,11 +119,11 @@ namespace CodeFirstConfig
                             writer.WriteComment(configAttr.Comment);                       
                         writer.WritePropertyName(key, false);
                         writer.WriteStartObject();                        
-                        foreach (var prop in objType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                        foreach (var prop in objType.Properties())
                         {
                             WriteJsonValue(writer, prop, prop.GetValue(kvp.Value, null), prop.PropertyType);
                         }
-                        foreach (var field in objType.GetFields(BindingFlags.Instance | BindingFlags.Public))
+                        foreach (var field in objType.Fields())
                         {
                             WriteJsonValue(writer, field, field.GetValue(kvp.Value), field.FieldType);
                         }
@@ -178,7 +185,6 @@ namespace CodeFirstConfig
         {
             _serializer.Formatting = Formatting.None;
             if (!skipComment) WriteComment(writer, ConfigFormat.AppConfig);
-            //writer.WriteLine("/*");
             writer.WriteLine("<appSettings>");
             string prevKey = null;
             lock (_current)
@@ -207,18 +213,35 @@ namespace CodeFirstConfig
                     }                        
                     
                     prevKey = key;
-                    foreach (var prop in objType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                    foreach (var prop in objType.Properties())
                     {
                         WriteAppConfigValue(writer, prop, prop.GetValue(kvp.Value, null), prop.PropertyType, key);
                     }
-                    foreach (var field in objType.GetFields(BindingFlags.Instance | BindingFlags.Public))
+                    foreach (var field in objType.Fields())
                     {
                         WriteAppConfigValue(writer, field, field.GetValue(kvp.Value), field.FieldType, key);
                     }
                 }
+                if (ConfigSettings.Instance.WriteUnbinedAppSettings && ConfigValues.Unbinded.Any())
+                {
+                    writer.WriteLine();
+                    writer.WriteLine(string.Concat("\t<!--Unbinded-->"));
+                    foreach (var u in ConfigValues.Unbinded)
+                    {
+                        writer.WriteLine($"\t<add key=\"{u.Key}\" value=\"{u.Value}\" />");
+                    }                       
+                }
             }
-            writer.WriteLine("</appSettings>");
-            //writer.WriteLine("*/");            
+            writer.WriteLine("</appSettings>");         
+        }
+
+        private static void WriteExceptions(TextWriter writer, ConfigFormat format, List<Exception> exceptions)
+        {
+            writer.WriteLine(format == ConfigFormat.AppConfig ? "<!--" : "/*");
+            var e = new AggregateException(exceptions.ToArray()).ToString();
+            if (format == ConfigFormat.AppConfig) e = e.Replace("---", "~~~").Replace("--", "~~");
+            writer.Write(e);
+            writer.WriteLine(format == ConfigFormat.AppConfig ? "-->" : "*/");
         }
 
         internal static IDictionary<string, object> Current { get { lock (_current) return _current; } }
@@ -252,7 +275,7 @@ namespace CodeFirstConfig
             if (exceptions == null || !exceptions.Any()) return;
             writer.WriteLine();
             writer.WriteLine();
-            writer.Write(new AggregateException(exceptions.ToArray()).ToString());
+            WriteExceptions(writer, format, exceptions);
         }
 
         internal static void ToWriter(TextWriter writer, List<Exception> exceptions = null)

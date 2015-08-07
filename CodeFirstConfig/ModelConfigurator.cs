@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace CodeFirstConfig
@@ -120,7 +119,7 @@ namespace CodeFirstConfig
             ConfigSettings.Instance.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));
         }
         
-        private void SetValueToModel(string name, string key, object value, ref TModel model)
+        private bool SetValueToModel(string name, string key, object value, ref TModel model)
         {
             PropertyInfo prop;
             ConfigSettingsAttribute attr;
@@ -130,19 +129,20 @@ namespace CodeFirstConfig
                 attr = prop.GetCustomAttribute<ConfigSettingsAttribute>();
                 value = ParseModelValue(prop.PropertyType, value);
                 args = ExecuteOnBeforeSetAction(attr, name, key, value);
-                if (args != null && args.Cancel) return;
+                if (args != null && args.Cancel) return false;
                 prop.SetValue(model, value);
                 ExecuteOnAfterSetAction(attr, name, key, value);                             
-                return;
+                return true;
             }
             FieldInfo field;                       
-            if (!_fields.TryGetValue(name, out field)) return;
+            if (!_fields.TryGetValue(name, out field)) return false;
             attr = field.GetCustomAttribute<ConfigSettingsAttribute>();            
             value = ParseModelValue(field.FieldType, value);
             args = ExecuteOnBeforeSetAction(attr, name, key, value);                
-            if (args != null && args.Cancel) return;
+            if (args != null && args.Cancel) return false;
             field.SetValue(model, value);
-            ExecuteOnAfterSetAction(attr, name, key, value);   
+            ExecuteOnAfterSetAction(attr, name, key, value);
+            return true;
         }
 
         private TModel Build(TModel model)
@@ -181,10 +181,17 @@ namespace CodeFirstConfig
                         }
                     }
                 }
-                SetValueToModel(name, item.Key, val, ref model);
-                used.Add(name);
-                if (_requireds.Contains(name))
-                    requireds.Add(name);                
+                var valueSet = SetValueToModel(name, item.Key, val, ref model);
+                if (valueSet)
+                {
+                    used.Add(name);                    
+                    if (_requireds.Contains(name))
+                        requireds.Add(name);
+                } else
+                {
+                    if (ConfigSettings.Instance.WriteUnbinedAppSettings)
+                        ConfigValues.AddUbined(item.Key, item.Value);
+                }            
             }
             if (requireds.Count != _requireds.Count)
             {
@@ -197,14 +204,17 @@ namespace CodeFirstConfig
 
         public TModel ConfigureModel()
         {
-            TModel model;
             /*
+            TModel model;            
             var current = ConfigObjects.Get(_namespace);
-            if (current == null)
-                */
+            if (current == null)                
                 model = new TModel();
-            //else
-            //    model = (TModel)current;            
+            else
+                model = (TModel)current;            
+            ConfigObjects.Set(_namespace, Build(model));
+            return model;
+            */
+            TModel model = new TModel();
             ConfigObjects.Set(_namespace, Build(model));
             return model;
         }
@@ -217,6 +227,7 @@ namespace CodeFirstConfig
             _type = typeof(TModel);
             _namespace = GetNamespace(_type);
             _ns = _namespace.Split(new[]{'.'}, StringSplitOptions.RemoveEmptyEntries);
+
             _props = _type
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty)
                 .Where(p => p.CanWrite)
@@ -225,7 +236,9 @@ namespace CodeFirstConfig
             _fields = _type
                 .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetField)
                 .Where(f => f.IsPublic)
-                .ToDictionary(f => f.Name, ø => ø);
+                .ToDictionary(f => f.Name, f => f);
+            ConfigValues.SetProperties(_type, _props.Values);
+            ConfigValues.SetFields(_type, _fields.Values);
             _requireds = new HashSet<string>(
                _props
                    .Where(f => f.Value.IsDefined(typeof(ConfigSettingsAttribute), false))

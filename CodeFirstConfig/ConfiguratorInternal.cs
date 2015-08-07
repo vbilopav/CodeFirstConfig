@@ -132,11 +132,9 @@ namespace CodeFirstConfig
                         {
                             watching = _watcher.EnableRaisingEvents;
                             if (watching) _watcher.EnableRaisingEvents = false;
-                        }
-                        
-                        const int delay = 250;
-                        if (waitBeforeFirstWrite) Task.Delay(delay).Wait();
-                        for (int retry = 0; retry < ConfigSettings.Instance.MaxFileWriteRetry; retry++)
+                        }                                             
+                        if (waitBeforeFirstWrite) Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
+                        for (int retry = 0; retry < ConfigSettings.MaxRetryBeforeException; retry++)
                         {
                             try
                             {
@@ -145,9 +143,9 @@ namespace CodeFirstConfig
                             }
                             catch (IOException)
                             {
-                                if (retry < ConfigSettings.Instance.MaxFileWriteRetry - 1)
+                                if (retry < ConfigSettings.MaxRetryBeforeException - 1)
                                 {
-                                    Task.Delay(delay).Wait();
+                                    Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
                                 }
                                 else
                                 {

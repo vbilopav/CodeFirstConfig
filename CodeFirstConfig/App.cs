@@ -13,48 +13,35 @@ namespace CodeFirstConfig
     {
         public static App Config => AppConfigManager.Config;
         public static string InstanceHash { get; }
-
-        //[ConfigComment("Web context enabled?")]
-        public bool IsWebApp { get; }
-
-        //[ConfigComment("Debug configuration build?")]
-        public bool IsDebugConfiguration { get; }
-
-        //[ConfigComment("Debugging session instance?")]
-        public bool Debugging { get; }
-
-        //[ConfigComment("Test session instance?")]
-        public bool Testing { get; }
-
-        //[ConfigComment("Test session instance?")]
-        public string BinFolder { get; }
-
-        //[ConfigComment("Application version. Default is entry assembly version.")]
-        public string Version { get; }
-
-        //[ConfigComment("Application name. Default is entry assembly name or project folder name.")]
-        public string Name { get; set; }
-
-        //[ConfigComment("Application id. Default is application name.")]
-        public string Id { get; set; }
-
-        //[ConfigComment("Application running instance id. Default is application id with unique hash.")]
-        public string InstanceId { get; set; }
-
-        //[ConfigComment("Application folder. Default is AppDomain base directory.")]
-        public string Folder { get; set; }
-
-        //[ConfigComment("Applicatio data folder. Default is application folder Data or App_Data in web context.")]
+        public static bool IsWebApp { get; }     
+        public static bool IsDebugConfiguration { get; }       
+        public static bool Debugging { get; }       
+        public static bool Testing { get; }      
+        public static string BinFolder { get; }        
+                       
+        public string Name { get; set; }       
+        public string Id { get; set; }      
+        public string InstanceId { get; set; }       
+        public string Folder { get; set; }       
         public string DataFolder { get; set; }
+        public string Version { get; set; }
 
         static App()
         {
             InstanceHash = Guid.NewGuid().ToString().Substring(0, 4);
+            IsWebApp = HttpRuntime.AppDomainId != null;
+#if DEBUG
+            IsDebugConfiguration = true;
+#else
+            IsDebugConfiguration = false; 
+#endif
+            Debugging = System.Diagnostics.Debugger.IsAttached;
+            Testing = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.StartsWith("Microsoft.VisualStudio.QualityTools.UnitTestFramework"));
+            BinFolder = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
         }
 
         public App()
         {
-            IsWebApp = HttpRuntime.AppDomainId != null;
             Folder = AppDomain.CurrentDomain.BaseDirectory;
             if (IsWebApp && ConfigSettings.Instance.SaveConfigFileName.Contains(".\\"))
                 ConfigSettings.Instance.SaveConfigFileName = ConfigSettings.Instance.SaveConfigFileName.Replace(".\\", Folder);
@@ -88,14 +75,6 @@ namespace CodeFirstConfig
             }
             DataFolder = Path.Combine(Folder, IsWebApp ? "App_Data" : "Data");
             //if (!Directory.Exists(DataFolder)) Directory.CreateDirectory(DataFolder);
-#if DEBUG
-            IsDebugConfiguration = true;
-#else
-            IsDebugConfiguration = false; 
-#endif
-            Debugging = System.Diagnostics.Debugger.IsAttached;
-            Testing = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.StartsWith("Microsoft.VisualStudio.QualityTools.UnitTestFramework"));
-            BinFolder = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
         }
     }
 }
