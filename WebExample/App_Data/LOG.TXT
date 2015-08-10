@@ -10,3 +10,11 @@
 
 4. WebExample06fe INFO  2015-08-10 16:25:14,715 - Application_End
 
+0. WebExample06fe INFO  2015-08-10 18:59:17,093 - Reconfigured CodeFirstConfig.App
+
+1. WebExample06fe INFO  2015-08-10 18:59:17,227 - Reconfigured WebExample.SampleClass
+
+2. WebExample06fe INFO  2015-08-10 18:59:17,277 - Finished Configure
+
+3. WebExample06fe INFO  2015-08-10 18:59:17,280 - Application_Start
+

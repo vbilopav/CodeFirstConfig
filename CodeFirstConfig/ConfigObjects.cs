@@ -222,13 +222,12 @@ namespace CodeFirstConfig
                 if (ConfigSettings.Instance.WriteUnbinedAppSettings && ConfigValues.Unbinded.Any())
                 {
                     writer.WriteLine();
-                    writer.WriteLine(string.Concat("\t<!--Unbinded-->"));
+                    writer.WriteLine("\t<!--Unbinded-->");
 
                     //maintain original order
-                    foreach (var key in ConfigValues.Keys)
+                    foreach (var key in ConfigValues.Keys.Where(key => ConfigValues.Unbinded.ContainsKey(key)))
                     {
-                        if (ConfigValues.Unbinded.ContainsKey(key))
-                            writer.WriteLine($"\t<add key=\"{key}\" value=\"{ConfigValues.Unbinded[key]}\" />");
+                        writer.WriteLine($"\t<add key=\"{key}\" value=\"{ConfigValues.Unbinded[key]}\" />");
                     }                                         
                 }
             }
