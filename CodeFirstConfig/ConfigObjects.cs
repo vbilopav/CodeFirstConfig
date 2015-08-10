@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
-
 
 namespace CodeFirstConfig
 {
@@ -226,10 +223,13 @@ namespace CodeFirstConfig
                 {
                     writer.WriteLine();
                     writer.WriteLine(string.Concat("\t<!--Unbinded-->"));
-                    foreach (var u in ConfigValues.Unbinded)
+
+                    //maintain original order
+                    foreach (var key in ConfigValues.Keys)
                     {
-                        writer.WriteLine($"\t<add key=\"{u.Key}\" value=\"{u.Value}\" />");
-                    }                       
+                        if (ConfigValues.Unbinded.ContainsKey(key))
+                            writer.WriteLine($"\t<add key=\"{key}\" value=\"{ConfigValues.Unbinded[key]}\" />");
+                    }                                         
                 }
             }
             writer.WriteLine("</appSettings>");         

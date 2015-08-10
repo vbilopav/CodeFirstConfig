@@ -1,18 +1,10 @@
-4. WebExample5e63 INFO  2015-08-07 15:54:41,249 - Application_End
+6. WebExample06fe INFO  2015-08-10 16:14:39,840 - Application_End
 
-0. WebExample5e63 INFO  2015-08-07 15:54:55,147 - Configured CodeFirstConfig.App
+0. WebExample06fe INFO  2015-08-10 16:14:42,748 - Reconfigured CodeFirstConfig.App
 
-1. WebExample5e63 INFO  2015-08-07 15:54:55,283 - Configured WebExample.SampleClass
+1. WebExample06fe INFO  2015-08-10 16:14:42,900 - Reconfigured WebExample.SampleClass
 
-2. WebExample5e63 INFO  2015-08-07 15:54:55,360 - Finished ConfigureAsync
+2. WebExample06fe INFO  2015-08-10 16:14:42,950 - Finished Configure
 
-3. WebExample5e63 INFO  2015-08-07 15:54:55,366 - Application_Start
-
-4. WebExample5e63 INFO  2015-08-07 15:55:06,931 - Configured CodeFirstConfig.App
-
-5. WebExample5e63 INFO  2015-08-07 15:55:06,935 - Configured WebExample.SampleClass
-
-6. WebExample5e63 INFO  2015-08-07 15:55:14,487 - Configured CodeFirstConfig.App
-
-7. WebExample5e63 INFO  2015-08-07 15:55:14,492 - Configured WebExample.SampleClass
+3. WebExample06fe INFO  2015-08-10 16:14:43,014 - Application_Start
 

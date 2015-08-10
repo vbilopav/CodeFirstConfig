@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
+﻿using CodeFirstConfig;
 using System.Web.Http;
-using CodeFirstConfig;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace WebExample
 {
@@ -13,9 +13,9 @@ namespace WebExample
                 new ConfigSettings
                 {
                     OnError = args => Log.Error(args.Exception),
-                    OnModelConfigured = args => Log.Info($"Configured {args.Type}")
+                    OnModelConfigured = args => Log.Info($"Reconfigured {args.Type}")
                 });
-            Log.Info("Finished ConfigureAsync");           
+            Log.Info("Finished Configure");           
         }
 
         protected void Application_Start()
@@ -34,7 +34,7 @@ namespace WebExample
 
         protected void Application_Error()
         {
-            Log.Error(Server.GetLastError());
+            Log.Error(Server.GetLastError());            
         }
     }
 }

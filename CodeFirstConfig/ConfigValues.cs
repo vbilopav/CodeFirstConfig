@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace CodeFirstConfig
 {
     internal static class ConfigValues
     {
+        private static IEnumerable<string> _keys;
         private static IDictionary<string, string> _dictionary;
         private static IDictionary<string, string> _unbinded;
         private static IDictionary<Type, IEnumerable<PropertyInfo>> _props;
@@ -20,11 +21,10 @@ namespace CodeFirstConfig
             {
                 try
                 {
-                    return ConfigurationManager
+                    _keys = ConfigurationManager
                                 .AppSettings
-                                .AllKeys
-                                .OrderByDescending(a => a.Length)
-                                .ToDictionary(a => a, a => ConfigurationManager.AppSettings[a]);
+                                .AllKeys;
+                    return _keys.OrderByDescending(a => a.Length).ToDictionary(a => a, a => ConfigurationManager.AppSettings[a]);
                 }
                 catch (ConfigurationErrorsException)
                 {
@@ -55,7 +55,9 @@ namespace CodeFirstConfig
             }
         }
 
-        internal static IEnumerable<KeyValuePair<string, string>> Unbinded { get { return _unbinded; } }  //protected by ConfigLocks.ConfigLock
+        internal static IDictionary<string, string> Unbinded { get { return _unbinded; } }  //protected by ConfigLocks.ConfigLock
+
+        internal static IEnumerable<string> Keys { get { return _keys; } }  //protected by ConfigLocks.ConfigLock
 
         internal static void AddUbined(string key, string value)      //protected by ConfigLocks.ConfigLock
         {            

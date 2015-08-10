@@ -1,19 +1,16 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeFirstConfig example</title>
-    <link href="/Content/bootstrap.min.css" rel="stylesheet"/>
-    <link src="/Content/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
     <meta name="description" content="CodeFirstConfig example web application." />
 </head>
 <body>
-
 
     <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -23,17 +20,18 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content">       
         <div class="jumbotron">
             <button class="btn btn-primary btn-lg">REFRESH ALL</button>
             <div class="row">
                 <div class="col-md-6" id="sampleClass">
                     <code>SampleClass</code>
-                    <pre class="pre-scrollable">
-                    </pre>
+                    <pre class="pre-scrollable"></pre>
                 </div>
                 <div class="col-md-6" id="log">
                     <code>Log</code>
+                    <a class="btn btn-sm" href="#">clear</a>
+                    <label class="checkbox-inline"><input type="checkbox" value="" checked="checked">Lines reversed</label>
                     <pre class="pre-scrollable">
                     </pre>
                 </div>
@@ -41,8 +39,7 @@
             <div class="row">
                 <div class="col-md-12" id="config">
                     <code>Current config</code>
-                    <pre class="pre-scrollable">                   
-                </pre>
+                    <pre class="pre-scrollable"></pre>
                 </div>
             </div>
         </div>
@@ -52,22 +49,38 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - CodeFirstConfig</p>
         </footer>
+
+
+        <div id="confirm" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">Are you sure you want to clear log file?</div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="clear">Clear</button>
+                        <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-
-    <script src="/Scripts/jquery-1.9.1.min.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 </body>
 </html>
 <style>
-     div.jumbotron > div {            
-         width: 100%;
-         display: inline-block;
-     }
+    div.jumbotron > div {            
+        width: 100%;
+        display: inline-block;
+    }
     div.jumbotron > button {
         top: -30px;
         position: relative;
+    }
+    pre {
+        background-color: #ffffff;
     }
 </style>
 <script type="text/javascript">
@@ -81,16 +94,17 @@
                .replace(/'/g, "&apos;")
         }
 
-        var jumbo = $("div.jumbotron"),       
-            button =  $("button", jumbo),
+        var content = $(".body-content"),
+            jumbo = $("div.jumbotron", content),
+            button = $("button", jumbo),
             sampleClassPre = $("#sampleClass pre", jumbo).html(""),
-            logPre = $("#log pre", jumbo).html(""),
+            logPre = $("#log pre", jumbo).html(""),           
             configPre = $("#config pre", jumbo).html(""),
-            
+
             refreshSampleClass = function () {
                 sampleClassPre.addClass("disabled");
                 $.ajax({
-                    url: "/api/SampleClass",                   
+                    url: "/api/SampleClass",
                     type: "GET",
                     complete: function (r) {
                         if (r.status === 200)
@@ -99,7 +113,7 @@
                             sampleClassPre.html("Error = " + r.responseText);
                         }
                     }
-                }).always(function() {
+                }).always(function () {
                     sampleClassPre.removeClass("disabled");
                     if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
                         button.removeClass("disabled");
@@ -108,9 +122,10 @@
             },
 
             refreshlog = function () {
-                logPre.addClass("disabled");               
+                logPre.addClass("disabled");        
+                var c = logRevresed.is(":checked") ? "?reverse" : "";
                 $.ajax({
-                    url: "/api/Log?reverse",
+                    url: "/api/Log" + c,
                     type: "GET",
                     complete: function (r) {
                         if (r.status === 200)
@@ -119,6 +134,19 @@
                             logPre.html("Error = " + r.responseText);
                         }
                     }
+                }).always(function () {
+                    logPre.removeClass("disabled");
+                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
+                        button.removeClass("disabled");
+                    }
+                });
+            },
+
+            çlearlog = function () {
+                logPre.addClass("disabled");               
+                $.ajax({
+                    url: "/api/Log/Clear",     
+                    complete: refreshlog(),                    
                 }).always(function () {
                     logPre.removeClass("disabled");
                     if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
@@ -145,7 +173,14 @@
                         button.removeClass("disabled");
                     }
                 });
-            };
+            },
+
+            logRevresed = $("input", logPre.parent()).click(refreshlog),
+            confirm = $("#confirm", content),
+            logClear = $("a", logPre.parent()).click(function (e) {               
+                e.preventDefault();
+                confirm.modal({ backdrop: 'static', keyboard: false }).one('click', '#clear', çlearlog);
+            });
 
 
         button.click(function () {

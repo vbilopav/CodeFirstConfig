@@ -1,9 +1,9 @@
-﻿using System.IO;
-using CodeFirstConfig;
+﻿using CodeFirstConfig;
 using log4net;
 using log4net.Appender;
 using log4net.Config;
 using log4net.Layout;
+using System.IO;
 
 // ReSharper disable once CheckNamespace
 namespace WebExample
@@ -38,7 +38,15 @@ namespace WebExample
 
         public static string Content() => File.ReadAllText(FileName);
 
-        //public static string[] Lines() => File.ReadAllLines(FileName);
+        public static string[] Lines() => File.ReadAllLines(FileName);
+
+        public static void Clear()
+        {
+            lock (LockObj)
+            {
+                File.WriteAllText(FileName, string.Empty);
+            }
+        }
 
         public static void Info(object message)
         {
