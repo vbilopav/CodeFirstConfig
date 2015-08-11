@@ -15,13 +15,7 @@ namespace WebExample
                     OnError = args => Log.Error(args.Exception),
                     OnModelConfigured = args => Log.Info($"Reconfigured {args.Type}"),
                     SaveConfigFile = false
-                }).ContinueWith(result =>
-                {
-                    if (result.Exception == null)
-                        Log.Info("Finished ConfigureAsync");
-                    else
-                        Log.Info($"Finished ConfigureAsync with errors: {result.Exception}");
-                });            
+                }).ContinueWith(r => Log.Info("Finished ConfigureAsync"));
         }
 
         protected void Application_Start()

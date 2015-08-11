@@ -33,11 +33,27 @@ namespace CodeFirstConfig
             Func<Task> handler = async () =>
             {
                 _watcher.EnableRaisingEvents = false;
+                await Task.Delay(250);
                 await ReconfigureAsync();
                 _watcher.EnableRaisingEvents = true;
             };
-            _watcher.Changed += async (sender, e) => await handler();           
-            _watcher.Renamed += async (sender, e) => await handler();           
+            _watcher.InternalBufferSize = _watcher.InternalBufferSize*4;
+            _watcher.Error += (sender, e) => {
+                if (ConfigSettings.Instance.OnError != null)
+                    ConfigSettings.Instance.OnError(new ConfigErrorEventArgs(e.GetException()));
+            };
+            //_watcher.Changed += (sender, e) => Task.Run(handler);         
+            //_watcher.Renamed += (sender, e) => Task.Run(handler);
+
+            _watcher.Changed += (sender, e) =>
+            {
+                Task.Run(handler);
+            };         
+            _watcher.Renamed += (sender, e) =>
+            {
+                Task.Run(handler);
+            };
+
             _watcher.EnableRaisingEvents = false;
             AppFinalizator.CleanupQueue.Enqueue(_watcher);
         }
