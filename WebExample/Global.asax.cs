@@ -9,13 +9,19 @@ namespace WebExample
     {
         static MvcApplication()
         {
-            Configurator.Configure(
+            Configurator.ConfigureAsync(
                 new ConfigSettings
                 {
                     OnError = args => Log.Error(args.Exception),
-                    OnModelConfigured = args => Log.Info($"Reconfigured {args.Type}")
-                });
-            Log.Info("Finished Configure");           
+                    OnModelConfigured = args => Log.Info($"Reconfigured {args.Type}"),
+                    SaveConfigFile = false
+                }).ContinueWith(result =>
+                {
+                    if (result.Exception == null)
+                        Log.Info("Finished ConfigureAsync");
+                    else
+                        Log.Info($"Finished ConfigureAsync with errors: {result.Exception}");
+                });            
         }
 
         protected void Application_Start()

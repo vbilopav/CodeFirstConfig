@@ -1,20 +1,38 @@
-6. WebExample06fe INFO  2015-08-10 16:14:39,840 - Application_End
+4. WebExample06fe INFO  2015-08-11 14:42:40,287 - Application_End
 
-0. WebExample06fe INFO  2015-08-10 16:14:42,748 - Reconfigured CodeFirstConfig.App
+0. WebExample06fe INFO  2015-08-11 14:42:44,439 - Reconfigured CodeFirstConfig.App
 
-1. WebExample06fe INFO  2015-08-10 16:14:42,900 - Reconfigured WebExample.SampleClass
+1. WebExample06fe INFO  2015-08-11 14:42:44,572 - Reconfigured WebExample.SampleClass
 
-2. WebExample06fe INFO  2015-08-10 16:14:42,950 - Finished Configure
+2. WebExample06fe INFO  2015-08-11 14:42:44,575 - Finished Configure
 
-3. WebExample06fe INFO  2015-08-10 16:14:43,014 - Application_Start
+3. WebExample06fe INFO  2015-08-11 14:42:44,578 - Application_Start
 
-4. WebExample06fe INFO  2015-08-10 16:25:14,715 - Application_End
+4. WebExample06fe INFO  2015-08-11 14:45:37,487 - Application_End
 
-0. WebExample06fe INFO  2015-08-10 18:59:17,093 - Reconfigured CodeFirstConfig.App
+0. WebExample06fe INFO  2015-08-11 14:45:41,126 - Application_Start
 
-1. WebExample06fe INFO  2015-08-10 18:59:17,227 - Reconfigured WebExample.SampleClass
+1. WebExample06fe INFO  2015-08-11 14:45:41,141 - Reconfigured CodeFirstConfig.App
 
-2. WebExample06fe INFO  2015-08-10 18:59:17,277 - Finished Configure
+2. WebExample06fe INFO  2015-08-11 14:45:41,286 - Reconfigured WebExample.SampleClass
 
-3. WebExample06fe INFO  2015-08-10 18:59:17,280 - Application_Start
+3. WebExample06fe INFO  2015-08-11 14:45:41,290 - Finished ConfigureAsync
+
+4. WebExample06fe INFO  2015-08-11 15:38:38,466 - Application_End
+
+0. WebExample06fe INFO  2015-08-11 15:38:41,501 - Reconfigured CodeFirstConfig.App
+
+1. WebExample06fe INFO  2015-08-11 15:38:41,713 - Reconfigured WebExample.SampleClass
+
+2. WebExample06fe INFO  2015-08-11 15:38:41,718 - Finished ConfigureAsync
+
+3. WebExample06fe INFO  2015-08-11 15:38:41,786 - Application_Start
+
+4. WebExample06fe INFO  2015-08-11 15:57:24,584 - Reconfigured CodeFirstConfig.App
+
+5. WebExample06fe INFO  2015-08-11 15:57:24,589 - Reconfigured WebExample.SampleClass
+
+6. WebExample06fe INFO  2015-08-11 15:57:36,009 - Reconfigured CodeFirstConfig.App
+
+7. WebExample06fe INFO  2015-08-11 15:57:36,015 - Reconfigured WebExample.SampleClass
 

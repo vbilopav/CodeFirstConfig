@@ -43,8 +43,8 @@ namespace CodeFirstConfig
         public App()
         {
             Folder = AppDomain.CurrentDomain.BaseDirectory;
-            if (IsWebApp && ConfigSettings.Instance.SaveConfigFileName.Contains(".\\"))
-                ConfigSettings.Instance.SaveConfigFileName = ConfigSettings.Instance.SaveConfigFileName.Replace(".\\", Folder);
+            if (IsWebApp && ConfigSettings.Instance.ConfigFileName.Contains(".\\"))
+                ConfigSettings.Instance.ConfigFileName = ConfigSettings.Instance.ConfigFileName.Replace(".\\", Folder);
             if (AppAssembly.Assembly != null)
             {
                 var appName = AppAssembly.Assembly.GetName();

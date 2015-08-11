@@ -125,46 +125,27 @@ namespace CodeFirstConfig
                 }
                 try
                 {
+                    var watching = false;
+                    if (_watcher != null)
+                    {
+                        watching = _watcher.EnableRaisingEvents;
+                        if (watching) _watcher.EnableRaisingEvents = false;
+                    }
                     if (ConfigSettings.Instance.SaveConfigFile)
                     {
-                        var watching = false;
-                        if (_watcher != null)
-                        {
-                            watching = _watcher.EnableRaisingEvents;
-                            if (watching) _watcher.EnableRaisingEvents = false;
-                        }                                             
-                        if (waitBeforeFirstWrite) Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
-                        for (int retry = 0; retry < ConfigSettings.MaxRetryBeforeException; retry++)
-                        {
-                            try
-                            {
-                                ConfigObjects.ToFile(ConfigSettings.Instance.SaveConfigFileName, _exceptions);
-                                break;
-                            }
-                            catch (IOException)
-                            {
-                                if (retry < ConfigSettings.MaxRetryBeforeException - 1)
-                                {
-                                    Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
-                                }
-                                else
-                                {
-                                    throw;
-                                }
-                            }
-                        }
-                        if (ConfigSettings.Instance.EnableFileWatcher)
-                        {
-                            if (_watcher == null) InitializeWatcher();
-                            if (string.IsNullOrEmpty(_watcher.Path))
-                            {
-                                _watcher.Path = Path.GetDirectoryName(ConfigSettings.Instance.SaveConfigFileName);
-                                _watcher.Filter = Path.GetFileName(ConfigSettings.Instance.SaveConfigFileName);
-                                _watcher.EnableRaisingEvents = true;
-                            }
-                        }
-                        if (watching && _watcher != null && !_watcher.EnableRaisingEvents) _watcher.EnableRaisingEvents = true;
+                        SaveConfigFile(waitBeforeFirstWrite);
                     }
+                    if (ConfigSettings.Instance.EnableFileWatcher)
+                    {
+                        if (_watcher == null) InitializeWatcher();
+                        if (string.IsNullOrEmpty(_watcher.Path))
+                        {
+                            _watcher.Path = Path.GetDirectoryName(ConfigSettings.Instance.ConfigFileName);
+                            _watcher.Filter = Path.GetFileName(ConfigSettings.Instance.ConfigFileName);
+                            _watcher.EnableRaisingEvents = true;
+                        }
+                    }
+                    if (watching && _watcher != null && !_watcher.EnableRaisingEvents) _watcher.EnableRaisingEvents = true;
                 }
                 catch (Exception e)
                 {
@@ -192,6 +173,30 @@ namespace CodeFirstConfig
                 if (ConfigSettings.Instance.OnError != null)
                     ConfigSettings.Instance.OnError(new ConfigErrorEventArgs(exception));
                 return ConfigObjects.Current;
+            }
+        }
+
+        private static void SaveConfigFile(bool waitBeforeFirstWrite)
+        {
+            if (waitBeforeFirstWrite) Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
+            for (int retry = 0; retry < ConfigSettings.MaxRetryBeforeException; retry++)
+            {
+                try
+                {
+                    ConfigObjects.ToFile(ConfigSettings.Instance.ConfigFileName, _exceptions);
+                    break;
+                }
+                catch (IOException)
+                {
+                    if (retry < ConfigSettings.MaxRetryBeforeException - 1)
+                    {
+                        Task.Delay(ConfigSettings.DelayReadWriteLockedFileAfterExceptionMs).Wait();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
         }
     }

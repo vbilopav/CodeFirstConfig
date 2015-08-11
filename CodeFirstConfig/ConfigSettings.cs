@@ -15,25 +15,25 @@ namespace CodeFirstConfig
         private ConfigFormat _format = ConfigFormat.AppConfig;
        
         public bool SaveConfigFile { get; set; } = true;
-        public string SaveConfigFileName { get; set; } = DefaultConfigName;
+        public string ConfigFileName { get; set; } = DefaultConfigName;
         public bool WriteUnbinedAppSettings { get; set; } = true;
         public bool EnableFileWatcher { get; set; } = true;
 
-        public ConfigFormat Format
+        public ConfigFormat ConfigFileFormat
         {
             get { return _format; }
             set
             {
                 _format = value;
-                if (!Equals(SaveConfigFileName, DefaultConfigName)) return;
+                if (!Equals(ConfigFileName, DefaultConfigName)) return;
                 switch (_format)
                 {
                     case ConfigFormat.AppConfig:
-                        SaveConfigFileName = Path.ChangeExtension(SaveConfigFileName, ".config");
+                        ConfigFileName = Path.ChangeExtension(ConfigFileName, ".config");
                         break;
 
                     case ConfigFormat.Json:
-                        SaveConfigFileName = Path.ChangeExtension(SaveConfigFileName, ".json");
+                        ConfigFileName = Path.ChangeExtension(ConfigFileName, ".json");
                         break;
                 }
             }

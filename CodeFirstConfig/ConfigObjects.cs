@@ -279,7 +279,7 @@ namespace CodeFirstConfig
 
         internal static void ToWriter(TextWriter writer, List<Exception> exceptions = null)
         {
-            ToWriter(writer, ConfigSettings.Instance.Format, exceptions: exceptions);
+            ToWriter(writer, ConfigSettings.Instance.ConfigFileFormat, exceptions: exceptions);
         }
 
         internal static void ToFile(string fileName, List<Exception> exceptions = null)

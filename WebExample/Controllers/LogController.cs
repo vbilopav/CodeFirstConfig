@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace WebExample.Controllers
                 await HttpContext.Current.Response.Output.WriteAsync(Log.Content());
             HttpContext.Current.Response.ContentType = "application/json charset=utf-8";
             await HttpContext.Current.Response.Output.FlushAsync();
+            HttpContext.Current.Response.Headers.Add("_timestamp", DateTime.Now.ToString("O"));
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 

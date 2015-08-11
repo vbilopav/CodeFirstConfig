@@ -20,25 +20,39 @@
         </div>
     </div>
 
-    <div class="container body-content">       
+    <div class="container body-content">
         <div class="jumbotron">
             <button class="btn btn-primary btn-lg">REFRESH ALL</button>
             <div class="row">
                 <div class="col-md-6" id="sampleClass">
                     <code>SampleClass</code>
+                    <a class="btn btn-sm">refresh</a>
+                    <span class="refresh-time"></span>
                     <pre class="pre-scrollable"></pre>
                 </div>
                 <div class="col-md-6" id="log">
                     <code>Log</code>
-                    <a class="btn btn-sm" href="#">clear</a>
-                    <label class="checkbox-inline"><input type="checkbox" value="" checked="checked">Lines reversed</label>
+                    <a class="btn btn-sm">refresh</a>
+                    <a class="btn btn-sm">clear</a>
+                    <label class="checkbox-inline"><input type="checkbox" value="" checked="checked">reversed</label>
+                    <span class="refresh-time"></span>
                     <pre class="pre-scrollable">
                     </pre>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" id="config">
-                    <code>Current config</code>
+                    <code>CodeFirstConfig</code>
+                    <a class="btn btn-sm">refresh</a>
+                    <label class="radio-inline"><input type="radio" name="configformat" checked="checked" value="AppConfig">AppConfig</label>
+                    <label class="radio-inline"><input type="radio" name="configformat" value="Json">Json</label>
+                    <span class="refresh-time"></span>
+                    <pre class="pre-scrollable"></pre>
+                </div>
+                <div class="col-md-12" id="appsettings">
+                    <code>ConfigurationManager.AppSettings</code>
+                    <a class="btn btn-sm">refresh</a>
+                    <span class="refresh-time"></span>
                     <pre class="pre-scrollable"></pre>
                 </div>
             </div>
@@ -79,111 +93,89 @@
         top: -30px;
         position: relative;
     }
+    div.jumbotron label {
+        font-size: 12px;
+    }
+    div.jumbotron a {
+        padding-bottom: 0;
+        padding-top: 0;    }
     pre {
         background-color: #ffffff;
+    }
+    .refresh-time {
+        float: right;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        font-size: 11px;
+        position: absolute;
+        top: 20px;
+        right: 32px;
+        color: #BF0D0D;            
+        background-color: rgb(238, 238, 238);
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
     }
 </style>
 <script type="text/javascript">
     (function () {
 
-        function encode(s) {
-            return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&apos;").replace(/"/g, "&quot;");
-        }
+        function encode(s) { return s.replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
         var content = $(".body-content"),
             jumbo = $("div.jumbotron", content),
             button = $("button", jumbo),
+
             sampleClassPre = $("#sampleClass pre", jumbo).html(""),
-            logPre = $("#log pre", jumbo).html(""),           
+            logPre = $("#log pre", jumbo).html(""),
             configPre = $("#config pre", jumbo).html(""),
-
-            refreshSampleClass = function () {
-                sampleClassPre.addClass("disabled");
+            settingsPre = $("#appsettings pre", jumbo).html(""),
+            logRevresed = $("input", logPre.parent()).click(function () { refreshlog(); }),
+            configInputRadio = $("input", configPre.parent()).click(function () { refreshConfig(); }),
+            configFormat = function () {
+                for (var i = 0; i < configInputRadio.length; i++) {
+                    var e = $(configInputRadio[i]);
+                    if (e.is(":checked")) return e.val();
+                }
+            },
+            refresh = function (pre, url) {
+                pre.addClass("disabled");
+                if (!button.hasClass("disabled")) {
+                    button.addClass("disabled")
+                }
                 $.ajax({
-                    url: "/api/SampleClass",
-                    type: "GET",
+                    url: url,
                     complete: function (r) {
-                        if (r.status === 200)
-                            sampleClassPre.html("SampleClass.Config = " + r.responseText);
-                        else {
-                            sampleClassPre.html("Error = " + r.responseText);
+                        if (r.status === 200) {       
+                            pre.html(encode(r.responseText));
+                            $(".refresh-time", pre.parent()).html(r.getResponseHeader("_timestamp"))
+                        } else {
+                            pre.html("Error = " + r.responseText);
                         }
                     }
                 }).always(function () {
-                    sampleClassPre.removeClass("disabled");
-                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
+                    pre.removeClass("disabled");
+                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled") && !settingsPre.hasClass("disabled")) {
                         button.removeClass("disabled");
                     }
                 });
             },
+            refreshSampleClass = function () { refresh(sampleClassPre, "/api/SampleClass"); },
+            refreshlog = function () { refresh(logPre, "/api/Log" + (logRevresed.is(":checked") ? "?reverse" : "")); },
+            çlearlog = function () { $.ajax({ url: "/api/Log/Clear" }).always(refreshlog); },
+            refreshConfig = function () { refresh(configPre, "/api/Config" + "?" + configFormat()); },
+            refreshSettings = function () { refresh(settingsPre, "/api/Config/AppSettings") },
+            confirm = $("#confirm", content);
 
-            refreshlog = function () {
-                logPre.addClass("disabled");        
-                var c = logRevresed.is(":checked") ? "?reverse" : "";
-                $.ajax({
-                    url: "/api/Log" + c,
-                    type: "GET",
-                    complete: function (r) {
-                        if (r.status === 200)
-                            logPre.html(r.responseText);
-                        else {
-                            logPre.html("Error = " + r.responseText);
-                        }
-                    }
-                }).always(function () {
-                    logPre.removeClass("disabled");
-                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
-                        button.removeClass("disabled");
-                    }
-                });
-            },
+        $("a:last", logPre.parent()).click(function (e) { confirm.modal({ backdrop: 'static', keyboard: false }).one('click', '#clear', çlearlog); });
+        $("a", sampleClassPre.parent()).click(refreshSampleClass);
+        $("a:first", logPre.parent()).click(refreshlog);
+        $("a", configPre.parent()).click(refreshConfig);
+        $("a", settingsPre.parent()).click(refreshSettings);
 
-            çlearlog = function () {
-                logPre.addClass("disabled");               
-                $.ajax({
-                    url: "/api/Log/Clear",     
-                    complete: refreshlog(),                    
-                }).always(function () {
-                    logPre.removeClass("disabled");
-                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
-                        button.removeClass("disabled");
-                    }
-                });
-            },
-
-            refreshConfig = function () {
-                configPre.addClass("disabled");
-                $.ajax({
-                    url: "/api/Config",
-                    type: "GET",
-                    complete: function (r) {
-                        if (r.status === 200)
-                            configPre.html(encode(r.responseText));
-                        else {
-                            configPre.html("Error = " + r.responseText);
-                        }
-                    }
-                }).always(function () {
-                    configPre.removeClass("disabled");
-                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled")) {
-                        button.removeClass("disabled");
-                    }
-                });
-            },
-
-            logRevresed = $("input", logPre.parent()).click(refreshlog),
-            confirm = $("#confirm", content),
-            logClear = $("a", logPre.parent()).click(function (e) {               
-                e.preventDefault();
-                confirm.modal({ backdrop: 'static', keyboard: false }).one('click', '#clear', çlearlog);
-            });
-
-
-        button.click(function () {
-            button.addClass("disabled");
+        button.click(function () {           
             refreshSampleClass();
             refreshlog();
             refreshConfig();
+            refreshSettings();
         }).click();
 
     })();

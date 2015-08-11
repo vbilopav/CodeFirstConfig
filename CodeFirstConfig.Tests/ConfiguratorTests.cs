@@ -18,7 +18,7 @@ namespace CodeFirstConfig.Tests
             Configurator.Configure();
 
             if (ConfigSettings.Instance.SaveConfigFile)
-                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.SaveConfigFileName));
+                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.ConfigFileName));
         }
 
         [TestMethod]
@@ -27,10 +27,10 @@ namespace CodeFirstConfig.Tests
             Configurator.OnBeforeSet = args => { };
             Configurator.OnAfterSet = args => { };
 
-            Configurator.Configure(new ConfigSettings{ Format = ConfigFormat.Json});
+            Configurator.Configure(new ConfigSettings{ ConfigFileFormat = ConfigFormat.Json});
 
             if (ConfigSettings.Instance.SaveConfigFile)
-                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.SaveConfigFileName));
+                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.ConfigFileName));
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace CodeFirstConfig.Tests
             Configurator.ConfigureAsync().Wait();
    
             if (ConfigSettings.Instance.SaveConfigFile)
-                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.SaveConfigFileName));
+                Debug.WriteLine(File.ReadAllText(ConfigSettings.Instance.ConfigFileName));
         }
     }
 }
