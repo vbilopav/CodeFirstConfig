@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +11,7 @@ namespace CodeFirstConfig
     public static partial class Configurator
     {
         private static FileSystemWatcher _watcher = null;
+        private static Stopwatch _stopwatch = null;
         private static bool _configured = false;
         private static TimedConsumer _consumer;
         private static IEnumerable<Type> _types;
@@ -25,35 +27,32 @@ namespace CodeFirstConfig
 
         private static void InitializeWatcher()
         {
+            const ushort reconfigureDelayMs = 250;
+            const ushort eventWindowMs = 1000;
             _watcher = new FileSystemWatcher
             {
                 NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
                 IncludeSubdirectories = false
             };
+            _stopwatch = new Stopwatch();
             Func<Task> handler = async () =>
             {
+                if (_stopwatch.IsRunning && _stopwatch.ElapsedMilliseconds <= eventWindowMs) return;
+                _stopwatch.Reset();
+                _stopwatch.Start();
                 _watcher.EnableRaisingEvents = false;
-                await Task.Delay(250);
+                await Task.Delay(reconfigureDelayMs);
                 await ReconfigureAsync();
                 _watcher.EnableRaisingEvents = true;
+                _stopwatch.Reset();
             };
             _watcher.InternalBufferSize = _watcher.InternalBufferSize*4;
             _watcher.Error += (sender, e) => {
                 if (ConfigSettings.Instance.OnError != null)
                     ConfigSettings.Instance.OnError(new ConfigErrorEventArgs(e.GetException()));
             };
-            //_watcher.Changed += (sender, e) => Task.Run(handler);         
-            //_watcher.Renamed += (sender, e) => Task.Run(handler);
-
-            _watcher.Changed += (sender, e) =>
-            {
-                Task.Run(handler);
-            };         
-            _watcher.Renamed += (sender, e) =>
-            {
-                Task.Run(handler);
-            };
-
+            _watcher.Changed += (sender, e) => Task.Run(handler);         
+            _watcher.Renamed += (sender, e) => Task.Run(handler);
             _watcher.EnableRaisingEvents = false;
             AppFinalizator.CleanupQueue.Enqueue(_watcher);
         }
