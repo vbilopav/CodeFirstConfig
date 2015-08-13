@@ -27,6 +27,7 @@
                 <div class="col-md-6" id="sampleClass">
                     <code>SampleClass</code>
                     <a class="btn btn-sm">refresh</a>
+                    <a class="btn btn-sm">zoom</a>
                     <span class="refresh-time"></span>
                     <pre class="pre-scrollable"></pre>
                 </div>
@@ -34,6 +35,7 @@
                     <code>Log</code>
                     <a class="btn btn-sm">refresh</a>
                     <a class="btn btn-sm">clear</a>
+                    <a class="btn btn-sm">zoom</a>
                     <label class="checkbox-inline"><input type="checkbox" value="" checked="checked">reversed</label>
                     <span class="refresh-time"></span>
                     <pre class="pre-scrollable">
@@ -44,6 +46,7 @@
                 <div class="col-md-12" id="config">
                     <code>CodeFirstConfig</code>
                     <a class="btn btn-sm">refresh</a>
+                    <a class="btn btn-sm">zoom</a>
                     <label class="radio-inline"><input type="radio" name="configformat" checked="checked" value="AppConfig">AppConfig</label>
                     <label class="radio-inline"><input type="radio" name="configformat" value="Json">Json</label>
                     <span class="refresh-time"></span>
@@ -52,6 +55,7 @@
                 <div class="col-md-12" id="appsettings">
                     <code>ConfigurationManager.AppSettings</code>
                     <a class="btn btn-sm">refresh</a>
+                    <a class="btn btn-sm">zoom</a>
                     <span class="refresh-time"></span>
                     <pre class="pre-scrollable"></pre>
                 </div>
@@ -65,13 +69,25 @@
         </footer>
 
 
-        <div id="confirm" class="modal fade" role="dialog">
+        <div id="confirm" class="modal fade in" role="dialog" tabindex='-1' style="z-index: 99999;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">Are you sure you want to clear log file?</div>
                     <div class="modal-footer">
                         <button type="button" data-dismiss="modal" class="btn btn-primary" id="clear">Clear</button>
                         <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="zoom" class="modal fade in" role="dialog" tabindex='-1'>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body jumbotron">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary">Close</button>
                     </div>
                 </div>
             </div>
@@ -114,13 +130,31 @@
         border-bottom: 1px solid #ccc;
         border-left: 1px solid #ccc;
     }
+    .modal.fade .modal-dialog {
+      -webkit-transition: -webkit-transform 0.3s ease-out !important;
+         -moz-transition: -moz-transform 0.3s ease-out !important;
+           -o-transition: -o-transform 0.3s ease-out !important;
+              transition: transform 0.3s ease-out !important;
+    }
+    .modal-body.jumbotron {
+        margin-bottom: 0; 
+    }        
+    .modal-body.jumbotron pre {
+        font-size: 15px;
+    }
+    .modal-body.jumbotron .refresh-time {
+        position: initial;
+        border: 0;
+    }
+    .modal-body.jumbotron a:last-of-type {
+        display: none;
+    }
 </style>
 <script type="text/javascript">
-    (function () {
-
-        function encode(s) { return s.replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-
-        var content = $(".body-content"),
+    (function () {        
+        var
+            encode = function (s) { return s.replace(/</g, "&lt;").replace(/>/g, "&gt;"); },
+            content = $(".body-content"),
             jumbo = $("div.jumbotron", content),
             button = $("button", jumbo),
 
@@ -130,21 +164,18 @@
             settingsPre = $("#appsettings pre", jumbo).html(""),
             logRevresed = $("input", logPre.parent()).click(function () { refreshlog(); }),
             configInputRadio = $("input", configPre.parent()).click(function () { refreshConfig(); }),
-            configFormat = function () {
-                for (var i = 0; i < configInputRadio.length; i++) {
-                    var e = $(configInputRadio[i]);
+            radioVal = function (radio) {
+                for (var i = 0; i < radio.length; i++) {
+                    var e = $(radio[i]);
                     if (e.is(":checked")) return e.val();
                 }
             },
             refresh = function (pre, url) {
                 pre.addClass("disabled");
-                if (!button.hasClass("disabled")) {
-                    button.addClass("disabled")
-                }
                 $.ajax({
                     url: url,
                     complete: function (r) {
-                        if (r.status === 200) {       
+                        if (r.status === 200) {
                             pre.html(encode(r.responseText));
                             $(".refresh-time", pre.parent()).html(r.getResponseHeader("_timestamp"))
                         } else {
@@ -153,23 +184,57 @@
                     }
                 }).always(function () {
                     pre.removeClass("disabled");
-                    if (!sampleClassPre.hasClass("disabled") && !logPre.hasClass("disabled") && !configPre.hasClass("disabled") && !settingsPre.hasClass("disabled")) {
-                        button.removeClass("disabled");
-                    }
                 });
             },
             refreshSampleClass = function () { refresh(sampleClassPre, "/api/SampleClass"); },
             refreshlog = function () { refresh(logPre, "/api/Log" + (logRevresed.is(":checked") ? "?reverse" : "")); },
-            çlearlog = function () { $.ajax({ url: "/api/Log/Clear" }).always(refreshlog); },
-            refreshConfig = function () { refresh(configPre, "/api/Config" + "?" + configFormat()); },
+            clearlog = function () { $.ajax({ url: "/api/Log/Clear" }).always(refreshlog); },
+            refreshConfig = function () { refresh(configPre, "/api/Config" + "?" + radioVal(configInputRadio)); },
             refreshSettings = function () { refresh(settingsPre, "/api/Config/AppSettings") },
-            confirm = $("#confirm", content);
+            confirm = $("#confirm", content),
+            zoom = $("#zoom", content),
+            openZoom = function (pre, func) {
+                func($(".modal-body", zoom).html(pre.parent().html()).find("pre").removeClass("pre-scrollable"));
+                zoom.modal();                
+            };
 
-        $("a:last", logPre.parent()).click(function (e) { confirm.modal({ backdrop: 'static', keyboard: false }).one('click', '#clear', çlearlog); });
-        $("a", sampleClassPre.parent()).click(refreshSampleClass);
+        $("a:first", sampleClassPre.parent()).click(refreshSampleClass);
+        $("a:last", sampleClassPre.parent()).click(function () {
+            openZoom(sampleClassPre, function (pre) {
+                $("a:first", pre.parent()).click(function () { refresh(pre, "/api/SampleClass"); });
+            });            
+        });
+
         $("a:first", logPre.parent()).click(refreshlog);
+        $("a:last", logPre.parent()).click(function () {
+            openZoom(logPre, function (pre) {
+                var
+                    lr = $("input", pre.parent()).click(function () { r(); }),
+                    r = function () { refresh(pre, "/api/Log" + (lr.is(":checked") ? "?reverse" : "")); };
+                $("a:first", pre.parent()).click(r);
+                $("a:eq(1)", pre.parent()).click(function () {
+                    confirm.modal().one('click', '#clear', function () {
+                        $.ajax({ url: "/api/Log/Clear" }).always(r);
+                    })
+                });
+            });            
+        });
+        $("a:eq(1)", logPre.parent()).click(function () { confirm.modal().one('click', '#clear', clearlog); });
+                        
         $("a", configPre.parent()).click(refreshConfig);
+        $("a:last", configPre.parent()).click(function () {
+            openZoom(configPre, function (pre) {
+                var ri = $("input", pre.parent()).click(function () { refresh(pre, "/api/Config" + "?" + radioVal(ri)); });
+                $("a:first", pre.parent()).click(function () { refresh(pre, "/api/Config" + "?" + radioVal(ri)); });
+            });
+        });
+
         $("a", settingsPre.parent()).click(refreshSettings);
+        $("a:last", settingsPre.parent()).click(function () {
+            openZoom(settingsPre, function (pre) {
+                $("a:first", pre.parent()).click(function () { refresh(pre, "/api/Config/AppSettings"); });
+            });
+        });
 
         button.click(function () {           
             refreshSampleClass();

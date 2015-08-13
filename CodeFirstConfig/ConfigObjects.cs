@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace CodeFirstConfig
         private static readonly IDictionary<string, object> _current;
         private static readonly JsonSerializer _serializer;
         private static DateTime _timeStamp;
+        private static NumberFormatInfo _nfi;
 
         private static void WriteComment(TextWriter writer, ConfigFormat format)
         {
@@ -136,12 +138,20 @@ namespace CodeFirstConfig
             writer.Write("\t<add key=\"");
             writer.Write(string.Concat(key, ".", field.Name));
             writer.Write("\" value=\"");
+            var nullable = Nullable.GetUnderlyingType(type);
+            if (nullable != null) type = nullable;
             if (type.IsEnum)
             {
-                var e = Enum.GetName(type, value);
-                writer.Write(e ?? value.ToString());
+                if (value != null)
+                {
+                    var e = Enum.GetName(type, value);
+                    writer.Write(e ?? value.ToString());
+                } else
+                    writer.Write("null");
                 writer.Write("\" />");
-                writer.Write(string.Concat(type.GetCustomAttribute<FlagsAttribute>() != null ? "\t<!--flags " : "\t<!--enum ",
+                string enumname = nullable == null ? "\t<!--enum " : "\t<!--nullable enum ";
+                string flagsname = nullable == null ? "\t<!--flags " : "\t<!--nullable flags ";
+                writer.Write(string.Concat(type.GetCustomAttribute<FlagsAttribute>() != null ? flagsname : enumname,
                     type.Name, " { ",                    
                     string.Join(", ", Enum.GetNames(type)), " }",
                     "-->"));
@@ -152,8 +162,15 @@ namespace CodeFirstConfig
                 {
                     if (type == typeof(string) && value != null)
                         value = ((string)value).Replace("\r\n", "");
-                    if (value == null) value = "null";
-                    writer.Write(string.Concat(value.ToString(), "\" />"));
+                    if (value == null)
+                        writer.Write(string.Concat("null\" />"));
+                    else
+                    {
+                        if (type == typeof(float) || type == typeof(double))
+                            writer.Write(string.Concat(((double)value).ToString(_nfi), "\" />"));
+                        else
+                            writer.Write(string.Concat(value.ToString(), "\" />"));
+                    }
                 }
                 else
                 {
@@ -163,7 +180,10 @@ namespace CodeFirstConfig
                         writer.Write(sw.ToString().Replace('\"', '\''));
                     }                    
                     writer.Write("\" />");
-                }                
+                }
+                if (nullable != null)
+                    writer.Write("\t<!--nullable-->");
+
             }
             var info = field as PropertyInfo;
             if (info != null && info.GetSetMethod() == null)
@@ -306,6 +326,7 @@ namespace CodeFirstConfig
             };            
             _serializer.Converters.Add(new StringEnumConverter());
             //_serializer.Converters.Add(new EscapeQuoteConverter());
+            _nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
         }
     }
 }

@@ -1,8 +1,51 @@
-4. WebExamplefb67 INFO  2015-08-12 16:09:38,989 - Reconfigured CodeFirstConfig.App
+0. WebExample65e7 INFO  2015-08-13 16:17:27,836 - Application_Start
 
-5. WebExamplefb67 INFO  2015-08-12 16:09:38,994 - Reconfigured WebExample.SampleClass
+1. WebExample65e7 INFO  2015-08-13 16:17:27,855 - Reconfigured CodeFirstConfig.App
 
-6. WebExamplefb67 INFO  2015-08-12 16:09:43,687 - Reconfigured CodeFirstConfig.App
+2. WebExample65e7 INFO  2015-08-13 16:17:27,864 - Reconfigured WebExample.SampleClass
 
-7. WebExamplefb67 INFO  2015-08-12 16:09:43,693 - Reconfigured WebExample.SampleClass
+3. WebExample65e7 ERROR 2015-08-13 16:17:28,255 - System.AggregateException: One or more errors occurred. ---> System.InvalidCastException: Specified cast is not valid.
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 167
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 231
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 288
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 298
+   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 307
+   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 201
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 151
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.InvalidCastException: Specified cast is not valid.
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 167
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 231
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 288
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 298
+   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 307
+   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 201
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 151<---
+
+
+4. WebExample65e7 INFO  2015-08-13 16:17:28,272 - Finished ConfigureAsync
+
+0. WebExampleeeda INFO  2015-08-13 16:19:41,259 - Application_Start
+
+1. WebExampleeeda INFO  2015-08-13 16:19:41,283 - Reconfigured CodeFirstConfig.App
+
+2. WebExampleeeda INFO  2015-08-13 16:19:41,310 - Reconfigured WebExample.SampleClass
+
+0. WebExample3675 INFO  2015-08-13 16:23:48,937 - Application_Start
+
+1. WebExample3675 INFO  2015-08-13 16:23:48,961 - Reconfigured CodeFirstConfig.App
+
+2. WebExample3675 INFO  2015-08-13 16:23:48,971 - Reconfigured WebExample.SampleClass
+
+3. WebExample3675 INFO  2015-08-13 16:23:49,368 - Finished ConfigureAsync
+
+4. WebExample3675 INFO  2015-08-13 16:24:43,172 - Application_End
+
+0. WebExample3675 INFO  2015-08-13 16:24:47,780 - Application_Start
+
+1. WebExample3675 INFO  2015-08-13 16:24:47,798 - Reconfigured CodeFirstConfig.App
+
+2. WebExample3675 INFO  2015-08-13 16:24:47,964 - Reconfigured WebExample.SampleClass
+
+3. WebExample3675 INFO  2015-08-13 16:24:47,970 - Finished ConfigureAsync
 

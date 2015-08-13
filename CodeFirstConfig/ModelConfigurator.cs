@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace CodeFirstConfig
 {
@@ -14,11 +14,12 @@ namespace CodeFirstConfig
         private readonly string _namespace;
         private readonly string[] _ns;
         private readonly Type _type;
-
         private static IEnumerable<KeyValuePair<string, string>> GetKeyValuePairs() => ConfigValues.Dictionary;
 
         private static object ParseModelValue(Type type, object value)
-        {            
+        {
+            if (value == null) return null;
+            type = Nullable.GetUnderlyingType(type) ?? type;
             if (type.IsSimpleType())
                 return type == typeof(string) ? (value == null ? null : Convert.ToString(value)) : value;
             return type.IsEnum ? Enum.Parse(type, (string) value) : JsonConvert.DeserializeObject(value as string, type);                             
@@ -204,16 +205,6 @@ namespace CodeFirstConfig
 
         public TModel ConfigureModel()
         {
-            /*
-            TModel model;            
-            var current = ConfigObjects.Get(_namespace);
-            if (current == null)                
-                model = new TModel();
-            else
-                model = (TModel)current;            
-            ConfigObjects.Set(_namespace, Build(model));
-            return model;
-            */
             TModel model = new TModel();
             ConfigObjects.Set(_namespace, Build(model));
             return model;
