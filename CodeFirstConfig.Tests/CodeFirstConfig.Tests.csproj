@@ -57,6 +57,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="_PlainOldClrObjectExample-ExamplesWikiPage.cs" />
+    <Compile Include="_BasicExample-ExamplesWikiPage.cs" />
+    <Compile Include="_NamingConflictExample-ExamplesWikiPage.cs" />
     <Compile Include="DatabaseConfigTests.cs" />
     <Compile Include="ConfiguratorTests.cs" />
     <Compile Include="AttributesConfigTests.cs" />
@@ -76,6 +79,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="_NamingConflictExample.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="_BasicExample.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

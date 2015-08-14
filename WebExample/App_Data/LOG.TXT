@@ -368,3 +368,13 @@
 
 8. WebExample9402 INFO  2015-08-14 12:31:15,387 - Application_End
 
+0. WebExample9402 INFO  2015-08-14 14:24:24,604 - Reconfigured CodeFirstConfig.App
+
+1. WebExample9402 INFO  2015-08-14 14:24:24,618 - Application_Start
+
+2. WebExample9402 INFO  2015-08-14 14:24:24,771 - Reconfigured WebExample.SampleClass
+
+3. WebExample9402 INFO  2015-08-14 14:24:25,049 - Finished ConfigureAsync
+
+4. WebExample9402 INFO  2015-08-14 15:06:15,527 - Application_End
+
