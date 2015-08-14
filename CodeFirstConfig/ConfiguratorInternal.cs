@@ -21,7 +21,12 @@ namespace CodeFirstConfig
             .Where(c => c != typeof(ConfigManager<>))
             .Where(c => c.IsSubclassOfRawGeneric(typeof(ConfigManager<>)));
 
-        private static List<Exception> _exceptions;
+        private static List<Exception> _exceptions = new List<Exception>();
+
+        internal static void AddExceptions(Exception exc)
+        {
+            _exceptions.Add(exc);
+        }
 
         internal static object ConfigLock = new object();
 

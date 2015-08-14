@@ -158,7 +158,7 @@ namespace CodeFirstConfig
             }
             else
             {
-                if (type.IsPrimitive || type == typeof(string))
+                if (type.IsPrimitive || type == typeof(string) || type == typeof(DateTime))
                 {
                     if (type == typeof(string) && value != null)
                         value = ((string)value).Replace("\r\n", "");
@@ -169,7 +169,10 @@ namespace CodeFirstConfig
                         if (type == typeof(float) || type == typeof(double))
                             writer.Write(string.Concat(((double)value).ToString(_nfi), "\" />"));
                         else
-                            writer.Write(string.Concat(value.ToString(), "\" />"));
+                            if (type == typeof(DateTime))
+                                writer.Write(string.Concat(((DateTime)value).ToString("s"), "\" />"));
+                            else
+                                writer.Write(string.Concat(value.ToString(), "\" />"));
                     }
                 }
                 else

@@ -9,12 +9,13 @@ namespace WebExample
     {
         static MvcApplication()
         {
+            //ConfigSettings.Instance.ThrowOnConfigureException = true;
             Configurator.ConfigureAsync(
                 new ConfigSettings
                 {
                     OnError = args => Log.Error(args.Exception),
                     OnModelConfigured = args => Log.Info($"Reconfigured {args.Type}"),
-                    SaveConfigFile = false
+                    SaveConfigFile = true
                 }).ContinueWith(r => Log.Info("Finished ConfigureAsync"));
         }
 

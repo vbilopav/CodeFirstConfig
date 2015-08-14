@@ -49,8 +49,10 @@ namespace WebExample
         public bool? BoolValue3 { get; set; } = null;
         public bool? BoolValue4 { get; set; } = true;
 
-        //public DateTime DateTimeValue1 { get; set; } = new DateTime(2015, 1, 15);
-        //public DateTime DateTimeValue2 { get; set; } = new DateTime(2015, 5, 30);
+        public DateTime DateTimeValue1 { get; set; } = new DateTime(2015, 1, 15);
+        public DateTime DateTimeValue2 { get; set; } = new DateTime(2015, 6, 30);
+        public DateTime? DateTimeValue3 { get; set; } = null;
+        public DateTime? DateTimeValue4 { get; set; } = new DateTime(2015, 12, 30);
 
         public ComplexClass ComplexClass1 { get; set; }
         public ComplexClass ComplexClass2 { get; set; } = new ComplexClass();

@@ -1,51 +1,370 @@
-0. WebExample65e7 INFO  2015-08-13 16:17:27,836 - Application_Start
+0. WebExample3115 INFO  2015-08-14 09:25:15,389 - Application_Start
 
-1. WebExample65e7 INFO  2015-08-13 16:17:27,855 - Reconfigured CodeFirstConfig.App
+1. WebExample3115 INFO  2015-08-14 09:25:15,412 - Reconfigured CodeFirstConfig.App
 
-2. WebExample65e7 INFO  2015-08-13 16:17:27,864 - Reconfigured WebExample.SampleClass
+2. WebExample3115 INFO  2015-08-14 09:25:15,419 - Reconfigured WebExample.SampleClass
 
-3. WebExample65e7 ERROR 2015-08-13 16:17:28,255 - System.AggregateException: One or more errors occurred. ---> System.InvalidCastException: Specified cast is not valid.
-   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 167
-   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 231
-   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 288
-   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 298
-   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 307
-   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 201
-   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 151
+3. WebExample3115 INFO  2015-08-14 09:25:15,425 - Finished ConfigureAsync
+
+4. WebExample3115 INFO  2015-08-14 09:26:03,865 - Application_End
+
+0. WebExamplede77 INFO  2015-08-14 09:26:06,251 - Application_Start
+
+1. WebExamplede77 INFO  2015-08-14 09:26:06,265 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplede77 INFO  2015-08-14 09:26:06,272 - Reconfigured WebExample.SampleClass
+
+3. WebExamplede77 INFO  2015-08-14 09:26:06,675 - Finished ConfigureAsync
+
+4. WebExamplede77 INFO  2015-08-14 09:35:28,133 - Application_End
+
+0. WebExamplede77 INFO  2015-08-14 09:35:32,872 - Application_Start
+
+1. WebExamplede77 INFO  2015-08-14 09:35:32,886 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplede77 ERROR 2015-08-14 09:35:33,164 - System.Configuration.ConfigurationErrorsException: An error occurred loading a configuration file: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process. (C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config) ---> System.IO.IOException: The process cannot access the file 'C:\Dev\CodeFirstConfig\WebExample\CodeFirstAppSettings.config' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Configuration.Internal.InternalConfigHost.StaticOpenStreamForRead(String streamName)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName, Boolean assertPermissions)
+   at System.Configuration.Internal.InternalConfigHost.System.Configuration.Internal.IInternalConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.Internal.DelegatingConfigHost.OpenStreamForRead(String streamName)
+   at System.Configuration.BaseConfigurationRecord.LoadConfigSource(String name, SectionXmlInfo sectionXmlInfo)
+   at System.Configuration.BaseConfigurationRecord.GetSectionXmlReader(String[] keys, SectionInput input)
+   --- End of inner exception stack trace ---
+   at System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   at System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName, VirtualPath path)
+   at System.Web.Configuration.WebConfigurationManager.GetSection(String sectionName, String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.GetAppSettings(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(String path)
+   at System.Web.WebPages.WebPageRoute.<.cctor>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Web.WebPages.WebPageRoute.get_IsExplicitlyDisabled()
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.WebPages.WebPageHttpModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+3. WebExamplede77 ERROR 2015-08-14 09:35:33,350 - System.AggregateException: One or more errors occurred. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 209
+   at CodeFirstConfig.ConfigManager`1.get_Config() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigManager.cs:line 18
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at System.Reflection.PropertyInfo.GetValue(Object obj)
+   at CodeFirstConfig.Configurator.GetConfigValue(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 66
+   at CodeFirstConfig.Configurator.<>c.<ConfigureAsync>b__23_1(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\Configurator.cs:line 97
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 120
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 209
+   at CodeFirstConfig.ConfigManager`1.get_Config() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigManager.cs:line 18
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at System.Reflection.PropertyInfo.GetValue(Object obj)
+   at CodeFirstConfig.Configurator.GetConfigValue(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 66
+   at CodeFirstConfig.Configurator.<>c.<ConfigureAsync>b__23_1(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\Configurator.cs:line 97
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 120<---
+
+
+4. WebExamplede77 INFO  2015-08-14 09:35:33,357 - Finished ConfigureAsync
+
+5. WebExamplede77 INFO  2015-08-14 09:35:42,665 - Application_End
+
+0. WebExamplede77 INFO  2015-08-14 09:36:23,712 - Application_Start
+
+1. WebExamplede77 INFO  2015-08-14 09:36:23,729 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplede77 INFO  2015-08-14 09:36:23,738 - Reconfigured WebExample.SampleClass
+
+3. WebExamplede77 INFO  2015-08-14 09:36:23,743 - Finished ConfigureAsync
+
+0. WebExamplede77 INFO  2015-08-14 09:50:34,922 - Application_Start
+
+1. WebExamplede77 INFO  2015-08-14 09:50:34,964 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplede77 INFO  2015-08-14 09:50:48,247 - Reconfigured WebExample.SampleClass
+
+0. WebExamplec874 INFO  2015-08-14 09:51:34,747 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 09:51:34,769 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplec874 INFO  2015-08-14 09:51:34,780 - Reconfigured WebExample.SampleClass
+
+3. WebExamplec874 INFO  2015-08-14 09:51:35,190 - Finished ConfigureAsync
+
+4. WebExamplec874 INFO  2015-08-14 09:52:21,561 - Application_End
+
+0. WebExamplec874 INFO  2015-08-14 09:52:27,839 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 09:52:27,878 - Reconfigured CodeFirstConfig.App
+
+0. WebExamplec874 INFO  2015-08-14 10:12:53,599 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 10:12:53,622 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplec874 ERROR 2015-08-14 10:12:53,637 - System.AggregateException: One or more errors occurred. ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 215
+   at CodeFirstConfig.ConfigManager`1.get_Config() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigManager.cs:line 18
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at System.Reflection.PropertyInfo.GetValue(Object obj)
+   at CodeFirstConfig.Configurator.GetConfigValue(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 66
+   at CodeFirstConfig.Configurator.<>c.<ConfigureAsync>b__23_1(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\Configurator.cs:line 97
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 120
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 215
+   at CodeFirstConfig.ConfigManager`1.get_Config() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigManager.cs:line 18
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at System.Reflection.PropertyInfo.GetValue(Object obj)
+   at CodeFirstConfig.Configurator.GetConfigValue(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 66
+   at CodeFirstConfig.Configurator.<>c.<ConfigureAsync>b__23_1(Type t) in C:\Dev\CodeFirstConfig\CodeFirstConfig\Configurator.cs:line 97
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 120<---
+
+
+3. WebExamplec874 INFO  2015-08-14 10:12:53,658 - Finished ConfigureAsync
+
+4. WebExamplec874 INFO  2015-08-14 11:17:04,999 - Application_End
+
+0. WebExamplec874 INFO  2015-08-14 11:17:10,730 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 11:17:10,745 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplec874 INFO  2015-08-14 11:17:10,754 - Reconfigured WebExample.SampleClass
+
+3. WebExamplec874 ERROR 2015-08-14 11:17:10,762 - System.AggregateException: One or more errors occurred. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 211
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 211<---
+
+
+4. WebExamplec874 INFO  2015-08-14 11:17:10,770 - Finished ConfigureAsync
+
+5. WebExamplec874 INFO  2015-08-14 12:00:35,725 - Application_End
+
+0. WebExamplec874 INFO  2015-08-14 12:00:39,992 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 12:01:15,343 - Application_End
+
+0. WebExamplec874 INFO  2015-08-14 12:01:20,374 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 12:07:25,969 - Application_End
+
+0. WebExamplec874 INFO  2015-08-14 12:07:29,950 - Application_Start
+
+1. WebExamplec874 INFO  2015-08-14 12:07:29,969 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplec874 INFO  2015-08-14 12:07:29,976 - Reconfigured WebExample.SampleClass
+
+3. WebExamplec874 ERROR 2015-08-14 12:07:29,984 - System.AggregateException: One or more errors occurred. ---> System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 211
+   --- End of inner exception stack trace ---
+---> (Inner Exception #0) System.ArgumentException: Object of type 'System.String' cannot be converted to type 'System.DateTime'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.RuntimeType.CheckValue(Object value, Binder binder, CultureInfo culture, BindingFlags invokeAttr)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at System.Reflection.PropertyInfo.SetValue(Object obj, Object value)
+   at CodeFirstConfig.ModelConfigurator`1.SetValueToModel(String name, String key, Object value, TModel& model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 134
+   at CodeFirstConfig.ModelConfigurator`1.Build(TModel model) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 185
+   at CodeFirstConfig.ModelConfigurator`1.ConfigureModel() in C:\Dev\CodeFirstConfig\CodeFirstConfig\ModelConfigurator.cs:line 211<---
+
+
+4. WebExamplec874 INFO  2015-08-14 12:07:29,996 - Finished ConfigureAsync
+
+5. WebExamplec874 INFO  2015-08-14 12:07:50,829 - Application_End
+
+0. WebExamplee2e9 INFO  2015-08-14 12:08:01,890 - Application_Start
+
+1. WebExamplee2e9 INFO  2015-08-14 12:08:01,911 - Reconfigured CodeFirstConfig.App
+
+2. WebExamplee2e9 INFO  2015-08-14 12:08:01,922 - Reconfigured WebExample.SampleClass
+
+3. WebExamplee2e9 INFO  2015-08-14 12:08:02,349 - Finished ConfigureAsync
+
+0. WebExample8d93 INFO  2015-08-14 12:12:38,538 - Application_Start
+
+1. WebExample8d93 INFO  2015-08-14 12:12:38,562 - Reconfigured CodeFirstConfig.App
+
+2. WebExample8d93 INFO  2015-08-14 12:12:42,605 - Reconfigured WebExample.SampleClass
+
+0. WebExample15b8 INFO  2015-08-14 12:23:58,189 - Application_Start
+
+1. WebExample15b8 INFO  2015-08-14 12:23:58,213 - Reconfigured CodeFirstConfig.App
+
+2. WebExample15b8 INFO  2015-08-14 12:23:58,226 - Reconfigured WebExample.SampleClass
+
+3. WebExample15b8 ERROR 2015-08-14 12:23:58,622 - System.AggregateException: One or more errors occurred. ---> System.InvalidCastException: Specified cast is not valid.
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 170
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 238
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 295
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 305
+   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 314
+   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 206
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 156
    --- End of inner exception stack trace ---
 ---> (Inner Exception #0) System.InvalidCastException: Specified cast is not valid.
-   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 167
-   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 231
-   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 288
-   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 298
-   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 307
-   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 201
-   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 151<---
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigValue(TextWriter writer, MemberInfo field, Object value, Type type, String key) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 170
+   at CodeFirstConfig.ConfigObjects.WriteAppConfigToTextWriter(TextWriter writer, Boolean skipComment) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 238
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, ConfigFormat format, Boolean skipComment, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 295
+   at CodeFirstConfig.ConfigObjects.ToWriter(TextWriter writer, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 305
+   at CodeFirstConfig.ConfigObjects.ToFile(String fileName, List`1 exceptions) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfigObjects.cs:line 314
+   at CodeFirstConfig.Configurator.SaveConfigFile(Boolean waitBeforeFirstWrite) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 206
+   at CodeFirstConfig.Configurator.ConfigureInternal(Action`1 action, DbConfigOptions databaseOptions, Boolean waitBeforeFirstWrite, Boolean refreshAppSettings, ConfigSettings settings) in C:\Dev\CodeFirstConfig\CodeFirstConfig\ConfiguratorInternal.cs:line 156<---
 
 
-4. WebExample65e7 INFO  2015-08-13 16:17:28,272 - Finished ConfigureAsync
+4. WebExample15b8 INFO  2015-08-14 12:23:58,637 - Finished ConfigureAsync
 
-0. WebExampleeeda INFO  2015-08-13 16:19:41,259 - Application_Start
+5. WebExample15b8 INFO  2015-08-14 12:24:52,545 - Application_End
 
-1. WebExampleeeda INFO  2015-08-13 16:19:41,283 - Reconfigured CodeFirstConfig.App
+0. WebExample9402 INFO  2015-08-14 12:24:56,436 - Application_Start
 
-2. WebExampleeeda INFO  2015-08-13 16:19:41,310 - Reconfigured WebExample.SampleClass
+1. WebExample9402 INFO  2015-08-14 12:24:56,455 - Reconfigured CodeFirstConfig.App
 
-0. WebExample3675 INFO  2015-08-13 16:23:48,937 - Application_Start
+2. WebExample9402 INFO  2015-08-14 12:24:56,467 - Reconfigured WebExample.SampleClass
 
-1. WebExample3675 INFO  2015-08-13 16:23:48,961 - Reconfigured CodeFirstConfig.App
+3. WebExample9402 INFO  2015-08-14 12:24:56,905 - Finished ConfigureAsync
 
-2. WebExample3675 INFO  2015-08-13 16:23:48,971 - Reconfigured WebExample.SampleClass
+4. WebExample9402 INFO  2015-08-14 12:27:53,062 - Application_End
 
-3. WebExample3675 INFO  2015-08-13 16:23:49,368 - Finished ConfigureAsync
+0. WebExample9402 INFO  2015-08-14 12:27:57,962 - Application_Start
 
-4. WebExample3675 INFO  2015-08-13 16:24:43,172 - Application_End
+1. WebExample9402 INFO  2015-08-14 12:27:57,979 - Reconfigured CodeFirstConfig.App
 
-0. WebExample3675 INFO  2015-08-13 16:24:47,780 - Application_Start
+2. WebExample9402 INFO  2015-08-14 12:27:58,132 - Reconfigured WebExample.SampleClass
 
-1. WebExample3675 INFO  2015-08-13 16:24:47,798 - Reconfigured CodeFirstConfig.App
+3. WebExample9402 INFO  2015-08-14 12:27:58,138 - Finished ConfigureAsync
 
-2. WebExample3675 INFO  2015-08-13 16:24:47,964 - Reconfigured WebExample.SampleClass
+4. WebExample9402 INFO  2015-08-14 12:28:39,676 - Reconfigured CodeFirstConfig.App
 
-3. WebExample3675 INFO  2015-08-13 16:24:47,970 - Finished ConfigureAsync
+5. WebExample9402 INFO  2015-08-14 12:28:39,693 - Reconfigured WebExample.SampleClass
+
+6. WebExample9402 INFO  2015-08-14 12:28:49,633 - Reconfigured CodeFirstConfig.App
+
+7. WebExample9402 INFO  2015-08-14 12:28:49,646 - Reconfigured WebExample.SampleClass
+
+8. WebExample9402 INFO  2015-08-14 12:29:02,528 - Reconfigured CodeFirstConfig.App
+
+9. WebExample9402 INFO  2015-08-14 12:29:02,538 - Reconfigured WebExample.SampleClass
+
+10. WebExample9402 INFO  2015-08-14 12:29:10,063 - Reconfigured CodeFirstConfig.App
+
+11. WebExample9402 INFO  2015-08-14 12:29:10,077 - Reconfigured WebExample.SampleClass
+
+12. WebExample9402 INFO  2015-08-14 12:29:57,153 - Application_End
+
+0. WebExample9402 INFO  2015-08-14 12:30:01,057 - Application_Start
+
+1. WebExample9402 INFO  2015-08-14 12:30:01,073 - Reconfigured CodeFirstConfig.App
+
+2. WebExample9402 INFO  2015-08-14 12:30:01,242 - Reconfigured WebExample.SampleClass
+
+3. WebExample9402 INFO  2015-08-14 12:30:01,571 - Finished ConfigureAsync
+
+4. WebExample9402 INFO  2015-08-14 12:30:13,403 - Reconfigured CodeFirstConfig.App
+
+5. WebExample9402 INFO  2015-08-14 12:30:13,412 - Reconfigured WebExample.SampleClass
+
+6. WebExample9402 INFO  2015-08-14 12:30:18,029 - Reconfigured CodeFirstConfig.App
+
+7. WebExample9402 INFO  2015-08-14 12:30:18,045 - Reconfigured WebExample.SampleClass
+
+8. WebExample9402 INFO  2015-08-14 12:31:15,387 - Application_End
 

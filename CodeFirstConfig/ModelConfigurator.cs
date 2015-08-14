@@ -206,7 +206,17 @@ namespace CodeFirstConfig
         public TModel ConfigureModel()
         {
             TModel model = new TModel();
-            ConfigObjects.Set(_namespace, Build(model));
+            try
+            {
+                ConfigObjects.Set(_namespace, Build(model));
+            } catch (Exception e)
+            {
+                ConfigObjects.Set(_namespace, model);
+                if (ConfigSettings.Instance.ThrowOnConfigureException)
+                    throw e;
+                else
+                    Configurator.AddExceptions(e);
+            }
             return model;
         }
 
