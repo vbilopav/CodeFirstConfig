@@ -69,4 +69,5 @@ Cool. But, `CodeFirstConfig` can do more. How about, loading you configuration f
 
 
 ...
-> **"So useful, my brain hurts" ~ colleague from work.**
+> **"So useful, my brain hurts"** ~ colleague from work.
+> **"Wow, just wow"** ~ some other colleague from work.
