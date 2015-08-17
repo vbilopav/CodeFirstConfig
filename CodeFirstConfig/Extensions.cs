@@ -2,7 +2,7 @@ using System;
 
 namespace CodeFirstConfig
 {
-    internal static class TypeExtensions
+    internal static class Extensions
     {
         internal static bool IsSubclassOfRawGeneric(this Type type, Type generic)
         {
@@ -22,6 +22,18 @@ namespace CodeFirstConfig
                 type == typeof(DateTime) ||
                 type == typeof(DateTime?) ||
                 type == typeof(bool) ||
-                type == typeof(bool?);        
+                type == typeof(bool?);
+
+        internal static bool One(this string s, char ch)
+        {
+            int count = 0;
+            foreach (char c in s)
+            {
+                if (c == ch) count++;
+                if ((count) >= 2)
+                    return false;
+            }
+            return count == 1;
+        }
     }
 }

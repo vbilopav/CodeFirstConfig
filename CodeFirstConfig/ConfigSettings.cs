@@ -14,7 +14,7 @@ namespace CodeFirstConfig
         private const string DefaultConfigName = ".\\CodeFirstAppSettings.config";
         private ConfigFormat _format = ConfigFormat.AppConfig;
        
-        public bool SaveConfigFile { get; set; } = false;
+        public bool SaveConfigFile { get; set; } = true;
         public string ConfigFileName { get; set; } = DefaultConfigName;
         public bool WriteUnbinedAppSettings { get; set; } = true;
         public bool EnableFileWatcher { get; set; } = true;

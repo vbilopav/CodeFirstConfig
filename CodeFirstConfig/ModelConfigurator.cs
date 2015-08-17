@@ -157,31 +157,41 @@ namespace CodeFirstConfig
                 if (used.Contains(name)) continue;
                 string entry = item.Value;
                 object val;
+
                 if (string.Equals(entry, "null", StringComparison.OrdinalIgnoreCase))
                     val = null;
                 else
                 {
-                    DateTime dateTimeVal;
-                    if (DateTime.TryParse(entry, out dateTimeVal))
-                        val = dateTimeVal;
+                    val = entry;                    
+                    if (entry.One('.'))
+                    {
+                        val = entry;
+                    }
                     else
                     {
-                        bool boolVal;
-                        //try bool      
-                        if (bool.TryParse(entry, out boolVal))
-                            val = boolVal;
+                        DateTime dateTimeVal;
+                        if (DateTime.TryParse(entry, out dateTimeVal))
+                            val = dateTimeVal;
                         else
                         {
-                            //try int
-                            int intVal;
-                            if (int.TryParse(entry, out intVal))
-                                val = intVal;
+                            bool boolVal;
+                            //try bool      
+                            if (bool.TryParse(entry, out boolVal))
+                                val = boolVal;
                             else
-                                //string it is if all fails
-                                val = entry;
+                            {
+                                //try int
+                                int intVal;
+                                if (int.TryParse(entry, out intVal))
+                                    val = intVal;
+                                else
+                                    //string it is if all fails
+                                    val = entry;
+                            }
                         }
-                    }
+                    }                   
                 }
+
                 var valueSet = SetValueToModel(name, item.Key, val, ref model);
                 if (valueSet)
                 {
@@ -213,8 +223,7 @@ namespace CodeFirstConfig
             catch (Exception e)
             {
                 ConfigObjects.Set(_namespace, model);
-                if (ConfigSettings.Instance.ThrowOnConfigureException)
-                    throw e;
+                if (ConfigSettings.Instance.ThrowOnConfigureException) throw;
                 Configurator.AddExceptions(e);
             }
             return model;

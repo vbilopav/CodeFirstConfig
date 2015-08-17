@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="_EnumsAndFlagsExample-ExamplesWikiPage.cs" />
     <Compile Include="_PlainOldClrObjectExample-ExamplesWikiPage.cs" />
     <Compile Include="_BasicExample-ExamplesWikiPage.cs" />
     <Compile Include="_NamingConflictExample-ExamplesWikiPage.cs" />
@@ -79,6 +80,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="_EnumsAndFlagsExample.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="_NamingConflictExample.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
