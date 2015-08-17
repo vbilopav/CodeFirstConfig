@@ -209,13 +209,13 @@ namespace CodeFirstConfig
             try
             {
                 ConfigObjects.Set(_namespace, Build(model));
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 ConfigObjects.Set(_namespace, model);
                 if (ConfigSettings.Instance.ThrowOnConfigureException)
                     throw e;
-                else
-                    Configurator.AddExceptions(e);
+                Configurator.AddExceptions(e);
             }
             return model;
         }
