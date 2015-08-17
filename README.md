@@ -65,7 +65,7 @@ Now, why stop there. You can start using this newly created file as your main ap
 ...
 ```
 But, but, but, if I change that file it will not reset or restart my application as would main configuration file. Sure. There is no need to. It will trigger asynchronous process that will reconfigure all of your configurable values, including ones not managed by `CodeFirstConfig ConfigManager` - without restart. 
-Cool. But, `CodeFirstConfig` can do more. How about, loading you configuration from database, without nasty application resets.
+Cool. But, `CodeFirstConfig` can do more. How about, loading you configuration from database, without nasty application resets, and more... ? 
 
 
 ...
