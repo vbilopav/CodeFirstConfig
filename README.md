@@ -1,4 +1,4 @@
-# Home
+# `CodeFistConfig` 
 `CodeFistConfig` will make your configuration pain go away!
 
 Writing configurable code is sometimes boring, tedious and repeatable task. 
