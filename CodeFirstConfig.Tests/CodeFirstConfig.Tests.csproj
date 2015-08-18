@@ -57,7 +57,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="_InheritConfigExample-ExamplesWikiPage.cs" />
+    <Compile Include="_ComplexDataStructureExample-ExamplesWikiPage.cs" />
+    <Compile Include="__ExamplesWikiPage.cs" />
     <Compile Include="_EnumsAndFlagsExample-ExamplesWikiPage.cs" />
+    <Compile Include="_CompositConfigExample-ExamplesWikiPage.cs" />
     <Compile Include="_PlainOldClrObjectExample-ExamplesWikiPage.cs" />
     <Compile Include="_BasicExample-ExamplesWikiPage.cs" />
     <Compile Include="_NamingConflictExample-ExamplesWikiPage.cs" />
@@ -80,6 +84,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="_ComplexDataStructureExample.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="_InheritExample.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="_EnumsAndFlagsExample.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

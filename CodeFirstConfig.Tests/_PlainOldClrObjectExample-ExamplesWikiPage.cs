@@ -29,11 +29,16 @@ namespace CodeFirstConfig.Tests
         /// </summary>
         [TestMethod]
         public void PlainOldClrObjectExample()
-        {            
+        {
             Assert.AreEqual("Configured1", MyConfigManager.Config.Value1);
             Assert.AreEqual(-2, MyConfigManager.Config.Value4);
             Assert.AreEqual(new DateTime(1977, 5, 19), MyConfigManager.Config.Value7);
             Assert.AreEqual(false, MyConfigManager.Config.Value10);
+
+            Assert.AreEqual("Configured1", ConfigManager<MyPocoConfigurableModule>.Config.Value1);
+            Assert.AreEqual(-2, ConfigManager<MyPocoConfigurableModule>.Config.Value4);
+            Assert.AreEqual(new DateTime(1977, 5, 19), ConfigManager<MyPocoConfigurableModule>.Config.Value7);
+            Assert.AreEqual(false, ConfigManager<MyPocoConfigurableModule>.Config.Value10);
         }        
     }
 }

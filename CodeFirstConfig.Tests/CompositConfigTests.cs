@@ -31,7 +31,6 @@ namespace CodeFirstConfig.Tests
             public string[] StringArray { get; set; } //config1, config2        
         }
 
-
         [TestMethod]
         public void TestCompositConfig()
         {

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -16,14 +17,6 @@ namespace CodeFirstConfig
         private readonly Type _type;
         private static IEnumerable<KeyValuePair<string, string>> GetKeyValuePairs() => ConfigValues.Dictionary;
 
-        private static object ParseModelValue(Type type, object value)
-        {
-            if (value == null) return null;
-            type = Nullable.GetUnderlyingType(type) ?? type;
-            if (type.IsSimpleType())
-                return type == typeof(string) ? (value == null ? null : Convert.ToString(value)) : value;
-            return type.IsEnum ? Enum.Parse(type, (string) value) : JsonConvert.DeserializeObject(value as string, type);                             
-        }
 
         private string GetKeyName(string key)
         {
@@ -119,30 +112,67 @@ namespace CodeFirstConfig
                     new ConfigItem(_namespace, name, key, value));
             ConfigSettings.Instance.OnAfterSet(new ConfigAfterSetEventArgs(_namespace, name, key, value));
         }
-        
-        private bool SetValueToModel(string name, string key, object value, ref TModel model)
+
+        private object ParseModelValue(Type type, string value, string name = null, string key = null)
+        {
+            try
+            {
+                if (value == null) return null;
+                if (string.Equals(value, "null", StringComparison.OrdinalIgnoreCase)) return null;
+                if (type == typeof (string)) return Convert.ToString(value);
+                if (type == typeof (object)) return value;
+                type = Nullable.GetUnderlyingType(type) ?? type;
+                if (type == typeof (bool)) return Convert.ToBoolean(value);
+                if (type == typeof (DateTime)) return Convert.ToDateTime(value);
+                if (type.IsEnum) return (Enum.Parse(type, value));
+                if (type == typeof (ulong)) return Convert.ToUInt64(value);
+                if (type == typeof (long)) return Convert.ToInt64(value);
+                if (type == typeof (uint)) return Convert.ToUInt32(value);
+                if (type == typeof (int)) return Convert.ToInt32(value);
+                if (type == typeof (ushort)) return Convert.ToUInt16(value);
+                if (type == typeof (short)) return Convert.ToInt16(value);
+                if (type == typeof (double)) return double.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                if (type == typeof (float)) return float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                if (type == typeof (decimal))
+                    return decimal.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                if (type == typeof (char)) return Convert.ToChar(value);
+                if (type == typeof (byte)) return Convert.ToByte(value);
+                if (type == typeof (sbyte)) return Convert.ToSByte(value);
+                return JsonConvert.DeserializeObject(value, type);
+            }
+            catch (Exception e)
+            {
+                throw new CodeFirstConfigException(
+                    $"Value \"{value}\" of type {type.Name} could not be parsed!",
+                    new ConfigItem(_namespace, name, key, value), 
+                    e);
+            }
+        }
+
+        private bool SetValueToModel(string name, string key, string value, ref TModel model)
         {
             PropertyInfo prop;
             ConfigSettingsAttribute attr;
             ConfigBeforeSetEventArgs args;
+            object val;
             if (_props.TryGetValue(name, out prop))
             {
                 attr = prop.GetCustomAttribute<ConfigSettingsAttribute>();
-                value = ParseModelValue(prop.PropertyType, value);
-                args = ExecuteOnBeforeSetAction(attr, name, key, value);
+                val = ParseModelValue(prop.PropertyType, value, name, key);
+                args = ExecuteOnBeforeSetAction(attr, name, key, val);
                 if (args != null && args.Cancel) return false;
-                prop.SetValue(model, value);
-                ExecuteOnAfterSetAction(attr, name, key, value);                             
+                prop.SetValue(model, val);
+                ExecuteOnAfterSetAction(attr, name, key, val);                             
                 return true;
             }
             FieldInfo field;                       
             if (!_fields.TryGetValue(name, out field)) return false;
-            attr = field.GetCustomAttribute<ConfigSettingsAttribute>();            
-            value = ParseModelValue(field.FieldType, value);
-            args = ExecuteOnBeforeSetAction(attr, name, key, value);                
+            attr = field.GetCustomAttribute<ConfigSettingsAttribute>();
+            val = ParseModelValue(field.FieldType, value, name, key);
+            args = ExecuteOnBeforeSetAction(attr, name, key, val);                
             if (args != null && args.Cancel) return false;
-            field.SetValue(model, value);
-            ExecuteOnAfterSetAction(attr, name, key, value);
+            field.SetValue(model, val);
+            ExecuteOnAfterSetAction(attr, name, key, val);
             return true;
         }
 
@@ -154,46 +184,8 @@ namespace CodeFirstConfig
             {
                 string name = GetKeyName(item.Key);
                 if (name == null) continue;
-                if (used.Contains(name)) continue;
-                string entry = item.Value;
-                object val;
-
-                if (string.Equals(entry, "null", StringComparison.OrdinalIgnoreCase))
-                    val = null;
-                else
-                {
-                    val = entry;                    
-                    if (entry.One('.'))
-                    {
-                        val = entry;
-                    }
-                    else
-                    {
-                        DateTime dateTimeVal;
-                        if (DateTime.TryParse(entry, out dateTimeVal))
-                            val = dateTimeVal;
-                        else
-                        {
-                            bool boolVal;
-                            //try bool      
-                            if (bool.TryParse(entry, out boolVal))
-                                val = boolVal;
-                            else
-                            {
-                                //try int
-                                int intVal;
-                                if (int.TryParse(entry, out intVal))
-                                    val = intVal;
-                                else
-                                    //string it is if all fails
-                                    val = entry;
-                            }
-                        }
-                    }                   
-                }
-
-                var valueSet = SetValueToModel(name, item.Key, val, ref model);
-                if (valueSet)
+                if (used.Contains(name)) continue;               
+                if (SetValueToModel(name, item.Key, item.Value, ref model))
                 {
                     used.Add(name);                    
                     if (_requireds.Contains(name))

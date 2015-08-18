@@ -10,5 +10,10 @@ namespace CodeFirstConfig
         {
             Item = item;
         }
+
+        public CodeFirstConfigException(string message, ConfigItem item, Exception inner) : base(message, inner)
+        {
+            Item = item;
+        }
     }
 }

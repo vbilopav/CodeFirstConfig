@@ -23,6 +23,17 @@ namespace CodeFirstConfig
 
         private static List<Exception> _exceptions = new List<Exception>();
 
+        private static bool IsSubclassOfRawGeneric(this Type type, Type generic)
+        {
+            while (type != null && type != typeof(object))
+            {
+                var cur = type.IsGenericType ? type.GetGenericTypeDefinition() : type;
+                if (generic == cur) return true;
+                type = type.BaseType;
+            }
+            return false;
+        }
+
         internal static void AddExceptions(Exception exc)
         {
             _exceptions.Add(exc);
@@ -51,7 +62,7 @@ namespace CodeFirstConfig
                 _watcher.EnableRaisingEvents = true;
                 _stopwatch.Reset();
             };
-            _watcher.InternalBufferSize = _watcher.InternalBufferSize*4;
+            //_watcher.InternalBufferSize = _watcher.InternalBufferSize;
             _watcher.Error += (sender, e) => {
                 if (ConfigSettings.Instance.OnError != null)
                     ConfigSettings.Instance.OnError(new ConfigErrorEventArgs(e.GetException()));
@@ -102,7 +113,6 @@ namespace CodeFirstConfig
                 _exceptions = new List<Exception>();
                 Type appType = typeof(AppConfigManager);                
                 if (_types == null) _types = _getConfigTypesFunc();
-
                 try
                 {
                     if (settings != null)
@@ -116,7 +126,6 @@ namespace CodeFirstConfig
                 {
                     _exceptions.Add(e);
                 }
-
                 foreach (Type t in _types)
                 {
                     try

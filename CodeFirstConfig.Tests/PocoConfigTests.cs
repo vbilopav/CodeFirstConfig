@@ -30,6 +30,18 @@ namespace CodeFirstConfig.Tests
 
         public class PocoConfigManager : ConfigManager<TestClass> { }
 
+        static PocoConfigTests()
+        {
+            //
+            //  By defualt, exceptions are not thrown! 
+            //  Instead, default values are used and exception is accessable via Configurator.Exceptions
+            //
+            //  For this tests, throw exceptions...
+            //  
+            ConfigSettings.Instance.ThrowOnConfigureException = true;
+        }
+
+
         [TestMethod]
         public void PocoConfig_Test()
         {
