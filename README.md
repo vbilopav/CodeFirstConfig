@@ -1,5 +1,5 @@
-# `CodeFistConfig` 
-`CodeFistConfig` will make your configuration pain go away!
+# `CodeFirstConfig` 
+`CodeFirstConfig` will make your configuration pain go away!
 
 Writing configurable code is sometimes boring, tedious and repeatable task. 
 Not to mention that config files can sometimes grow out of control to complete and utter config hell!
