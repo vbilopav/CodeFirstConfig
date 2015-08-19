@@ -88,8 +88,11 @@ And then, moment after, file will be recraeted again, so that it reflects real v
 
 
 Cool. 
+
 But, `CodeFirstConfig` can do more. 
-How about, loading you configuration from database, without nasty application resets, lazy configuration, config events and more... 
+
+How about, loading you configuration from database, asynchronous reconfigurations without nasty application resets, 
+lazy configuration, complex data structures, config events and more... 
 
 ...
 

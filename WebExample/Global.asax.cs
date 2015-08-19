@@ -8,8 +8,7 @@ namespace WebExample
     public class MvcApplication : System.Web.HttpApplication
     {
         static MvcApplication()
-        {
-            //ConfigSettings.Instance.ThrowOnConfigureException = true;
+        {          
             Configurator.ConfigureAsync(
                 new ConfigSettings
                 {
