@@ -79,9 +79,13 @@ You can start using this newly created file as your main `appSettings` config fi
 ...
 ```
 But, but, but, if I change that file it will not reset or restart my application as would main configuration file. 
-Sure. There is no need to. 
+Sure. Shut up. There is no need to. 
+
 It will trigger asynchronous process that will reconfigure all of your configurable values, 
-including ones not managed by `CodeFirstConfig ConfigManager` - without restart. 
+including ones not managed by `CodeFirstConfig ConfigManager` (plain `AppSettings` values) - without restart. 
+
+And then, moment after, file will be recraeted again, so that it reflects real values. Of course, if you want to.
+
 
 Cool. 
 But, `CodeFirstConfig` can do more. 
