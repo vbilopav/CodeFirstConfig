@@ -43,8 +43,9 @@ WriteLine(MyConfigurableModule.Config.Value2); //outputs "Configured2"
 WriteLine(MyConfigurableModule.Config.Value3); //outputs "4"
 ```
 There you go. You just write your code as you would normally do, and declare class as configurable. 
-You can do it by inhert `ConfigManager` class or by composition, or dedicated `ConfigManager` 
-so you could have clean inheritance structure.
+
+You can do it by inhert `ConfigManager` class or why not directly via `ConfigManager<MyConfigurableModule>.Config`  or by class composition, or any way you like. 
+`ConfigManager<MyConfigurableModule>.Config` will configure generic class on demand.
 
 So, the whole idea is to just write code, don't worry about configuration files.
 
