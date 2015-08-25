@@ -31,11 +31,7 @@ namespace CodeFirstConfig
             set { lock (ConfigLock) ConfigSettings.Instance.OnError = value; }
         }
 
-        public static ConfigSettings ConfigSettings
-        {
-            get { return ConfigSettings.Instance; }
-            set { lock (ConfigLock) ConfigSettings.Instance = value; }
-        }
+        public static ConfigSettings ConfigSettings => ConfigSettings.Instance;
 
         public static AggregateException Exception => new AggregateException(_exceptions.ToArray());
 
