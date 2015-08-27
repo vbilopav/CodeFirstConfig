@@ -108,40 +108,6 @@ lazy configuration, complex data structures, config events and more...
 > **"Ubercool"** ~ somebody.
 
 
-## Documentation table of contents
+### Further Documentation
 
-[[a. Basic example|a. Basic example]]
-
-[[b. Config usages examples|b. Config usages examples]]
-
-  * [[Composit config|b. Config usages examples#composit-config]]
-
-  * [[POCO config|b. Config usages examples#poco-config]]
-
-  * [[Configurable classes and eager configuration|b. Config usages examples#configurable-classes-and-eager-configuration]]
-
-[[c. Enums, flags and complex class examples|c. Enums, flags and complex class examples]]
-
-  * [[Enums|c. Enums, flags and complex class examples#enums]]
-
-  * [[Flags|c. Enums, flags and complex class examples#flags]]
-
-  * [[Complex types|c. Enums, flags and complex class examples#complex-types]]
-
-[[d. Eager configuration|d. Eager configuration]]
-
-  * [[Default configuration setting|. Eager configuration#default-configuration-setting]]
-
-[[e. Creating configuration file|e. Creating configuration file]]
-
-[[f. 'App' built in configurable class|f. 'App' built in configurable class]]
-
-[[g. Using database configuration|g. Using database configuration]]
-
-[[h. Configurator class|h. Configurator class]]
-
-[[i. Configuration settings|i. Configuration settings]]
-
-[[j. Configuration attributes and events|j. Configuration attributes and events]]
-
-
+[Documentation can be found here.](https://github.com/vbilopav/CodeFirstConfig/wiki) 
