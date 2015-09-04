@@ -111,3 +111,10 @@ lazy configuration, complex data structures, config events and more...
 ### Further Documentation
 
 [Documentation can be found here.](https://github.com/vbilopav/CodeFirstConfig/wiki) 
+
+
+### Nuget
+
+```
+PM> Install-Package CodeFirstConfig
+```
