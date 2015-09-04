@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace CodeFirstConfig
@@ -12,6 +13,7 @@ namespace CodeFirstConfig
     public sealed class App
     {
         public static App Config => AppConfigManager.Config;
+        public static Assembly Assembly => AppAssembly.Assembly;
         public static string InstanceHash { get; }
         public static bool IsWebApp { get; }     
         public static bool IsDebugConfiguration { get; }       
