@@ -70,7 +70,9 @@ New configuration file will be generated for you, with following values:
 ...
 ```
 This file will include all of your configurable values in your application, 
-as well as previous config keys from appSettings that you may have.
+as well as previous config keys from appSettings that you may have. 
+It will show you exactly how many configurable values you have in your application with their respective values 
+(either configured or default).
 
 Now, why stop there. 
 You can start using this newly created file as your main `appSettings` config file by referencing it from you main configuration: 
