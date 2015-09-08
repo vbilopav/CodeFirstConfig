@@ -42,7 +42,7 @@
                                 if (toppings[key] === lower)
                                     delete toppings[lower];
                             }
-                            toppings[arguments[i]] = arguments[i].toLowerCase();
+                            toppings[arguments[i]] = lower;
                         }
                     },
                     removeToppings: function() {
