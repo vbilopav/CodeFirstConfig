@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>RL-frontend</title>  
@@ -13,19 +13,88 @@
         <li class="entry-12 entry">E</li>
     </ul>
 
+    <a id="anchor1" href="#">anchor1</a>
+    <a id="anchor2" href="#">anchor2</a>
+    <a id="anchor3" href="#">anchor3</a>
+
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
     <script type="text/javascript">
-        (function () {
+
+        // 1.
+        (function() {
             var result = [];
-            $("ul#entries > li.entry:not(.disabled)").each(function () {                
+            $("#entries > li.entry:not(.disabled)").each(function() {
                 result.push($(this).id);
                 document.write("pushed id value of element with content " + $(this).html());
                 document.write("<br />");
             });
             document.write("<br />");
-            document.write("Hooray, we have array of " + result.length + " elements :)" );
-        })()
+        })();
+
+        //2.
+        (function() {
+
+            var Pizza = function(name) {
+                var toppings = {};
+                return {
+                    name: name,
+                    addToppings: function() {
+                        for (var i = 0; i < arguments.length; i++) {
+                            toppings[arguments[i]] = arguments[i].toLowerCase();
+                        }
+                    },
+                    removeToppings: function() {
+                        for (var i = 0; i < arguments.length; i++) {
+                            for (var key in toppings) {
+                                if (toppings[key] === arguments[i].toLowerCase())
+                                    delete toppings[arguments[i].toLowerCase()];
+                            }
+                        }
+                    },
+                    print: function() {
+                        return JSON.stringify({ name: this.name, toppings: Object.keys(toppings) });
+                    }
+                }
+            }
+
+            var pizza = Pizza("Mushroom Lover");
+            pizza.addToppings("Mushrooms");
+            pizza.addToppings("mushrooms", "Mushrooms", "Pineapple", "pickles");
+            pizza.removeToppings("Pickles");
+            console.log(pizza.print());
+
+        })();
+
+        //3.
+        (function () {
+            window.onload = function () {
+                var anchors = document.getElementsByTagName("a");
+                for (var i = 0; i < anchors.length; i++) {
+                    anchors[i].onclick = function () {
+                        alert("I am link " + i + ".");
+                    }
+                }
+            };
+        })();
+
+        //4.
+        (function () {
+            /*
+            $("body button").click(function() {
+                alert("Button Clicked!");
+            });
+
+            $("body").append("<button>Click me!</button>");
+            */
+
+            //fixed:
+            $("body").append("<button>Click me!</button>");
+
+            $("body button").click(function () {
+                alert("Button Clicked!");
+            });
+        })();
     </script>
 
 </body>
