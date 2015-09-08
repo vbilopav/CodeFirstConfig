@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>RL-frontend</title>  
+    <title>RL-frontend</title>
 </head>
 <body>
-
     <ul id="entries">
         <li class="entry-3 entry">A</li>
         <li class="entry-4 entry">B</li>
@@ -12,13 +11,10 @@
         <li class="entry-7 entry">D</li>
         <li class="entry-12 entry">E</li>
     </ul>
-
     <a id="anchor1" href="#">anchor1</a>
     <a id="anchor2" href="#">anchor2</a>
     <a id="anchor3" href="#">anchor3</a>
-
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
     <script type="text/javascript">
 
         // 1.
@@ -72,8 +68,10 @@
             window.onload = function () {
                 var anchors = document.getElementsByTagName("a");
                 for (var i = 0; i < anchors.length; i++) {
+                    //it's a closure trap, took too much c#
+                    anchors[i].setAttribute("data-id", i+1);
                     anchors[i].onclick = function () {
-                        alert("I am link " + i + ".");
+                        alert("I am link " + this.getAttribute("data-id") + ".");
                     }
                 }
             };
@@ -97,7 +95,5 @@
             });
         })();
     </script>
-
 </body>
-
 </html>
