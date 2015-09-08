@@ -37,6 +37,11 @@
                     name: name,
                     addToppings: function() {
                         for (var i = 0; i < arguments.length; i++) {
+                            var lower = arguments[i].toLowerCase();
+                            for (var key in toppings) {
+                                if (toppings[key] === lower)
+                                    delete toppings[lower];
+                            }
                             toppings[arguments[i]] = arguments[i].toLowerCase();
                         }
                     },
@@ -61,6 +66,9 @@
             pizza.removeToppings("Pickles");
             console.log(pizza.print());
 
+            document.write("<br />");
+            document.write(pizza.print());
+
         })();
 
         //3.
@@ -69,7 +77,7 @@
                 var anchors = document.getElementsByTagName("a");
                 for (var i = 0; i < anchors.length; i++) {
                     //it's a closure trap, took too much c#
-                    anchors[i].setAttribute("data-id", i+1);
+                    anchors[i].setAttribute("data-id", i + 1);
                     anchors[i].onclick = function () {
                         alert("I am link " + this.getAttribute("data-id") + ".");
                     }
