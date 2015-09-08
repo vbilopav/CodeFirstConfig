@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>RL-frontend</title>  
+</head>
+<body>
+
+    <ul id="entries">
+        <li class="entry-3 entry">A</li>
+        <li class="entry-4 entry">B</li>
+        <li class="entry-5 entry disabled">C</li>
+        <li class="entry-7 entry">D</li>
+        <li class="entry-12 entry">E</li>
+    </ul>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript">
+        (function () {
+            var result = [];
+            $("#entries > li.entry:not(.disabled)").each(function () {                
+                result.push($(this).id);
+                document.write("pushed id value of element with content " + $(this).html());
+                document.write("<br />");
+            });
+            document.write("<br />");
+            document.write("Hooray, we have array of " + result.length + " elements :)" );
+        })()
+    </script>
+
+</body>
+
+</html>
