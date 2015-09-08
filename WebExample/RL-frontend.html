@@ -46,9 +46,10 @@
                     },
                     removeToppings: function() {
                         for (var i = 0; i < arguments.length; i++) {
+                            var lower = arguments[i].toLowerCase();
                             for (var key in toppings) {
-                                if (toppings[key] === arguments[i].toLowerCase())
-                                    delete toppings[arguments[i].toLowerCase()];
+                                if (toppings[key] === lower)
+                                    delete toppings[lower];
                             }
                         }
                     },
