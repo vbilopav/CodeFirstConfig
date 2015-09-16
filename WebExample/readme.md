@@ -40,6 +40,8 @@ Application will log following events:
     * Configurator error event, triggered in `Configurator.OnError` event.
     * Configurator model configred, triggered in Configurator.OnModelConfigured`.
     * Configurator configure finished.
+    
+
 
 ### `CodeFirstConfig` view, second row
 
